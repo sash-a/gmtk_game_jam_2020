@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+public class Block : MapObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public static Block spawnBlock(Vector2Int absolutePosition) {
+        GameObject blockObj = Instantiate<GameObject>(Map.singleton.blockPerfab);
+        Block block = blockObj.GetComponent<Block>();
+        block.pos = absolutePosition;
+        return block;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static Block spawnBlock()
     {
-        
+        GameObject blockObj = Instantiate<GameObject>(Map.singleton.blockPerfab);
+        Block block = blockObj.GetComponent<Block>();
+        return block;
     }
+
 }
