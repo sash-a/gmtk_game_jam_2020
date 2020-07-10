@@ -2,24 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
     public float snappyness;
     public float speed;
     public float jumpForce;
 
     private bool airborn = false;
     private Vector2 velocity;  // for movement interp
-    void Start()
+    private Rigidbody2D rb;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        print(airborn);
         // player movement
         // todo decrease l/r speed in air?
         var currVelocity = rb.velocity;
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (!airborn)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.W))
                 rb.AddForce(new Vector2(0f, jumpForce));
 
         }
@@ -41,12 +42,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // todo check that other.tag is ground
-        airborn = false;
+        if (other.gameObject.CompareTag("Floor"))
+            airborn = false;
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        airborn = true;
+        if (other.gameObject.CompareTag("Floor"))
+            airborn = true;    
     }
 }
