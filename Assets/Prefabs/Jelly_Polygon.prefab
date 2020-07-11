@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1888675705213167906}
   - component: {fileID: 1888675705213167908}
   - component: {fileID: 610455117}
+  - component: {fileID: 7063395786828113289}
   m_Layer: 0
   m_Name: Jelly_Polygon
   m_TagString: Untagged
@@ -170,6 +171,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 1
   speed: 10
-  jumpForce: 10
+  jumpForce: 5000
   sizeSpeedInfluence: 0
-  sizeJumpInfluence: 0
+  sizeJumpInfluence: 1
+  airborn: 1
+--- !u!114 &7063395786828113289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888675705213167928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growthRate: 0
+  minSplitSize: 0
+  maxSize: 0

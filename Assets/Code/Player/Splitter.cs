@@ -24,6 +24,7 @@ namespace Code.Player
 
         private void Start()
         {
+            // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
             
@@ -32,13 +33,10 @@ namespace Code.Player
             side[0] *= startDir;
             side *= Random.value * splitPerpMag;
 
-            // When the player spawns give them a random force in a similar dir to parent force
             rb = GetComponent<Rigidbody2D>();
-            
-            print("force:" + dir);
             rb.AddForce(dir + side);
 
-            transform.localScale = Vector3.one * 0.25f;  // todo this needs to be initial size
+            transform.localScale = Vector3.one * 0.25f;  // todo this needs to be parent
         }
 
         void Update()
@@ -51,7 +49,6 @@ namespace Code.Player
         {
             if (grower.TooSmall()) return;
             
-        
             // Spawn them a random amount above the parent
             if (nSplits < maxSplits)
             {

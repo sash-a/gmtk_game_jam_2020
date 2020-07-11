@@ -23,8 +23,8 @@ namespace Code.Player
 
         private void FixedUpdate()
         {
-            if (TooBig())
-                GetComponent<Splitter>().Split();
+            // if (TooBig())
+            //     GetComponent<Splitter>().Split();
             
             // transform.localScale += growthVec;
             // jelly.radius += growthRate;
