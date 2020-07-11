@@ -16,6 +16,8 @@ public class Jelly : MonoBehaviour
     public float radius= 5;
     public int vertexNum = 32;
 
+    public Material material;
+
     void Start()
     {
         polyCollider = GetComponent<PolygonCollider2D>();
@@ -91,6 +93,7 @@ public class Jelly : MonoBehaviour
         mesh = GetComponent<MeshFilter>().mesh;
         verticies = mesh.vertices;
         verticiesCount = verticies.Length;
+        GetComponent<MeshRenderer>().material = material;
 
         for (int i = 0; i < verticies.Length; i++)
         {
@@ -102,8 +105,7 @@ public class Jelly : MonoBehaviour
         //GameObject centre = points[CenterPoint];
         for (int i = 0; i < points.Count; i++)
         {
-            //if (i != CenterPoint)
-            //{
+            
                 if (i == points.Count - 1)
                 {
                     points[i].GetComponent<HingeJoint2D>().connectedBody = points[0].GetComponent<Rigidbody2D>();
@@ -112,9 +114,7 @@ public class Jelly : MonoBehaviour
                 {
                     points[i].GetComponent<HingeJoint2D>().connectedBody = points[i + 1].GetComponent<Rigidbody2D>();
                 }
-           // }
         }
 
-        //points[CenterPoint].GetComponent<HingeJoint2D>().connectedBody = points[CenterPoint].GetComponent<Rigidbody2D>();
     }
 }
