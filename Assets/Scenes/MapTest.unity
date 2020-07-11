@@ -281,6 +281,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8746018058534315352, guid: 6c7ed923ccd8deaad8eaae0af868cdec,
+        type: 3}
+      propertyPath: growthRate
+      value: 0.0005
+      objectReference: {fileID: 0}
     - target: {fileID: 6821756720429920261, guid: 6c7ed923ccd8deaad8eaae0af868cdec,
         type: 3}
       propertyPath: m_ShapeTexture

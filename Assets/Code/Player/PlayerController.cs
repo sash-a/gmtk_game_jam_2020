@@ -10,7 +10,7 @@ namespace Code.Player
         public float sizeSpeedInfluence;
         public float sizeJumpInfluence;
 
-        private bool airborn;
+        private bool airborn = true;
         private Vector2 velocity;  // for movement interp
         private Rigidbody2D rb;
 

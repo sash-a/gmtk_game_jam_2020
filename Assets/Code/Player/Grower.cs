@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Player
 {
@@ -8,12 +10,21 @@ namespace Code.Player
         public float minSplitSize;
         public float maxSize;
 
+        private Vector3 growthVec;
+
+        public void Start()
+        {
+            growthRate *= Random.Range(0.5f, 1.5f);
+            growthVec = new Vector3(growthRate, growthRate, growthRate);
+        }
+
         private void FixedUpdate()
         {
             if (TooBig())
                 GetComponent<Splitter>().Split();
-        
-            gameObject.transform.localScale *= growthRate;
+            
+            print(transform.localScale);
+            transform.localScale += growthVec;
         }
 
         public bool TooBig()
