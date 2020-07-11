@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6821756720429920262}
   - component: {fileID: 6821756720429920261}
   - component: {fileID: 6821756720429920260}
-  - component: {fileID: 6821756720429920315}
   - component: {fileID: 6821756720429920256}
   - component: {fileID: 6821756720429920263}
+  - component: {fileID: 6821756720429920315}
   - component: {fileID: 731813728824916175}
+  - component: {fileID: -8746018058534315352}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6821756720429920314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.04, z: 0}
-  m_LocalScale: {x: 0.3082312, y: 0.33450085, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -149,21 +150,6 @@ MonoBehaviour:
   m_OptimizeGeometry: 1
   m_EnableTangents: 0
   m_GeometryCached: 0
---- !u!114 &6821756720429920315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821756720429920314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fa8376cc480ceea88319fcb7add3a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snappyness: 0.75
-  speed: 50
-  jumpForce: 200
 --- !u!50 &6821756720429920256
 Rigidbody2D:
   serializedVersion: 4
@@ -211,6 +197,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.0000005, y: 3.9999998}
   m_EdgeRadius: 0
+--- !u!114 &6821756720429920315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821756720429920314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fa8376cc480ceea88319fcb7add3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snappyness: 0.75
+  speed: 50
+  jumpForce: 200
+  sizeSpeedInfluence: 1
+  sizeJumpInfluence: 1
 --- !u!114 &731813728824916175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,4 +227,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6821756720429920314}
-  angleBounds: 45
+  spawnRotationBounds: 0
+  maxSplits: 5
+--- !u!114 &-8746018058534315352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821756720429920314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growthRate: 1.0005
+  minSplitSize: 0
+  maxSize: 1

@@ -1,47 +1,67 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Splitter : MonoBehaviour
+namespace Code.Player
 {
-    public static int nPlayers = 0;
-
-    public GameObject playerPrefab;
-    public float angleBounds;
-
-    private Rigidbody2D rb;
-    void Awake()
+    public class Splitter : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        public static int nPlayers = 0;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Split();
-    }
+        public GameObject playerPrefab;
+        public float spawnRotationBounds;
+        public int maxSplits;
 
-    void Split()
-    {
-        nPlayers += 1;
-        
-        // Spawn them a random amount above the parent
-        for (int i = 0; i < 2; i++)
+        private int nSplits = 0;
+
+        private Rigidbody2D rb;
+        private Grower grower;
+        void Awake()
         {
-            var posOffset = Quaternion.Euler(0, 0, Random.Range(-30, 30)) * Vector2.up * Random.Range(0.1f, 2f);
-            var spawned = Instantiate(playerPrefab, gameObject.transform.position + posOffset, gameObject.transform.rotation);
-            spawned.GetComponent<Splitter>().randomSpawnForce(rb.velocity);
+            rb = GetComponent<Rigidbody2D>();
+            grower = GetComponent<Grower>();
         }
-        Destroy(gameObject);
-    }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                Split();
+        }
+
+        public void Split()
+        {
+            if (grower.TooSmall()) return;
+            
+            nPlayers += 1;
+        
+            // Spawn them a random amount above the parent
+            if (nSplits < maxSplits)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
+                    var spawned = Instantiate(playerPrefab, gameObject.transform.position + posOffset,
+                        gameObject.transform.rotation);
+                    spawned.GetComponent<Splitter>().OnSpawn(rb.velocity, nSplits);
+                }
+            }
+
+            Destroy(gameObject);
+        }
     
-    void randomSpawnForce(Vector2 parentVelocity)
-    {
-        // When the player spawns give them a random force in a similar dir to parent force
-        rb = GetComponent<Rigidbody2D>();
-        var direction = Quaternion.Euler(0, 0, Random.Range(-angleBounds, angleBounds)) * parentVelocity.normalized;
-        rb.AddForce(direction * Random.Range(100, 200));
+        void OnSpawn(Vector2 parentVelocity, int parentSplits)
+        {
+            nSplits = parentSplits + 1;
+            // When the player spawns give them a random force in a similar dir to parent force
+            rb = GetComponent<Rigidbody2D>();
+            var direction = RandomArc(parentVelocity.normalized, spawnRotationBounds);
+            rb.AddForce(direction * Random.Range(100, 200));
+
+            transform.localScale = Vector3.one * 0.25f;  // todo this needs to be initial size
+        }
+
+        public static Vector3 RandomArc(Vector2 dir, float angle)
+        {
+            return Quaternion.Euler(0, 0, Random.Range(-angle, angle)) * dir;
+        }
     }
 }
