@@ -28,10 +28,10 @@ namespace Code.Player
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
             
-            var dir = new Vector2(x, y) * Random.value * splitDirMag;
+            var dir = new Vector2(x, y) * (Random.value + 0.15f) * splitDirMag;
             var side = new Vector2(y, x);
             side[0] *= startDir;
-            side *= Random.value * splitPerpMag;
+            side *= (Random.value + 0.15f) * splitPerpMag;
 
             rb = GetComponent<Rigidbody2D>();
             rb.AddForce(dir + side);
