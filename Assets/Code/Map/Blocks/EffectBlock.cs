@@ -12,21 +12,18 @@ public  abstract class EffectBlock : TriggerBlock
      */
 
     public static string EFFECT_BLOCK = "effect";
-    public HashSet<Code.Player.PlayerController> affectedPlayers;
+    public HashSet<PlayerController> affectedPlayers = new HashSet<PlayerController>();
 
-    bool allowReeffects;
+    public bool allowReeffects ;
 
-    private void Start()
-    {
-        affectedPlayers = new HashSet<Code.Player.PlayerController>();
-    }
+
 
     public override string getTypeString()
     {
         return EFFECT_BLOCK;
     }
 
-    internal override void trigger(Code.Player.PlayerController pc)
+    internal override void trigger(PlayerController pc)
     {
         if (!affectedPlayers.Contains(pc))
         {

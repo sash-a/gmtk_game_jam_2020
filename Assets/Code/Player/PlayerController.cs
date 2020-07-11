@@ -56,7 +56,8 @@ namespace Code.Player
                     scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
                     targetVelocity.y = jumpSpeed + scaleFactor;
                     // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
-                    // rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
+
+                    //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
                     // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
                 }
                 

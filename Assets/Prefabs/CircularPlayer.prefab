@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 0.1
   speed: 3
-  jumpSpeed: 10
+  jumpSpeed: 15
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   onlyFloor:

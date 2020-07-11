@@ -9,6 +9,12 @@ public class SwitchBlock : EffectBlock
 
     public static string SWITCH_BLOCK = "switch";
 
+    private void Start()
+    {
+        allowReeffects = true;
+        updateSWitch();
+    }
+
     public bool on
     {
         get { return affectedPlayers.Count > 0; }
@@ -25,10 +31,11 @@ public class SwitchBlock : EffectBlock
         updateSWitch();
     }
 
-    private void updateSWitch()
+    private void updateSWitch() 
     {
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-        sr.color = on ? Color.black : Color.yellow;
+        sr.color = on ? Color.black : Color.red;
+        Debug.Log("swtich now " + on);
     }
 
     public override string getTypeString()
