@@ -35,12 +35,12 @@ namespace Code.Player
 
         public bool TooBig()
         {
-            return gameObject.transform.localScale.sqrMagnitude > maxSize;
+            return gameObject.transform.localScale.x > maxSize;
         }
 
         public bool TooSmall()
         {
-            return gameObject.transform.localScale.sqrMagnitude < minSplitSize;
+            return gameObject.transform.localScale.x < minSplitSize;
         }
     }
 }

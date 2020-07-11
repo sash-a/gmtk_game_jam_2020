@@ -1120,15 +1120,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
-      propertyPath: snappyness
-      value: 0.1
+      propertyPath: splitPerpMag
+      value: 300
       objectReference: {fileID: 0}
-    - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
-      propertyPath: speed
-      value: 8
+      propertyPath: splitDirMag
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
@@ -1137,8 +1137,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
-      propertyPath: jumpSpeed
-      value: 100
+      propertyPath: playerMask.m_Bits
+      value: 567
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505615, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
@@ -1158,7 +1158,12 @@ PrefabInstance:
     - target: {fileID: 1237596767535505619, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505619, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: growthRate
+      value: 0.005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b6fc835130a616bb96b7d930f18d63, type: 3}

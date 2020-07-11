@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappyness: 1
-  speed: 10
-  jumpSpeed: 0
+  snappyness: 0.1
+  speed: 3
+  jumpSpeed: 10
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   onlyFloor:
@@ -159,8 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1237596767535505617}
   maxSplits: 5
-  splitPerpMag: 100
-  splitDirMag: 200
+  splitPerpMag: 800
+  splitDirMag: 800
   nSplits: 0
 --- !u!114 &1237596767535505619
 MonoBehaviour:

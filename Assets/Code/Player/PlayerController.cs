@@ -18,7 +18,7 @@ namespace Code.Player
         private Vector2 velocity;  // for movement interp
         private Rigidbody2D rb;
         private int horizontalFlip = 1;
-
+        private Vector2 targetVelocity;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -39,12 +39,10 @@ namespace Code.Player
             
             // print(transform.localScale.x);
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
-            Vector2 targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
+            targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
             
             // Jump
-            if (Input.GetKeyDown(KeyCode.W))
-                print(airborn);
             if (!airborn)
             {
                 if (Input.GetKeyDown(KeyCode.W))
@@ -68,6 +66,7 @@ namespace Code.Player
         {
             if (other.gameObject.CompareTag("Floor"))
                 airborn = false;
+            
         }
 
         public void InvertHorizontal()
@@ -81,8 +80,10 @@ namespace Code.Player
          * right = 1 then check right wall, right = -1 then check left
          */
         {
-            RaycastHit2D r = Physics2D.Raycast(transform.position, Vector2.right * right, transform.localScale.x, onlyFloor);
-            return r.distance != 0.0f;
+            var t = transform;
+            var scale = t.localScale;
+            RaycastHit2D r = Physics2D.Raycast(t.position, Vector2.right * right, scale.x, onlyFloor);
+            return r.distance != 0.0f && r.distance < scale.x / 1.5;
 
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
