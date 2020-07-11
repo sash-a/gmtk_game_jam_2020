@@ -24,6 +24,10 @@ namespace Code.Player
             rb = GetComponent<Rigidbody2D>();
         }
 
+        public float size {
+            get { return transform.localScale.magnitude; }
+        }
+
         void Update()
         {
             // player movement
@@ -47,11 +51,13 @@ namespace Code.Player
             {
                 if (Input.GetKeyDown(KeyCode.W))
                 {
+
                     airborn = true;
                     scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
                     targetVelocity.y = jumpSpeed + scaleFactor;
                     // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
-                    // rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
+
+                    //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
                     // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
                 }
                 
@@ -60,6 +66,7 @@ namespace Code.Player
             rb.velocity = targetVelocity;
 
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
+
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -87,5 +94,15 @@ namespace Code.Player
 
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
+        public float getReach() {
+            //R(0.5) = 4.5
+            //R(3) = 3
+            float rise = 3f - 4.5f;
+            float run = 3 - 0.5f;
+
+            float dist = size - 0.5f;
+            return 4.5f + dist / run * rise;
+        }
+        
     }
 }

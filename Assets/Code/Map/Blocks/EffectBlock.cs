@@ -1,34 +1,48 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Code.Player;
 using UnityEngine;
 
-public class EffectBlock : TriggerBlock
+public  abstract class EffectBlock : TriggerBlock
 {
 
-    public static string EFFECT_BLOCK = "effect";
-    HashSet<Code.Player.PlayerController> affectedPlayers;
+    /*
+     * One effect per 
+     */
 
-    private void Start()
-    {
-        affectedPlayers = new HashSet<Code.Player.PlayerController>();
-    }
+    public static string EFFECT_BLOCK = "effect";
+    public HashSet<PlayerController> affectedPlayers = new HashSet<PlayerController>();
+
+    public bool allowReeffects ;
+
+
 
     public override string getTypeString()
     {
-        Debug.Log("eff:" + gameObject);
         return EFFECT_BLOCK;
     }
 
-    internal override void trigger(Code.Player.PlayerController pc)
+    internal override void trigger(PlayerController pc)
     {
-        if (affectedPlayers.Contains(pc))
+        if (!affectedPlayers.Contains(pc))
         {
-
-        }
-        else
-        {
+            affect(pc);
             affectedPlayers.Add(pc);
             Debug.Log("effect! " + pc);
         }
     }
+
+
+    internal override void untrigger(PlayerController pc)
+    {
+        if (allowReeffects) {
+            affectedPlayers.Remove(pc);
+        }
+        unaffect(pc);
+    }
+
+    public abstract void affect(PlayerController pc);
+    public abstract void unaffect(PlayerController pc);
+
 }
