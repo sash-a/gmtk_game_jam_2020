@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2941629045956132851}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 6073565067128725699}
   m_Layer: 0
   m_Name: BlockPhysics
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

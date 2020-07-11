@@ -37,8 +37,11 @@ public class PlayerController : MonoBehaviour
         if (!airborn)
         {
             if (Input.GetKeyDown(KeyCode.W))
+            {
                 rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
-
+                // airborn = true;
+            }
+                
         }
 
         Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
@@ -46,13 +49,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        print(gameObject.name);
         if (other.gameObject.CompareTag("Floor"))
+        {
             airborn = false;
+            print("hit ground!");
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Floor"))
-            airborn = true;    
+            airborn = true;
     }
 }
