@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
 
         }
+
+        Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
     }
 
     private void OnCollisionEnter2D(Collision2D other)
