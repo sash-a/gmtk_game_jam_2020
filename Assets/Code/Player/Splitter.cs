@@ -55,6 +55,7 @@ namespace Code.Player
                     // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
                     var spawned = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
                     spawned.GetComponent<Splitter>().OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale);
+                    spawned.transform.SetParent(transform.parent);
                 }
             }
 
