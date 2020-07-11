@@ -1,65 +1,61 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Code.Player
 {
-    public float snappyness;
-    public float speed;
-    public float jumpForce;
-    public float sizeSpeedInfluence;
-    public float sizeJumpInfluence;
-
-    private bool airborn;
-    private Vector2 velocity;  // for movement interp
-    private Rigidbody2D rb;
-
-    void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        public float snappyness;
+        public float speed;
+        public float jumpForce;
+        public float sizeSpeedInfluence;
+        public float sizeJumpInfluence;
 
-    void Update()
-    {
-        // player movement
-        // todo decrease l/r speed in air?
-        var currVelocity = rb.velocity;
-        
-        // left right
-        var dir = Input.GetAxisRaw("Horizontal");
-        
-        Vector2 targetVelocity = new Vector2(dir * speed, currVelocity.y);
-        rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
+        private bool airborn;
+        private Vector2 velocity;  // for movement interp
+        private Rigidbody2D rb;
 
-        // Jump
-        if (!airborn)
+        void Awake()
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        void Update()
+        {
+            // player movement
+            // todo decrease l/r speed in air?
+            var currVelocity = rb.velocity;
+        
+            // left right
+            var dir = Input.GetAxisRaw("Horizontal");
+        
+            Vector2 targetVelocity = new Vector2(dir * speed, currVelocity.y);
+            rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
+
+            // Jump
+            if (!airborn)
             {
-                rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
-                // airborn = true;
-            }
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
+                    // airborn = true;
+                }
                 
+            }
+
+            Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
         }
 
-        Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        print(gameObject.name);
-        if (other.gameObject.CompareTag("Floor"))
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            airborn = false;
-            print("hit ground!");
+            if (other.gameObject.CompareTag("Floor"))
+                airborn = false;
+            
         }
-    }
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Floor"))
-            airborn = true;
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Floor"))
+                airborn = true;
+        }
     }
 }

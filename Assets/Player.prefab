@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6821756720429920260}
   - component: {fileID: 6821756720429920256}
   - component: {fileID: 6821756720429920263}
-  - component: {fileID: 6821756720429920315}
   - component: {fileID: 731813728824916175}
   - component: {fileID: -8746018058534315352}
+  - component: {fileID: 3533862088055845529}
+  - component: {fileID: 5880960409843353638}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -197,23 +198,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.0000005, y: 3.9999998}
   m_EdgeRadius: 0
---- !u!114 &6821756720429920315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821756720429920314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fa8376cc480ceea88319fcb7add3a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snappyness: 0.75
-  speed: 50
-  jumpForce: 200
-  sizeSpeedInfluence: 1
-  sizeJumpInfluence: 1
 --- !u!114 &731813728824916175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,3 +228,32 @@ MonoBehaviour:
   growthRate: 1.0005
   minSplitSize: 0
   maxSize: 1
+--- !u!114 &3533862088055845529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821756720429920314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snappyness: 0
+  speed: 0
+  jumpForce: 0
+  sizeSpeedInfluence: 0
+  sizeJumpInfluence: 0
+--- !u!114 &5880960409843353638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821756720429920314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bd4717ab754ee28a1593b0e1dda49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

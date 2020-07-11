@@ -5,13 +5,11 @@ namespace Code.Player
 {
     public class Splitter : MonoBehaviour
     {
-        public static int nPlayers = 0;
-
         public GameObject playerPrefab;
         public float spawnRotationBounds;
         public int maxSplits;
 
-        private int nSplits = 0;
+        [HideInInspector] public int nSplits = 0;
 
         private Rigidbody2D rb;
         private Grower grower;
@@ -31,7 +29,6 @@ namespace Code.Player
         {
             if (grower.TooSmall()) return;
             
-            nPlayers += 1;
         
             // Spawn them a random amount above the parent
             if (nSplits < maxSplits)
