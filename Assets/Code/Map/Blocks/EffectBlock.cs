@@ -1,12 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Code.Player;
 using UnityEngine;
 
-public class EffectBlock : TriggerBlock
+public  abstract class EffectBlock : TriggerBlock
 {
 
+    /*
+     * One effect per 
+     */
+
     public static string EFFECT_BLOCK = "effect";
-    HashSet<Code.Player.PlayerController> affectedPlayers;
+    public HashSet<Code.Player.PlayerController> affectedPlayers;
+
+    bool allowReeffects;
 
     private void Start()
     {
@@ -15,20 +23,29 @@ public class EffectBlock : TriggerBlock
 
     public override string getTypeString()
     {
-        Debug.Log("eff:" + gameObject);
         return EFFECT_BLOCK;
     }
 
     internal override void trigger(Code.Player.PlayerController pc)
     {
-        if (affectedPlayers.Contains(pc))
+        if (!affectedPlayers.Contains(pc))
         {
-
-        }
-        else
-        {
+            affect(pc);
             affectedPlayers.Add(pc);
             Debug.Log("effect! " + pc);
         }
     }
+
+
+    internal override void untrigger(PlayerController pc)
+    {
+        if (allowReeffects) {
+            affectedPlayers.Remove(pc);
+        }
+        unaffect(pc);
+    }
+
+    public abstract void affect(PlayerController pc);
+    public abstract void unaffect(PlayerController pc);
+
 }
