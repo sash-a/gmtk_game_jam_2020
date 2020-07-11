@@ -95,7 +95,7 @@ MonoBehaviour:
     type: 3}
   polyCollider: {fileID: 1888675705213167929}
   radius: 1
-  vertexNum: 30
+  vertexNum: 100
   material: {fileID: 2100000, guid: e56ead41864b48e4c825c916f01cd7ff, type: 2}
 --- !u!23 &1888675705213167906
 MeshRenderer:

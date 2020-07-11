@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2921221402866322717}
   - component: {fileID: -492731084081699675}
   - component: {fileID: -7883322127782638124}
+  - component: {fileID: -3884643403323039976}
   m_Layer: 0
   m_Name: Vertex
   m_TagString: Player
@@ -107,3 +108,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ba48f8c22d6b10d831fe103adda358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!231 &-3884643403323039976
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439049526796166639}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 1
+  m_DampingRatio: 0
+  m_Frequency: 1

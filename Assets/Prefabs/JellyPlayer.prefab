@@ -97,7 +97,8 @@ MonoBehaviour:
     type: 3}
   polyCollider: {fileID: 3387495373950388130}
   radius: 1
-  vertexNum: 15
+  vertexNum: 30
+  material: {fileID: 0}
 --- !u!23 &3387495373950388153
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -175,6 +176,7 @@ MonoBehaviour:
   jumpForce: 150
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
+  airborn: 1
 --- !u!114 &3860164635443845953
 MonoBehaviour:
   m_ObjectHideFlags: 0

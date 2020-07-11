@@ -230,8 +230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6821756720429920314}
   maxSplits: 5
-  splitPerpMag: 0
-  splitDirMag: 0
+  splitPerpMag: 200
+  splitDirMag: 300
   nSplits: 0
 --- !u!114 &-8746018058534315352
 MonoBehaviour:
@@ -245,8 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 1.0005
-  minSplitSize: 0
+  growthRate: 0.0005
+  minSplitSize: 0.5
   maxSize: 1
 --- !u!114 &-4962417337815961056
 MonoBehaviour:

@@ -35,8 +35,6 @@ namespace Code.Player
 
             rb = GetComponent<Rigidbody2D>();
             rb.AddForce(dir + side);
-
-            transform.localScale = Vector3.one * 0.25f;  // todo this needs to be parent
         }
 
         void Update()
@@ -56,17 +54,18 @@ namespace Code.Player
                 {
                     // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
                     var spawned = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
-                    spawned.GetComponent<Splitter>().OnSpawn(nSplits, i % 2 == 0 ? 1 : -1);
+                    spawned.GetComponent<Splitter>().OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale);
                 }
             }
 
             Destroy(gameObject);
         }
     
-        void OnSpawn(int parentSplits, int startDir)
+        void OnSpawn(int parentSplits, int startDir, Vector3 parentScale)
         {
             nSplits = parentSplits + 1;
             this.startDir = startDir;
+            transform.localScale = parentScale / 2;
         }
 
         public static Vector3 RandomArc(Vector2 dir, float minAngle, float maxAngle)

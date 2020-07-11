@@ -17,16 +17,17 @@ namespace Code.Player
         public void Start()
         {
             jelly = GetComponent<Jelly>();
-            growthRate *= Random.Range(0.5f, 1.5f);
-            // growthVec = new Vector3(growthRate, growthRate, growthRate);
+            growthRate *= Random.Range(0.9f, 1.1f);
+            growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
 
         private void FixedUpdate()
         {
-            // if (TooBig())
-            //     GetComponent<Splitter>().Split();
+            if (TooBig())
+                GetComponent<Splitter>().Split();
             
-            // transform.localScale += growthVec;
+            transform.localScale += growthVec;
+            
             // jelly.radius += growthRate;
             // jelly.PolyMesh(jelly.radius, jelly.vertexNum);
             // jelly.MakeMeshJelly();

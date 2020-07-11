@@ -18,8 +18,10 @@ public class Jelly : MonoBehaviour
 
     public Material material;
 
+    private Rigidbody2D rb;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         polyCollider = GetComponent<PolygonCollider2D>();
         PolyMesh(radius, vertexNum);
         MakeMeshJelly();
@@ -105,16 +107,26 @@ public class Jelly : MonoBehaviour
         //GameObject centre = points[CenterPoint];
         for (int i = 0; i < points.Count; i++)
         {
-            
-                if (i == points.Count - 1)
-                {
-                    points[i].GetComponent<HingeJoint2D>().connectedBody = points[0].GetComponent<Rigidbody2D>();
-                }
-                else
-                {
-                    points[i].GetComponent<HingeJoint2D>().connectedBody = points[i + 1].GetComponent<Rigidbody2D>();
-                }
+            if (i == points.Count - 1)
+                points[i].GetComponent<HingeJoint2D>().connectedBody = points[0].GetComponent<Rigidbody2D>();
+            else
+                points[i].GetComponent<HingeJoint2D>().connectedBody = points[i + 1].GetComponent<Rigidbody2D>();
+            points[i].GetComponent<SpringJoint2D>().connectedBody = rb;
         }
+    }
 
+    public void Enlarge(float scale)
+    {
+        for (int i = 0; i < verticies.Length; i++)
+        {
+            verticies[i] *= scale;
+            polyCollider.points[i] *= scale;
+            points[i].transform.position *= scale;
+            points[i].transform.localScale *= scale;
+        }
+        // GameObject childObject = Instantiate(toBeInstantiated, transform.position, Quaternion.identity) as GameObject;
+        // childObject.transform.parent = gameObject.transform;
+        // points.Add(childObject);
+        // transform.localScale *= scale;
     }
 }

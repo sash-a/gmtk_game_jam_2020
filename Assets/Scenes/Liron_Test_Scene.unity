@@ -627,6 +627,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610455117, guid: d6034969e42e5004cb00aa49c9b40b55, type: 3}
+      propertyPath: jumpForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888675705213167908, guid: d6034969e42e5004cb00aa49c9b40b55,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888675705213167908, guid: d6034969e42e5004cb00aa49c9b40b55,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888675705213167908, guid: d6034969e42e5004cb00aa49c9b40b55,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888675705213167909, guid: d6034969e42e5004cb00aa49c9b40b55,
+        type: 3}
+      propertyPath: vertexNum
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1888675705213167911, guid: d6034969e42e5004cb00aa49c9b40b55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -691,6 +715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888675705213167929, guid: d6034969e42e5004cb00aa49c9b40b55,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6034969e42e5004cb00aa49c9b40b55, type: 3}

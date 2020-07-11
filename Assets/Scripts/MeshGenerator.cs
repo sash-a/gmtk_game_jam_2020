@@ -10,8 +10,6 @@ public class MeshGenerator : MonoBehaviour
     {
         polyCollider = GetComponent<PolygonCollider2D>();
         PolyMesh(2, 30);
-
-
     }
 
     void PolyMesh(float radius, int n)

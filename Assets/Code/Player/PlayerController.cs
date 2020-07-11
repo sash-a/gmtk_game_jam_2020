@@ -32,12 +32,10 @@ namespace Code.Player
             rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
 
             // Jump
-            //print(airborn);
             if (!airborn)
             {
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    print("jumping!");
                     rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
                     airborn = true;
                 }
