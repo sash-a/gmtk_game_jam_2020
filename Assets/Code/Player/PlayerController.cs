@@ -13,6 +13,7 @@ namespace Code.Player
         [HideInInspector] public bool airborn = true;
         private Vector2 velocity;  // for movement interp
         private Rigidbody2D rb;
+        private int horizontalFlip = 1;
 
         void Awake()
         {
@@ -26,7 +27,7 @@ namespace Code.Player
             var currVelocity = rb.velocity;
         
             // left right
-            var dir = Input.GetAxisRaw("Horizontal");
+            var dir = Input.GetAxisRaw("Horizontal") * horizontalFlip;
         
             Vector2 targetVelocity = new Vector2(dir * speed, currVelocity.y);
             rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
@@ -51,10 +52,10 @@ namespace Code.Player
                 airborn = false;
         }
 
-        // private void OnCollisionExit2D(Collision2D other)
-        // {
-        //     if (other.gameObject.CompareTag("Floor"))
-        //         airborn = true;
-        // }
+        public void InvertHorizontal()
+        {
+            horizontalFlip *= -1;
+        }
+        
     }
 }

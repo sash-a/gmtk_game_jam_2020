@@ -17,7 +17,7 @@ namespace Code.Player
         public void Start()
         {
             jelly = GetComponent<Jelly>();
-            growthRate *= Random.Range(0.9f, 1.1f);
+            growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
 
@@ -35,12 +35,12 @@ namespace Code.Player
 
         public bool TooBig()
         {
-            return gameObject.transform.localScale.magnitude > maxSize;
+            return gameObject.transform.localScale.sqrMagnitude > maxSize;
         }
 
         public bool TooSmall()
         {
-            return gameObject.transform.localScale.magnitude < minSplitSize;
+            return gameObject.transform.localScale.sqrMagnitude < minSplitSize;
         }
     }
 }
