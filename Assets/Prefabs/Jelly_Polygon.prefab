@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1888675705213167909}
   - component: {fileID: 1888675705213167906}
   - component: {fileID: 1888675705213167908}
+  - component: {fileID: 610455117}
   m_Layer: 0
   m_Name: Jelly_Polygon
   m_TagString: Untagged
@@ -92,8 +93,9 @@ MonoBehaviour:
   toBeInstantiated: {fileID: 5439049526796166639, guid: 5bc76ed2704b2484d812aa8c52975396,
     type: 3}
   polyCollider: {fileID: 1888675705213167929}
-  radius: 2
+  radius: 1
   vertexNum: 30
+  material: {fileID: 2100000, guid: e56ead41864b48e4c825c916f01cd7ff, type: 2}
 --- !u!23 &1888675705213167906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154,3 +156,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &610455117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888675705213167928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snappyness: 1
+  speed: 10
+  jumpForce: 10
+  sizeSpeedInfluence: 0
+  sizeJumpInfluence: 0

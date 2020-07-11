@@ -627,11 +627,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1888675705213167909, guid: d6034969e42e5004cb00aa49c9b40b55,
-        type: 3}
-      propertyPath: material
-      value: 
-      objectReference: {fileID: 2100000, guid: e56ead41864b48e4c825c916f01cd7ff, type: 2}
     - target: {fileID: 1888675705213167911, guid: d6034969e42e5004cb00aa49c9b40b55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -694,3 +689,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6034969e42e5004cb00aa49c9b40b55, type: 3}
+--- !u!1 &1888675706281879863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1888675705213167928, guid: d6034969e42e5004cb00aa49c9b40b55,
+    type: 3}
+  m_PrefabInstance: {fileID: 1888675706281879862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1888675706281879864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888675706281879863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bb2ad2a5b9cdffba5fd9d30fb77604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1888675706281879863}
+  maxSplits: 5
+  splitPerpMag: 200
+  splitDirMag: 300
+  nSplits: 0

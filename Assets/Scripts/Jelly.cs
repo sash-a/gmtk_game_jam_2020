@@ -13,8 +13,8 @@ public class Jelly : MonoBehaviour
     public GameObject toBeInstantiated;
 
     public PolygonCollider2D polyCollider;
-    public float radius= 5;
-    public int vertexNum = 32;
+    public float radius;
+    public int vertexNum;
 
     public Material material;
 

@@ -42,7 +42,7 @@ namespace Code.Player
                 
             }
 
-            Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
+            //Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
         }
 
         private void OnCollisionEnter2D(Collision2D other)
