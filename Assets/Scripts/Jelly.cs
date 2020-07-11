@@ -34,7 +34,7 @@ public class Jelly : MonoBehaviour
         mesh.vertices = verticies;
     }
 
-    void PolyMesh(float radius, int n)
+    public void PolyMesh(float radius, int n)
     {
         MeshFilter mf = GetComponent<MeshFilter>();
         Mesh mesh = new Mesh();
@@ -88,7 +88,7 @@ public class Jelly : MonoBehaviour
         polyCollider.SetPath(0, path);
     }
 
-    void MakeMeshJelly()
+    public void MakeMeshJelly()
     {
         mesh = GetComponent<MeshFilter>().mesh;
         verticies = mesh.vertices;

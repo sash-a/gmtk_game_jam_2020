@@ -286,6 +286,16 @@ PrefabInstance:
       propertyPath: growthRate
       value: 0.0005
       objectReference: {fileID: 0}
+    - target: {fileID: 731813728824916175, guid: 6c7ed923ccd8deaad8eaae0af868cdec,
+        type: 3}
+      propertyPath: splitPerpMag
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 731813728824916175, guid: 6c7ed923ccd8deaad8eaae0af868cdec,
+        type: 3}
+      propertyPath: splitDirMag
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 6821756720429920261, guid: 6c7ed923ccd8deaad8eaae0af868cdec,
         type: 3}
       propertyPath: m_ShapeTexture
