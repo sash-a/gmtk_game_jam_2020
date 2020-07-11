@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 6821756720429920314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.04, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   jumpForce: 150
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
+  airborn: 1
 --- !u!114 &731813728824916175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,8 +229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6821756720429920314}
-  spawnRotationBounds: 0
   maxSplits: 5
+  splitPerpMag: 0
+  splitDirMag: 0
+  nSplits: 0
 --- !u!114 &-8746018058534315352
 MonoBehaviour:
   m_ObjectHideFlags: 0

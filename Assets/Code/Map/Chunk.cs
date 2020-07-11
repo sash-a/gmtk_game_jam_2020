@@ -17,18 +17,32 @@ public class Chunk : MapObject
         blocks = new HashSet<Block>();
     }
 
-    public void spawnChunk(IEnumerable<Vector2Int> positions) {
+    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes) {
         /*
          * positions: list of relative positions from the chunks center
          */
+        int i = 0;
         foreach (Vector2Int relativePos in positions)
         {
-            Block newBlock = Block.spawnBlock();
+            Block newBlock;
+            if (specialTypes.ContainsKey(i))
+            {
+                newBlock = Block.spawnBlock(Map.getBlockPrefab(specialTypes[i]));
+            }
+            else {
+                newBlock = Block.spawnBlock();
+            }
             newBlock.transform.parent = transform;
             newBlock.localPos = relativePos;
 
             blocks.Add(newBlock);
+            i++;
         }
+    }
+
+    public void spawnChunk(IEnumerable<Vector2Int> positions)
+    {
+        spawnChunk(positions, new Dictionary<int, string>());
     }
 
 

@@ -6,16 +6,37 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public static Map singleton;
-    public GameObject blockPerfab;
 
     public Camera mapCam;
     public float maxPlayerHeight;
     static int playerOverhead = 2;
+
+    internal static GameObject getBlockPrefab(string name)
+    {
+        return singleton.blockTypePrefabDict[name];
+    }
+
+    public List<GameObject> blockTypePrefabs;
+    public Dictionary<String, GameObject> blockTypePrefabDict;
+
+
     public void Start()
     {
         singleton = this;
         mapCam = GetComponentInChildren<Camera>();
         maxPlayerHeight = camTop;
+
+        createBlockTypeDict();
+    }
+
+    private void createBlockTypeDict()
+    {
+        blockTypePrefabDict = new Dictionary<string, GameObject>();
+        foreach (GameObject prefab in blockTypePrefabs) {
+            Block block = prefab.GetComponent<Block>();
+            
+            blockTypePrefabDict.Add(block.getTypeString(), prefab);
+        }
     }
 
     private void Update()

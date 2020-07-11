@@ -32,7 +32,7 @@ namespace Code.Player
             rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
 
             // Jump
-            print(airborn);
+            //print(airborn);
             if (!airborn)
             {
                 if (Input.GetKeyDown(KeyCode.W))
@@ -44,7 +44,7 @@ namespace Code.Player
                 
             }
 
-            //Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
+            Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
         }
 
         private void OnCollisionEnter2D(Collision2D other)

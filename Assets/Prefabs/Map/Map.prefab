@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6e74e1f8d1bb74b84866f0b31d25c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPerfab: {fileID: 2972981711545368055, guid: ae569e03822a9fb4d8763d5e56ad8681,
-    type: 3}
   mapCam: {fileID: 0}
+  maxPlayerHeight: 0
+  blockTypePrefabs:
+  - {fileID: 2972981711545368055, guid: ae569e03822a9fb4d8763d5e56ad8681, type: 3}
+  - {fileID: 320960628043526036, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}
