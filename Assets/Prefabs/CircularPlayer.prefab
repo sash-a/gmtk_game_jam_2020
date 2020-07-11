@@ -138,9 +138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 1
   speed: 10
-  jumpForce: 200
+  jumpSpeed: 0
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
+  onlyFloor:
+    serializedVersion: 2
+    m_Bits: 512
   airborn: 1
 --- !u!114 &1237596767535505612
 MonoBehaviour:
@@ -172,8 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.0005
-  minSplitSize: 1
-  maxSize: 3
+  minSplitSize: 0.5
+  maxSize: 1.25
 --- !u!114 &1237596767535505618
 MonoBehaviour:
   m_ObjectHideFlags: 0
