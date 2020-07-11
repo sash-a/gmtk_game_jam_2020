@@ -23,7 +23,6 @@ namespace Code.Player
             if (TooBig())
                 GetComponent<Splitter>().Split();
             
-            print(transform.localScale);
             transform.localScale += growthVec;
         }
 

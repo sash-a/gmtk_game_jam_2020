@@ -211,8 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6821756720429920314}
-  spawnRotationBounds: 0
   maxSplits: 5
+  splitPerpMag: 200
+  splitDirMag: 300
+  nSplits: 0
 --- !u!114 &-8746018058534315352
 MonoBehaviour:
   m_ObjectHideFlags: 0
