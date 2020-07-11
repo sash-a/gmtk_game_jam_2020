@@ -227,3 +227,4 @@ MonoBehaviour:
   blockTypePrefabs:
   - {fileID: 2972981711545368055, guid: ae569e03822a9fb4d8763d5e56ad8681, type: 3}
   - {fileID: 320960628043526036, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}
+  - {fileID: 628005530295590760, guid: fc887f583e306d54b84e9499c274e74b, type: 3}

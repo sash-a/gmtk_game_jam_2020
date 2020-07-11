@@ -34,8 +34,13 @@ public class Map : MonoBehaviour
         blockTypePrefabDict = new Dictionary<string, GameObject>();
         foreach (GameObject prefab in blockTypePrefabs) {
             Block block = prefab.GetComponent<Block>();
-            
-            blockTypePrefabDict.Add(block.getTypeString(), prefab);
+            if (block.GetComponent<EffectBlock>() != null)
+            {
+                blockTypePrefabDict.Add(EffectBlock.EFFECT_BLOCK, prefab);
+            }
+            else {
+                blockTypePrefabDict.Add(block.getTypeString(), prefab);
+            }
         }
     }
 

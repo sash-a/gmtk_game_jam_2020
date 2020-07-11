@@ -23,6 +23,8 @@ public class Trigger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        block.trigger();
+        Debug.Log(collision.gameObject + " triggered " + gameObject);
+        Code.Player.PlayerController pc = collision.gameObject.GetComponent<Code.Player.PlayerController>();
+        block.trigger(pc);
     }
 }

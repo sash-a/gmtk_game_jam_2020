@@ -6,24 +6,15 @@ using UnityEngine;
 public class TriggerBlock : Block
 {
     string TRIGGER_BLOCK = "trigger";
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override string getTypeString()
     {
+        Debug.Log("trig:" + gameObject);
         return TRIGGER_BLOCK;
     }
 
-    internal virtual void trigger()
+    internal virtual void trigger(Code.Player.PlayerController pc)
     {
         Debug.Log("trigger!");
     }
