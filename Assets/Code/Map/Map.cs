@@ -10,6 +10,7 @@ public class Map : MonoBehaviour
 
     public Camera mapCam;
     public float maxPlayerHeight;
+    static int playerOverhead = 2;
     public void Start()
     {
         singleton = this;
@@ -34,6 +35,6 @@ public class Map : MonoBehaviour
 
     internal void reportPlayerHeight(float playerHeight)
     {
-        maxPlayerHeight = Mathf.Max(maxPlayerHeight, playerHeight);
+        maxPlayerHeight = Mathf.Max(maxPlayerHeight, playerHeight + playerOverhead);
     }
 }
