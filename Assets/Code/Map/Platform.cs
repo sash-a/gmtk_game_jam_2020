@@ -10,9 +10,9 @@ public class Platform : Chunk
     public List<String> specialBlockTypes;
     public List<int> specialPositions; 
 
-    // Start is called before the first frame update
-    void Start()
+    public override void start()
     {
+        base.start();
         spawnPlatform();
     }
 
@@ -22,22 +22,36 @@ public class Platform : Chunk
         int i = 0;//how many block placed so far
         int specialCount = 0;// how many specials placed so far
         Dictionary<int, String> specialTypes = new Dictionary<int, string>();//mapping of block pos to special type
+        Dictionary<int, String> arguments = new Dictionary<int, string>();//mapping of block pos to special blocks args
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (y == height - 1) {
+                if (y == height - 1)
+                {
                     //top row
-                    if (specialCount < specialPositions.Count && specialPositions[specialCount] == x) {
-                        //the next special block
-                        specialTypes.Add(i, specialBlockTypes[specialCount]);
-                        specialCount++;
+                    if (specialCount < specialPositions.Count)
+                    {//still specials left
+                        string specialType = specialBlockTypes[specialCount];
+                        if (specialPositions[specialCount] == x)
+                        {
+                            //the next special block
+                            if (specialType.Contains("{"))
+                            {//contains args
+                                string args = specialType.Split('{')[1].Split('}')[0]; //sep args
+                                arguments.Add(i, args);
+                                specialType = specialType.Split('{')[0]; // remove args from type
+                            }
+
+                            specialTypes.Add(i, specialType);
+                            specialCount++;
+                        }
                     }
                 }
                 positions[i] = new Vector2Int(x, y);
                 i++;
             }
         }
-        spawnChunk(positions, specialTypes);
+        spawnChunk(positions, specialTypes, arguments);
     }
 }

@@ -2,21 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : MapObject
+public class Elevator : Platform
 {
     public int travelHeight;
     int startingHeight;
     public float speed;
     bool ascending;
 
-    private void Start()
+    public string args;
+
+    public override void start()
     {
+        base.start();
+
         startingHeight = y;
         ascending = true;
+        parseArgs(args);
     }
 
     private void Update()
     {
+        if (!active)
+        {
+            return;
+        }
         if (transform.position.y > startingHeight + travelHeight) {
             ascending = false;
         }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1237596767535505612}
   - component: {fileID: 1237596767535505619}
   - component: {fileID: 1237596767535505618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CircularPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}

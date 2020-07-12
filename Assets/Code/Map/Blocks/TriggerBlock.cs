@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class TriggerBlock : Block
 {
-    string TRIGGER_BLOCK = "trigger";
+    public static string TRIGGER_BLOCK = "trigger";
 
     public override string getTypeString()
     {

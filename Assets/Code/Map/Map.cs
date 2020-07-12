@@ -11,6 +11,7 @@ public class Map : MonoBehaviour
     public float maxPlayerHeight;
     static int playerOverhead = 2;
 
+
     internal static GameObject getBlockPrefab(string name)
     {
         return singleton.blockTypePrefabDict[name];
@@ -34,19 +35,7 @@ public class Map : MonoBehaviour
         blockTypePrefabDict = new Dictionary<string, GameObject>();
         foreach (GameObject prefab in blockTypePrefabs) {
             Block block = prefab.GetComponent<Block>();
-            Debug.Log("registering block:" + block + " str: " + block.getTypeString());
-            //if (block.GetComponent<EffectBlock>() != null)
-            //{
-            //    blockTypePrefabDict.Add(EffectBlock.EFFECT_BLOCK, prefab);
-            //}
-            //else if (block.GetComponent<SwitchBlock>() != null) {
-            //    Debug.Log("adding switch prefab");
-            //    blockTypePrefabDict.Add(SwitchBlock.SWITCH_BLOCK, prefab);
-            //}
-            //else
-            //{
-                blockTypePrefabDict.Add(block.getTypeString(), prefab);
-            //}
+            blockTypePrefabDict.Add(block.getTypeString(), prefab);
         }
     }
 
