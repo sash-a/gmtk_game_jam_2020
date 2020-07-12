@@ -44,7 +44,6 @@ namespace Code.Player
                 var col = sr.color;
                 col.a = 175f;
                 sr.color = col;
-                print(col.a);
             }
             else
             {

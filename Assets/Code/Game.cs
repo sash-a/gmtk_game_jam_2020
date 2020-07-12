@@ -47,13 +47,23 @@ namespace Code
         private void Win()
         {
             winText.enabled = true;
-            StartCoroutine(DelayMainMenuSwitch());
+            StartCoroutine(DelaySceneSwitch());
         }
 
         private IEnumerator DelayMainMenuSwitch()
         {
             yield return new WaitForSeconds(exitDelay);
             SceneManager.LoadScene(0);
+        }
+        
+        private IEnumerator DelaySceneSwitch()
+        {
+            yield return new WaitForSeconds(exitDelay);
+            var desiredScene = SceneManager.GetActiveScene().buildIndex + 1;
+            print(desiredScene);
+            if (desiredScene > SceneManager.sceneCountInBuildSettings - 1)
+                desiredScene = 0;
+            SceneManager.LoadScene(desiredScene);
         }
     }
 }
