@@ -42,6 +42,9 @@ public class SwitchBlock : EffectBlock
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         sr.color = on ? Color.black : Color.red;
         //Debug.Log("swtich now " + on);
+        if (switchTargets == null) {
+            switchTargets = new Dictionary<int, List<MapObject>>();
+        }
  
         if (switchTargets.ContainsKey(switchID)) {
             //this switch has targets
@@ -65,7 +68,8 @@ public class SwitchBlock : EffectBlock
         string[] argList = args.Split(',');
         foreach (string arg in argList)
         {
-            if (args.Contains("id")) {
+            if (arg.Contains("id")) {
+                Debug.Log("found id arg:" + arg);
                 switchID = int.Parse(arg.Split(':')[1]);
 
                 if (switchMap == null)
