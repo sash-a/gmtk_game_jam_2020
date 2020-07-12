@@ -411,6 +411,26 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: maxSplits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: colours.Array.data[5].r
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: colours.Array.data[5].g
+      value: 0.008810964
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: colours.Array.data[5].b
+      value: 0.008810964
+      objectReference: {fileID: 0}
     - target: {fileID: 8835847472120751356, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_LocalPosition.y
