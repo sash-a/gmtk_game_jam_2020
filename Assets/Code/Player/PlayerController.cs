@@ -23,7 +23,7 @@ namespace Code.Player
         private int horizontalFlip = 1;
         private Vector2 targetVelocity;
 
-        // public Animator animator;
+        public Animator animator;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -36,23 +36,23 @@ namespace Code.Player
 
         void Update()
         {
-            // animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+            animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
             // player movement
             // todo decrease l/r speed in air?
             var currVelocity = rb.velocity;
         
             // left right
             var dir = (int) Input.GetAxisRaw("Horizontal") * horizontalFlip;
-            if (OnWall(dir))
-                dir = 0;
+            //if (OnWall(dir))
+                //dir = 0;
             
             
             // print(transform.localScale.x);
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
-
-            // animator.SetBool("isJumping", airborn);
+            Debug.Log(targetVelocity);
+            animator.SetBool("isJumping", airborn);
             // Jump
             Jump(1);
 
@@ -60,6 +60,8 @@ namespace Code.Player
 
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
             playSound();
+
+            Debug.Log(targetVelocity);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
