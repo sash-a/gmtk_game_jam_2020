@@ -5,6 +5,7 @@ namespace Code.Player
 {
     public class Death: MonoBehaviour
     {
+        public ParticleSystem dieEffect;
         public void Start()
         {
             Game.instance.nPlayers += 1;
@@ -18,6 +19,8 @@ namespace Code.Player
 
         public void OnDestroy()
         {
+            Instantiate(dieEffect, transform.position, transform.rotation).Play();
+            // dieEffect.Play();
             Game.instance.nPlayers -= 1;
         }
     }

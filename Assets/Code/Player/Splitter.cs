@@ -28,10 +28,10 @@ namespace Code.Player
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
             
-            var dir = new Vector2(x, y) * Random.value * splitDirMag;
+            var dir = new Vector2(x, y) * (Random.value + 0.15f) * splitDirMag;
             var side = new Vector2(y, x);
             side[0] *= startDir;
-            side *= Random.value * splitPerpMag;
+            side *= (Random.value + 0.15f) * splitPerpMag;
 
             rb = GetComponent<Rigidbody2D>();
             rb.AddForce(dir + side);
@@ -55,6 +55,7 @@ namespace Code.Player
                     // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
                     var spawned = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
                     spawned.GetComponent<Splitter>().OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale);
+                    spawned.transform.SetParent(transform.parent);
                 }
             }
 

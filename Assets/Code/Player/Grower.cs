@@ -13,6 +13,8 @@ namespace Code.Player
         private Vector3 growthVec;
 
         private Jelly jelly;
+        public bool grow = true;
+        public bool autosplit = true;
 
         public void Start()
         {
@@ -23,10 +25,11 @@ namespace Code.Player
 
         private void FixedUpdate()
         {
-            if (TooBig())
+            if (autosplit && TooBig())
                 GetComponent<Splitter>().Split();
             
-            transform.localScale += growthVec;
+            if (grow)
+                transform.localScale += growthVec;
             
             // jelly.radius += growthRate;
             // jelly.PolyMesh(jelly.radius, jelly.vertexNum);
