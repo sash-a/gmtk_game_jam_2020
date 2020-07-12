@@ -52,6 +52,7 @@ namespace Code.Player
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
+
             //animator.SetBool("isJumping", airborn);
             // Jump
             Jump(1);
