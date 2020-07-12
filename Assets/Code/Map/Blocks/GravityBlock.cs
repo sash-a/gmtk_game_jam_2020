@@ -16,7 +16,7 @@ public class GravityBlock : EffectBlock
 
     public override void affect(PlayerController pc)
     {
-        Debug.Log("grav effect");
+        //Debug.Log("grav effect");
         pc.Jump(multiplier: gravityForce, force: true);
     }
 

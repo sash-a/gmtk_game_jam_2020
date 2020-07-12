@@ -19,6 +19,11 @@ namespace Code.Player
         private ObjectShake shake;
 
         private SpriteRenderer sr;
+        private Color color;
+
+        private float minOpaqueness = 0.2f;
+        private float maxOpaqueness = 0.6f;
+        private float blinkingFrequency = 20f;
 
         public void Start()
         {
@@ -26,6 +31,7 @@ namespace Code.Player
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
             sr = GetComponent<SpriteRenderer>();
+            color = sr.color;
         }
 
         private void FixedUpdate()
@@ -40,15 +46,17 @@ namespace Code.Player
                 transform.localScale += growthVec;
 
             if (transform.localScale.x < minSplitSize)
-            {
-                var col = sr.color;
-                col.a = 175f;
+            {//too small to split
+                var col = color * 0.5f;
+                float shift = (Mathf.Sin(Time.time * blinkingFrequency) + 1) * 0.5f;//between 0 and 1
+                float alpha = minOpaqueness + (maxOpaqueness - minOpaqueness) * shift;
+                col.a = alpha;
                 sr.color = col;
             }
             else
-            {
-                var col = sr.color;
-                col.a = 50f;
+            {//big enough to split
+                var col = color;
+                col.a = maxOpaqueness;
                 sr.color = col;
             }
 

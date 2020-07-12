@@ -273,10 +273,15 @@ PrefabInstance:
       propertyPath: growthRate
       value: 0.00085
       objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217925, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: growthRate
-      value: 0
+      value: 0.00085
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25c22e5b7b7422a488a410cf4a3cc540, type: 3}

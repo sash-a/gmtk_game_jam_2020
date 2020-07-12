@@ -100,7 +100,7 @@ namespace Code.Player
 
         public void Jump(float multiplier = 1, bool force = false)
         {
-            Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
+            //Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
             if (!airborn || force)
             {
                 audioSource.Stop();

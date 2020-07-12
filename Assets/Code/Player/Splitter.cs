@@ -20,6 +20,7 @@ namespace Code.Player
         private Rigidbody2D rb;
         private Grower grower;
         private int startDir;
+
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -29,7 +30,8 @@ namespace Code.Player
         private void Start()
         {
             // Assert(colours.Length >= maxSplits);
-            GetComponent<SpriteRenderer>().color = colours[nSplits];
+            Color colour = colours[nSplits];
+            GetComponent<SpriteRenderer>().color = colour;
             // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
