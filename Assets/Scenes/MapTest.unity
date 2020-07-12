@@ -617,8 +617,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463289196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.53, y: 14.28, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 4.53, y: 12.9, z: 0}
+  m_LocalScale: {x: 1.0092419, y: 0.9587798, z: 1.0092419}
   m_Children:
   - {fileID: 1854442184}
   m_Father: {fileID: 0}
@@ -637,18 +637,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.36066103}
+  m_Offset: {x: 0, y: -0.005240202}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 6}
+    oldSize: {x: 3.4, y: 5.1}
     newSize: {x: 8, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1532683, y: 3.2683105}
+  m_Size: {x: 3.4178123, y: 5.095923}
   m_EdgeRadius: 0
 --- !u!1 &604328651
 GameObject:
@@ -893,12 +893,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733403246}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.74, y: 1.81, z: -4.1774235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 0}
   m_RootOrder: 15
+=======
+  m_Father: {fileID: 959044536}
+  m_RootOrder: 3
+>>>>>>> f253e14244dcfb6a694dcd183907338de5aae71c
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &822446128
 PrefabInstance:
@@ -1877,13 +1882,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854442183}
-  m_LocalRotation: {x: 0, y: 0, z: -0.86602545, w: 0.49999994}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8914679, w: -0.45308387}
+  m_LocalPosition: {x: 0.14, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 463289199}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 233.883}
 --- !u!199 &1854442185
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -1903,7 +1908,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2031,7 +2036,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2575,7 +2580,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 2
     angle: 45
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -2662,7 +2667,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.0001
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -5793,7 +5798,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:

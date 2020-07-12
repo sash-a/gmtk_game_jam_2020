@@ -22,6 +22,8 @@ namespace Code.Player
         private Rigidbody2D rb;
         private int horizontalFlip = 1;
         private Vector2 targetVelocity;
+
+        // public Animator animator;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -34,6 +36,7 @@ namespace Code.Player
 
         void Update()
         {
+            // animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
             // player movement
             // todo decrease l/r speed in air?
             var currVelocity = rb.velocity;
@@ -48,23 +51,10 @@ namespace Code.Player
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
-            
-            // Jump
-            if (!airborn)
-            {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    airborn = true;
-                    audioSource.Stop();
-                    scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
-                    targetVelocity.y = jumpSpeed + scaleFactor;
-                    // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
 
-                    //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
-                    // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
-                }
-                
-            }
+            // animator.SetBool("isJumping", airborn);
+            // Jump
+            Jump(1);
 
             rb.velocity = targetVelocity;
 
@@ -76,7 +66,6 @@ namespace Code.Player
         {
             if (other.gameObject.CompareTag("Floor"))
                 airborn = false;
-            
         }
 
         public void InvertHorizontal()
@@ -103,6 +92,26 @@ namespace Code.Player
             if (rb.velocity.magnitude > 1 && !airborn && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(moveSound, 0.5f);
+            }
+        }
+
+        public void Jump(float multiplier)
+        {
+            if (!airborn)
+            {
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    audioSource.Stop();
+
+                    airborn = true;
+                    float scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
+                    targetVelocity.y = (jumpSpeed + scaleFactor) * multiplier;
+                    // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
+
+                    //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
+                    // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
+                }
+                
             }
         }
         
