@@ -56,7 +56,7 @@ namespace Code.Player
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
-            Debug.Log(targetVelocity);
+            //Debug.Log(targetVelocity);
             //animator.SetBool("isJumping", airborn);
             // Jump
             Jump(1);
@@ -66,7 +66,7 @@ namespace Code.Player
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
             playSound();
 
-            Debug.Log(targetVelocity);
+            //Debug.Log(targetVelocity);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
