@@ -1308,6 +1308,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: def50308409ce9a76bb190ef22df5abb, type: 2}
+    - target: {fileID: 1237596767535505608, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.81960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505608, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.09019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505608, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505609, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1380,13 +1395,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
-      propertyPath: splitPerpMag
-      value: 600
+      propertyPath: colours.Array.data[1].r
+      value: 0.5684471
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
-      propertyPath: splitDirMag
-      value: 600
+      propertyPath: colours.Array.data[1].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[1].b
+      value: 0.09019607
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[0].a
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[1].a
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[0].r
+      value: 0.77655005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: colours.Array.data[0].g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}

@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: def50308409ce9a76bb190ef22df5abb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 885bafaf2a486d94b8cda325d672e6de, type: 3}
-  m_Color: {r: 0.16981131, g: 1, b: 0.19530441, a: 0.3372549}
+  m_Color: {r: 0.81960785, g: 1, b: 0.09019608, a: 0.3372549}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 0.1
   speed: 3
-  jumpSpeed: 15
+  jumpSpeed: 11
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   onlyFloor:
@@ -159,8 +159,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1237596767535505617}
   maxSplits: 5
-  splitPerpMag: 800
-  splitDirMag: 800
+  splitPerpMag: 600
+  splitDirMag: 600
+  colours:
+  - {r: 0.77655005, g: 1, b: 0, a: 0.41960785}
+  - {r: 0.5684471, g: 1, b: 0.09019607, a: 0.33333334}
+  - {r: 0.5459172, g: 0.9150943, b: 0.28057137, a: 0.33333334}
+  - {r: 0.42510203, g: 0.6981132, b: 0.23050909, a: 0.34901962}
+  - {r: 0.19017524, g: 0.4528302, b: 0.1281595, a: 0.34901962}
+  - {r: 0.044143822, g: 0.2924528, b: 0.16578877, a: 0.34901962}
   nSplits: 0
 --- !u!114 &1237596767535505619
 MonoBehaviour:
@@ -177,6 +184,8 @@ MonoBehaviour:
   growthRate: 0.0005
   minSplitSize: 0.5
   maxSize: 1.25
+  grow: 1
+  autosplit: 1
 --- !u!114 &1237596767535505618
 MonoBehaviour:
   m_ObjectHideFlags: 0

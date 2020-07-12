@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
 namespace Code.Player
@@ -10,6 +11,7 @@ namespace Code.Player
         public int maxSplits;
         public int splitPerpMag;
         public int splitDirMag;
+        public Color[] colours;
 
         [HideInInspector] public int nSplits = 0;
 
@@ -24,6 +26,8 @@ namespace Code.Player
 
         private void Start()
         {
+            // Assert(colours.Length >= maxSplits);
+            GetComponent<SpriteRenderer>().material.color = colours[nSplits];
             // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;

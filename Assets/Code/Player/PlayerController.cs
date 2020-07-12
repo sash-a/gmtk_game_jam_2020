@@ -90,7 +90,7 @@ namespace Code.Player
             var t = transform;
             var scale = t.localScale;
             RaycastHit2D r = Physics2D.Raycast(t.position, Vector2.right * right, scale.x, onlyFloor);
-            return r.distance != 0.0f && r.distance < scale.x / 1.5;
+            return r.distance != 0.0f && r.distance < scale.x;
 
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
