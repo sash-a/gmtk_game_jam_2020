@@ -26,11 +26,13 @@ public  abstract class EffectBlock : TriggerBlock
         if (!active) {
             return;
         }
+        Debug.Log("effect! " + pc + " contains: " + affectedPlayers.Contains(pc));
+
         if (!affectedPlayers.Contains(pc))
         {
             affectedPlayers.Add(pc);
+            Debug.Log("calling affect on: " + this);
             affect(pc);
-            //Debug.Log("effect! " + pc);
         }
     }
 
@@ -41,6 +43,8 @@ public  abstract class EffectBlock : TriggerBlock
         {
             return;
         }
+        Debug.Log("uneffect! " + pc + " contains: " + affectedPlayers.Contains(pc) + " allowed: " + allowReeffects);
+
         if (allowReeffects) {
             affectedPlayers.Remove(pc);
         }

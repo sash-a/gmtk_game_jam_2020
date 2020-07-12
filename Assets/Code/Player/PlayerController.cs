@@ -36,8 +36,7 @@ namespace Code.Player
             //animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
             // player movement
             // todo decrease l/r speed in air?
-            var currVelocity = rb.velocity;
-           
+            
             if (Input.GetAxisRaw("Horizontal") > 0)
             {GetComponent<SpriteRenderer>().flipX = true;}
             else{GetComponent<SpriteRenderer>().flipX = false;}
@@ -51,19 +50,22 @@ namespace Code.Player
             
             // print(transform.localScale.x);
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
-            targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
+            targetVelocity += new Vector2(dir * speed + scaleFactor * dir, rb.velocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
 
             //animator.SetBool("isJumping", airborn);
             // Jump
-            Jump(1);
+            if (Input.GetKeyDown(KeyCode.W)) { 
+                Jump();
+            }
 
             rb.velocity = targetVelocity;
 
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
             playSound();
-        }
 
+            targetVelocity = Vector2.zero; // any velocities added before the next update call will be accumulated
+        }
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Floor"))
@@ -96,22 +98,16 @@ namespace Code.Player
             }
         }
 
-        public void Jump(float multiplier)
+        public void Jump(float multiplier = 1, bool force = false)
         {
-            if (!airborn)
+            Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
+            if (!airborn || force)
             {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    audioSource.Stop();
+                audioSource.Stop();
 
-                    airborn = true;
-                    float scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
-                    targetVelocity.y = (jumpSpeed + scaleFactor) * multiplier;
-                    // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
-
-                    //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
-                    // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
-                }
+                airborn = true;
+                float scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
+                targetVelocity.y += (jumpSpeed + scaleFactor) * multiplier;
             }
         }
         

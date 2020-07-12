@@ -7,7 +7,7 @@ public class GravityBlock : EffectBlock
 {
 
     string GRAVITY = "gravity";
-    float gravityForce = 3;
+    float gravityForce = 1.1f;
     public override void start()
     {
         base.start();
@@ -16,7 +16,8 @@ public class GravityBlock : EffectBlock
 
     public override void affect(PlayerController pc)
     {
-        pc.Jump(multiplier: gravityForce);
+        Debug.Log("grav effect");
+        pc.Jump(multiplier: gravityForce, force: true);
     }
 
     public override void unaffect(PlayerController pc)
