@@ -13,6 +13,8 @@ namespace Code.Player
         public int splitDirMag;
         public Color[] colours;
 
+        public AudioClip splitSound;
+        
         [HideInInspector] public int nSplits = 0;
 
         private Rigidbody2D rb;
@@ -51,6 +53,7 @@ namespace Code.Player
         {
             if (grower.TooSmall()) return;
             
+            
             // Spawn them a random amount above the parent
             if (nSplits < maxSplits)
             {
@@ -63,6 +66,7 @@ namespace Code.Player
                 }
             }
 
+            AudioSource.PlayClipAtPoint(splitSound, transform.position);
             Destroy(gameObject);
         }
     

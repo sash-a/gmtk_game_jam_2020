@@ -12,6 +12,9 @@ namespace Code.Player
         public float sizeSpeedInfluence;
         public float sizeJumpInfluence;
 
+        public AudioClip moveSound;
+        private AudioSource audioSource;
+        
         public LayerMask onlyFloor;
 
         [HideInInspector] public bool airborn = true;
@@ -22,6 +25,7 @@ namespace Code.Player
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         public float size {
@@ -39,7 +43,6 @@ namespace Code.Player
             if (OnWall(dir))
                 dir = 0;
             
-            // print(dir);
             
             // print(transform.localScale.x);
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
@@ -51,8 +54,8 @@ namespace Code.Player
             {
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-
                     airborn = true;
+                    audioSource.Stop();
                     scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
                     targetVelocity.y = jumpSpeed + scaleFactor;
                     // var jumpTarget = new Vector2(currVelocity.x,jumpSpeed);
@@ -66,7 +69,7 @@ namespace Code.Player
             rb.velocity = targetVelocity;
 
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
-
+            playSound();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -94,14 +97,13 @@ namespace Code.Player
 
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
-        public float getReach() {
-            //R(0.5) = 4.5
-            //R(3) = 3
-            float rise = 3f - 4.5f;
-            float run = 3 - 0.5f;
 
-            float dist = size - 0.5f;
-            return 4.5f + dist / run * rise;
+        private void playSound()
+        {
+            if (rb.velocity.magnitude > 1 && !airborn && !audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(moveSound, 0.5f);
+            }
         }
         
     }
