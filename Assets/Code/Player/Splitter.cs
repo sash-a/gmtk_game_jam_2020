@@ -27,7 +27,7 @@ namespace Code.Player
         private void Start()
         {
             // Assert(colours.Length >= maxSplits);
-            GetComponent<SpriteRenderer>().material.color = colours[nSplits];
+            GetComponent<SpriteRenderer>().color = colours[nSplits];
             // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;

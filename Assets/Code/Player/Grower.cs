@@ -55,7 +55,7 @@ namespace Code.Player
 
         public bool AlmostTooBig()
         {
-            return gameObject.transform.localScale.x > maxSize * 0.9f;
+            return gameObject.transform.localScale.x > maxSize * 0.85f;
 
         }
     }

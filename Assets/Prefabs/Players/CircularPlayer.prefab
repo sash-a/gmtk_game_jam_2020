@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1237596767535505612}
   - component: {fileID: 1237596767535505619}
   - component: {fileID: 1237596767535505618}
+  - component: {fileID: 7618182580239399630}
   m_Layer: 8
   m_Name: CircularPlayer
   m_TagString: Player
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 0.1
   speed: 3
-  jumpSpeed: 11
+  jumpSpeed: 12
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   onlyFloor:
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237596767535505617}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72bb2ad2a5b9cdffba5fd9d30fb77604, type: 3}
   m_Name: 
@@ -177,12 +178,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237596767535505617}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 0.0005
+  growthRate: 0.00085
   minSplitSize: 0.5
   maxSize: 1.25
   grow: 1
@@ -201,6 +202,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieEffect: {fileID: 8731794623308555734, guid: 524f92181cb5081b9aee68bdfb7e1b67,
     type: 3}
+--- !u!114 &7618182580239399630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237596767535505617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9e392a2947b52bf971caa79b066679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shake_decay: -1
+  shake_intensity: 60
 --- !u!1 &3361101161197051904
 GameObject:
   m_ObjectHideFlags: 0
