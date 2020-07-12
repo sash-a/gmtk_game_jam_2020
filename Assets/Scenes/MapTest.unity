@@ -220,6 +220,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f182823cd1f6381499bda61aac8b0ade, type: 3}
+--- !u!1 &127339717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1237596767535505617, guid: 72b6fc835130a616bb96b7d930f18d63,
+    type: 3}
+  m_PrefabInstance: {fileID: 1788674943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &127339727
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127339717}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a075e9c686f7b804fabc1381b2e0327a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &155801526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1638,7 +1663,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1e0399d78a7795a5fa56e3b9b5ebc0dc, type: 2}
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1237596767535505608, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_Color.r
@@ -1658,7 +1683,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3f6c386dbec235c14802ecf56df13774,
+      objectReference: {fileID: -2932391487199770309, guid: d2608a76fefae8540aabebc1b1b565fe,
         type: 3}
     - target: {fileID: 1237596767535505608, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
@@ -1723,17 +1748,17 @@ PrefabInstance:
     - target: {fileID: 1237596767535505609, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505609, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505609, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1237596767535505612, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
@@ -1755,6 +1780,11 @@ PrefabInstance:
       propertyPath: moveSound
       value: 
       objectReference: {fileID: 8300000, guid: 7a597ba086a123af98ee645ea9642366, type: 3}
+    - target: {fileID: 1237596767535505613, guid: 72b6fc835130a616bb96b7d930f18d63,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 127339727}
     - target: {fileID: 1237596767535505615, guid: 72b6fc835130a616bb96b7d930f18d63,
         type: 3}
       propertyPath: m_Constraints
