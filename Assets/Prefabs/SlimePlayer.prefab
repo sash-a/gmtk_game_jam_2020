@@ -105,9 +105,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4400904328241726592}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.74, y: 1.81, z: 6}
-  m_LocalScale: {x: 20, y: 20, z: 10}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 69466033096125327}
   m_Father: {fileID: 0}
@@ -198,9 +198,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0031089901, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.07397549
 --- !u!114 &4400904328241726620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snappyness: 0.1
-  speed: 3
+  speed: 5
   jumpSpeed: 12
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
@@ -223,6 +223,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   airborn: 1
+  horizontalFlip: 1
+  animator: {fileID: 9050498371102198338}
 --- !u!114 &4400904328241726621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,10 +263,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSplitSize: 10
-  maxSize: 30
-  grow: 1
-  autosplit: 1
+  minSplitSize: 0.25
+  maxSize: 1.25
+  grow: 0
+  autosplit: 0
 --- !u!114 &4400904328241726595
 MonoBehaviour:
   m_ObjectHideFlags: 0
