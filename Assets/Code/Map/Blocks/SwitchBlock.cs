@@ -8,9 +8,14 @@ public class SwitchBlock : EffectBlock
 {
 
     public static string SWITCH_BLOCK = "switch";
+    public static Dictionary<int, SwitchBlock> switchMap;
+    public static Dictionary<int, List<MapObject>> switchTargets;
 
-    private void Start()
+    int switchID;
+
+    public override void start()
     {
+        base.start();
         allowReeffects = true;
         updateSWitch();
     }
@@ -35,11 +40,41 @@ public class SwitchBlock : EffectBlock
     {
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         sr.color = on ? Color.black : Color.red;
-        Debug.Log("swtich now " + on);
+        //Debug.Log("swtich now " + on);
+
+        if (switchTargets.ContainsKey(switchID)) {
+            //this switch has targets
+            foreach (MapObject mo in switchTargets[switchID]) {
+                mo.active = on;
+            }
+        }
     }
 
     public override string getTypeString()
     {
         return SWITCH_BLOCK;
+    }
+
+    internal override void parseArgs(string args) {
+        string[] argList = args.Split(',');
+        foreach (string arg in argList)
+        {
+            switchID = int.Parse(arg);
+            if (switchMap == null) {
+                switchMap = new Dictionary<int, SwitchBlock>();
+            }
+            switchMap.Add(switchID, this);//registers this switch
+        }
+    }
+
+    internal static void registerSwitchTarget(int triggerID, MapObject mapObject)
+    {
+        if (switchTargets == null) {
+            switchTargets = new Dictionary<int, List<MapObject>>();
+        }
+        if (!switchTargets.ContainsKey(triggerID)) {
+            switchTargets.Add(triggerID, new List<MapObject>());
+        }
+        switchTargets[triggerID].Add(mapObject);
     }
 }

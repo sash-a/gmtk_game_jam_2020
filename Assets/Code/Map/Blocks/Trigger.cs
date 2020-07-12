@@ -15,22 +15,16 @@ public class Trigger : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject + " triggered " + gameObject);
+        //Debug.Log(collision.gameObject + " triggered " + gameObject);
         Code.Player.PlayerController pc = collision.gameObject.GetComponent<Code.Player.PlayerController>();
         block.trigger(pc);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject + " untriggered " + gameObject);
+        //Debug.Log(collision.gameObject + " untriggered " + gameObject);
         Code.Player.PlayerController pc = collision.gameObject.GetComponent<Code.Player.PlayerController>();
         block.untrigger(pc);
     }

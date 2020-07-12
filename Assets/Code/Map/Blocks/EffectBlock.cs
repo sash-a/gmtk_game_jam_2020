@@ -14,9 +14,7 @@ public  abstract class EffectBlock : TriggerBlock
     public static string EFFECT_BLOCK = "effect";
     public HashSet<PlayerController> affectedPlayers = new HashSet<PlayerController>();
 
-    public bool allowReeffects ;
-
-
+    protected bool allowReeffects ;
 
     public override string getTypeString()
     {
@@ -25,17 +23,24 @@ public  abstract class EffectBlock : TriggerBlock
 
     internal override void trigger(PlayerController pc)
     {
+        if (!active) {
+            return;
+        }
         if (!affectedPlayers.Contains(pc))
         {
             affect(pc);
             affectedPlayers.Add(pc);
-            Debug.Log("effect! " + pc);
+            //Debug.Log("effect! " + pc);
         }
     }
 
 
     internal override void untrigger(PlayerController pc)
     {
+        if (!active)
+        {
+            return;
+        }
         if (allowReeffects) {
             affectedPlayers.Remove(pc);
         }
@@ -45,4 +50,5 @@ public  abstract class EffectBlock : TriggerBlock
     public abstract void affect(PlayerController pc);
     public abstract void unaffect(PlayerController pc);
 
+    
 }

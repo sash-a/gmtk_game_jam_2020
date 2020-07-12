@@ -12,12 +12,13 @@ public class Chunk : MapObject
 
     HashSet<Block> blocks = new HashSet<Block>();
 
-    private void Start()
+    public override void start()
     {
+        base.start();
         blocks = new HashSet<Block>();
     }
 
-    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes) {
+    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes, Dictionary<int, String> arguments) {
         /*
          * positions: list of relative positions from the chunks center
          */
@@ -26,8 +27,13 @@ public class Chunk : MapObject
         {
             Block newBlock;
             if (specialTypes.ContainsKey(i))
-            {
+            {//is a special block
                 newBlock = Block.spawnBlock(Map.getBlockPrefab(specialTypes[i]));
+                if (arguments.ContainsKey(i))
+                {
+                    //it has args
+                    newBlock.parseArgs(arguments[i]);
+                }
             }
             else {
                 newBlock = Block.spawnBlock();
@@ -42,8 +48,13 @@ public class Chunk : MapObject
 
     public void spawnChunk(IEnumerable<Vector2Int> positions)
     {
-        spawnChunk(positions, new Dictionary<int, string>());
+        spawnChunk(positions, new Dictionary<int, string>(), new Dictionary<int, string>());
     }
 
-
+    public override void activateChanged()
+    {
+        foreach (Block block in blocks) {
+            block.active = active;
+        }
+    }
 }
