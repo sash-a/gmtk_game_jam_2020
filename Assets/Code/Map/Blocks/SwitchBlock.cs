@@ -18,6 +18,7 @@ public class SwitchBlock : EffectBlock
         base.start();
         allowReeffects = true;
         updateSWitch();
+        active = true;
     }
 
     public bool on
@@ -48,6 +49,11 @@ public class SwitchBlock : EffectBlock
                 mo.active = on;
             }
         }
+    }
+
+    public override void activateChanged()
+    {
+        active = true;//switches are always on
     }
 
     public override string getTypeString()
