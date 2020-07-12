@@ -61,8 +61,9 @@ namespace Code.Player
                 {
                     // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
                     var spawned = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
-                    spawned.GetComponent<Splitter>().OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale, transform.parent.GetComponent<PlayerController>().horizontalFlip);
                     spawned.transform.SetParent(transform.parent);
+                    var splitter = spawned.GetComponent<Splitter>();
+                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale, transform.GetComponent<PlayerController>().horizontalFlip);
                 }
             }
 
@@ -75,7 +76,7 @@ namespace Code.Player
             nSplits = parentSplits + 1;
             this.startDir = startDir;
             transform.localScale = parentScale / 2;
-            transform.parent.GetComponent<PlayerController>().horizontalFlip = flip;
+            transform.GetComponent<PlayerController>().horizontalFlip = flip;
         }
 
         public static Vector3 RandomArc(Vector2 dir, float minAngle, float maxAngle)

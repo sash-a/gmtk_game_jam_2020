@@ -92,7 +92,7 @@ public class SwitchBlock : EffectBlock
 
     private void OnDestroy()
     {
-        switchMap.Clear();
-        switchTargets.Clear();
+        switchMap?.Clear();
+        switchTargets?.Clear();
     }
 }

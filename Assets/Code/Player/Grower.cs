@@ -13,7 +13,6 @@ namespace Code.Player
 
         private Vector3 growthVec;
 
-        private Jelly jelly;
         public bool grow = true;
         public bool autosplit = true;
         
@@ -21,7 +20,6 @@ namespace Code.Player
 
         public void Start()
         {
-            jelly = GetComponent<Jelly>();
             shake = GetComponent<ObjectShake>();
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
