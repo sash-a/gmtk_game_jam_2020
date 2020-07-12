@@ -83,4 +83,10 @@ public class SwitchBlock : EffectBlock
         }
         switchTargets[triggerID].Add(mapObject);
     }
+
+    private void OnDestroy()
+    {
+        switchMap.Clear();
+        switchTargets.Clear();
+    }
 }
