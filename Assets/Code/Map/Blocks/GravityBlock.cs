@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GravityBlock : EffectBlock
 {
+
+    string GRAVITY = "gravity";
+    float gravityForce = 3;
     public override void start()
     {
         base.start();
@@ -13,11 +16,15 @@ public class GravityBlock : EffectBlock
 
     public override void affect(PlayerController pc)
     {
-        pc.Jump(multiplier: 3);
+        pc.Jump(multiplier: gravityForce);
     }
 
     public override void unaffect(PlayerController pc)
     {
     }
 
+    public override string getTypeString()
+    {
+        return GRAVITY;
+    }
 }

@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
-    // Start is called before the first frame update
+    SpriteRenderer renderer;
+
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
+        renderer.enabled = true;
+
         positionSpikes();
     }
 
-    private void positionSpikes()
-    {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        float camHeight = Map.singleton.mapCam.orthographicSize; //half
-        float camWidth = Map.singleton.mapCam.aspect * camHeight; //half
+    public void positionSpikes()
+    { 
+        float camWidth = Map.singleton.mapCam.aspect * Map.singleton.mapCam.orthographicSize * Map.singleton.mapCam.aspect; //half
         renderer.size = new Vector2(camWidth / transform.localScale.x * 2, renderer.size.y);
-        transform.position = new Vector3(transform.position.x, -camHeight + 0.2f, transform.position.z);
-        renderer.enabled = true;
+
+        float spikesHeight = Map.singleton.mapCam.transform.position.y - Map.singleton.baseCamSize -0.5f;
+        transform.position = new Vector3(transform.position.x, spikesHeight , transform.position.z);
     }
 }

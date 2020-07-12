@@ -52,8 +52,7 @@ namespace Code.Player
         public void Split()
         {
             if (grower.TooSmall()) return;
-            
-            
+
             // Spawn them a random amount above the parent
             if (nSplits < maxSplits)
             {
@@ -69,6 +68,7 @@ namespace Code.Player
 
             AudioSource.PlayClipAtPoint(splitSound, transform.position);
             Destroy(gameObject);
+
         }
     
         void OnSpawn(int parentSplits, int startDir, Vector3 parentScale, int flip)
@@ -77,6 +77,7 @@ namespace Code.Player
             this.startDir = startDir;
             transform.localScale = parentScale / 2;
             GetComponent<PlayerController>().horizontalFlip = flip;
+            transform.parent = AllBlobs.singleton.transform;
         }
 
         public static Vector3 RandomArc(Vector2 dir, float minAngle, float maxAngle)

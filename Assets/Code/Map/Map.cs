@@ -8,9 +8,9 @@ public class Map : MonoBehaviour
     public static Map singleton;
 
     public Camera mapCam;
-    public float maxPlayerHeight;
+    public float baseCamSize = 5;
+    [HideInInspector] public float maxPlayerHeight;
     static int playerOverhead = 2;
-
 
     internal static GameObject getBlockPrefab(string name)
     {
@@ -20,14 +20,27 @@ public class Map : MonoBehaviour
     public List<GameObject> blockTypePrefabs;
     public Dictionary<String, GameObject> blockTypePrefabDict;
 
+    Spikes spikes;
+
 
     public void Start()
     {
         singleton = this;
         mapCam = GetComponentInChildren<Camera>();
+        spikes = GetComponentInChildren<Spikes>();
         maxPlayerHeight = camTop;
 
         createBlockTypeDict();
+    }
+
+    private void Update()
+    {
+        camTop = maxPlayerHeight;
+        Vector2 blobBounds = AllBlobs.singleton.getHorizontalBounds();
+        float boundsSize = (blobBounds.y - blobBounds.x) * 1.1f / mapCam.aspect;
+        mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
+        mapCam.transform.position = new Vector3((blobBounds.y + blobBounds.x) / 2f, mapCam.transform.position.y, mapCam.transform.position.z);
+        spikes.positionSpikes();
     }
 
     private void createBlockTypeDict()
@@ -37,11 +50,6 @@ public class Map : MonoBehaviour
             Block block = prefab.GetComponent<Block>();
             blockTypePrefabDict.Add(block.getTypeString(), prefab);
         }
-    }
-
-    private void Update()
-    {
-        camTop = maxPlayerHeight;
     }
 
     public float camTop {

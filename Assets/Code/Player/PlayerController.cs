@@ -28,6 +28,7 @@ namespace Code.Player
         {
             rb = GetComponent<Rigidbody2D>();
             audioSource = GetComponent<AudioSource>();
+            AllBlobs.singleton.livingPlayers.Add(this);
         }
 
         void Update()
