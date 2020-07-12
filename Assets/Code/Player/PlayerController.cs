@@ -23,7 +23,7 @@ namespace Code.Player
         private int horizontalFlip = 1;
         private Vector2 targetVelocity;
 
-        public Animator animator;
+        //public Animator animator;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -36,7 +36,7 @@ namespace Code.Player
 
         void Update()
         {
-            animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+            //animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
             // player movement
             // todo decrease l/r speed in air?
             var currVelocity = rb.velocity;
@@ -52,7 +52,7 @@ namespace Code.Player
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
             Debug.Log(targetVelocity);
-            animator.SetBool("isJumping", airborn);
+            //animator.SetBool("isJumping", airborn);
             // Jump
             Jump(1);
 

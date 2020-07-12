@@ -172,6 +172,7 @@ MonoBehaviour:
   - {r: 0.16337402, g: 0.4339623, b: 0, a: 0.49019608}
   - {r: 0.10299666, g: 0.2735849, b: 0, a: 0.49019608}
   - {r: 0.05327413, g: 0.14150941, b: 0, a: 0.4862745}
+  splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
 --- !u!114 &1237596767535505619
 MonoBehaviour:
