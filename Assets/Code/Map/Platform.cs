@@ -25,8 +25,10 @@ public class Platform : Chunk
         Dictionary<int, String> arguments = new Dictionary<int, string>();//mapping of block pos to special blocks args
         for (int y = 0; y < height; y++)
         {
+            string verticalPrefix = (y == height - 1 ? "T" : (y == 0 ? "B" : ""));
             for (int x = 0; x < width; x++)
             {
+                string horizontalPrefix = (x == width - 1 ? "R" : (x == 0 ? "L" : ""));
                 if (y == height - 1)
                 {
                     //top row
@@ -48,6 +50,15 @@ public class Platform : Chunk
                         }
                     }
                 }
+                string posArg = "pos:" + verticalPrefix + horizontalPrefix;
+                if (!arguments.ContainsKey(i))
+                {
+                    arguments.Add(i, posArg);
+                }
+                else {
+                    arguments[i] = arguments[i] + "," + posArg;
+                }
+
                 positions[i] = new Vector2Int(x, y);
                 i++;
             }

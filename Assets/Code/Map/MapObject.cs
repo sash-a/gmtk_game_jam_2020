@@ -57,14 +57,15 @@ public abstract class MapObject : MonoBehaviour
 
     internal virtual void parseArgs(string args)
     {
+        //Debug.Log(gameObject + " parsing " + args);
         string[] argList = args.Split(',');
         foreach (string arg in argList)
         {
             if (arg.Contains(SwitchBlock.SWITCH_BLOCK))
             {
-                int triggerID = int.Parse(arg.Split(':')[1]);
+                int switchID = int.Parse(arg.Split(':')[1]);
                 Debug.Log(gameObject + " is triggered by " + arg);
-                SwitchBlock.registerSwitchTarget(triggerID, this);
+                SwitchBlock.registerSwitchTarget(switchID, this);
 
                 active = false;
             }
