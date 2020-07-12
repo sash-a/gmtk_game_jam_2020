@@ -30,10 +30,6 @@ namespace Code.Player
             audioSource = GetComponent<AudioSource>();
         }
 
-        public float size {
-            get { return transform.localScale.magnitude; }
-        }
-
         void Update()
         {
             //animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
@@ -48,15 +44,14 @@ namespace Code.Player
         
             // left right
             var dir = (int) Input.GetAxisRaw("Horizontal") * horizontalFlip;
-            //if (OnWall(dir))
-                //dir = 0;
+            if (OnWall(dir))
+                dir = 0;
             
             
             // print(transform.localScale.x);
             float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
             targetVelocity = new Vector2(dir * speed + scaleFactor * dir, currVelocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
-            Debug.Log(targetVelocity);
             //animator.SetBool("isJumping", airborn);
             // Jump
             Jump(1);
@@ -65,8 +60,6 @@ namespace Code.Player
 
             Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
             playSound();
-
-            Debug.Log(targetVelocity);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -88,9 +81,8 @@ namespace Code.Player
         {
             var t = transform;
             var scale = t.localScale;
-            RaycastHit2D r = Physics2D.Raycast(t.position, Vector2.right * right, scale.x, onlyFloor);
-            return r.distance != 0.0f && r.distance < scale.x;
-
+            RaycastHit2D r = Physics2D.Raycast(t.position, Vector2.right * right, 5, onlyFloor);
+            return r.distance != 0.0f && r.distance < scale.x + 0.25f;
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
 
@@ -118,7 +110,6 @@ namespace Code.Player
                     //rb.velocity = Vector2.SmoothDamp(currVelocity, jumpTarget, ref velocity, snappyness * (1f/transform.localScale.magnitude * sizeJumpInfluence));
                     // rb.AddForce(new Vector2(0f, jumpForce * (1f/transform.localScale.magnitude * sizeJumpInfluence)));
                 }
-                
             }
         }
         

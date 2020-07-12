@@ -18,11 +18,14 @@ namespace Code.Player
         
         private ObjectShake shake;
 
+        private SpriteRenderer sr;
+
         public void Start()
         {
             shake = GetComponent<ObjectShake>();
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
+            sr = GetComponent<SpriteRenderer>();
         }
 
         private void FixedUpdate()
@@ -35,7 +38,21 @@ namespace Code.Player
             
             if (grow)
                 transform.localScale += growthVec;
-            
+
+            if (transform.localScale.x < minSplitSize)
+            {
+                var col = sr.color;
+                col.a = 175f;
+                sr.color = col;
+                print(col.a);
+            }
+            else
+            {
+                var col = sr.color;
+                col.a = 50f;
+                sr.color = col;
+            }
+
             // jelly.radius += growthRate;
             // jelly.PolyMesh(jelly.radius, jelly.vertexNum);
             // jelly.MakeMeshJelly();

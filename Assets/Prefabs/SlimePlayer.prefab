@@ -107,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 4400904328241726592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.74, y: 1.81, z: 6}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 69466033096125327}
   m_Father: {fileID: 0}
@@ -224,7 +224,6 @@ MonoBehaviour:
     m_Bits: 512
   airborn: 1
   horizontalFlip: 1
-  animator: {fileID: 9050498371102198338}
 --- !u!114 &4400904328241726621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,12 +241,12 @@ MonoBehaviour:
   splitPerpMag: 600
   splitDirMag: 600
   colours:
-  - {r: 0.3765515, g: 1, b: 0, a: 0.49019608}
-  - {r: 0.30188677, g: 0.8018868, b: 0, a: 0.49019608}
-  - {r: 0.25926745, g: 0.6886792, b: 0, a: 0.49019608}
-  - {r: 0.16337402, g: 0.4339623, b: 0, a: 0.49019608}
-  - {r: 0.10299666, g: 0.2735849, b: 0, a: 0.49019608}
-  - {r: 0.05327413, g: 0.14150941, b: 0, a: 0.4862745}
+  - {r: 0.3765515, g: 1, b: 0, a: 0.8745098}
+  - {r: 0.94556963, g: 0.9716981, b: 0.1512549, a: 0.79607844}
+  - {r: 0.9716981, g: 0.7287736, b: 0, a: 0.9254902}
+  - {r: 0.4716981, g: 0.23648524, b: 0, a: 0.88235295}
+  - {r: 1, g: 0, b: 0.066735744, a: 0.8156863}
+  - {r: 0, g: 0, b: 0, a: 0.85490197}
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
 --- !u!114 &4400904328241726594
@@ -263,8 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSplitSize: 0.5
-  maxSize: 1.25
+  minSplitSize: 0.3
+  maxSize: 0.6
   grow: 1
   autosplit: 1
 --- !u!114 &4400904328241726595
