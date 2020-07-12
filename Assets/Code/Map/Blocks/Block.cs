@@ -9,6 +9,8 @@ public class Block : MapObject
     private SpriteRenderer rendererRef;
     protected Color startingColour;
 
+    public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
+
 
     SpriteRenderer renderer {
         get {
@@ -60,5 +62,19 @@ public class Block : MapObject
 
     public virtual string getTypeString() {
         return BLOCK;
+    }
+
+    internal override void parseArgs(string args)
+    {
+        base.parseArgs(args);
+        string[] argList = args.Split(',');
+        foreach (string arg in argList)
+        {
+            if (arg.Contains("pos"))
+            {
+                string pos = arg.Split(':')[1];
+                blockPosition = pos;
+            }
+        }
     }
 }

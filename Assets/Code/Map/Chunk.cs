@@ -29,14 +29,13 @@ public class Chunk : MapObject
             if (specialTypes.ContainsKey(i))
             {//is a special block
                 newBlock = Block.spawnBlock(Map.getBlockPrefab(specialTypes[i]));
-                if (arguments.ContainsKey(i))
-                {
-                    //it has args
-                    newBlock.parseArgs(arguments[i]);
-                }
             }
             else {
                 newBlock = Block.spawnBlock();
+            }
+            if (arguments.ContainsKey(i))
+            {
+                newBlock.parseArgs(arguments[i]);
             }
             newBlock.transform.parent = transform;
             newBlock.localPos = relativePos;
