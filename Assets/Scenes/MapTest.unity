@@ -534,6 +534,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4400904328241726616, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400904328241726616, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400904328241726620, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400904328241726620, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 905029003}
+    - target: {fileID: 4400904328241726623, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0031089901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400904328241726623, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.07397549
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050498371102198338, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee0d9fd05a97d84f8a70037c9a27a52, type: 3}
 --- !u!1001 &446511266
@@ -975,6 +1010,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f182823cd1f6381499bda61aac8b0ade, type: 3}
+--- !u!95 &905029003 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9050498371102198338, guid: fee0d9fd05a97d84f8a70037c9a27a52,
+    type: 3}
+  m_PrefabInstance: {fileID: 423399584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1210333558
 GameObject:
   m_ObjectHideFlags: 0
