@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b54a30b1cab24abfc2f71c1b3e569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowReeffects: 0
+  blockPosition: 
 --- !u!1001 &841131524009860857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20,6 +20,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6766882
+      objectReference: {fileID: 0}
     - target: {fileID: 7982642805907559493, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,7 +93,7 @@ PrefabInstance:
     - target: {fileID: 8488890295785053345, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Name
-      value: SwitchBlock
+      value: SwitchBlock Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8385275526969564837, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}

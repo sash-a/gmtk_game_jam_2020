@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Code.Player;
 
 public class Trigger : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class Trigger : MonoBehaviour
             //hasnt started yet
             return;
         }
-        Code.Player.PlayerController pc = collision.gameObject.GetComponent<Code.Player.PlayerController>();
+        Code.Player.PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+        if (pc == null) {
+            throw new System.Exception("no playercontroller on object " + collision.gameObject + " triggering trigger");
+        }
         block.trigger(pc);
     }
 

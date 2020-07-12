@@ -21,10 +21,6 @@ public class Block : MapObject
         }
     }
 
-    public override void start() {
-        startingColour = renderer.color;
-    }
-
     public static Block spawnBlock(Vector2Int absolutePos) {
         return spawnBlock(absolutePos, Map.getBlockPrefab(BLOCK));
     }
@@ -50,13 +46,23 @@ public class Block : MapObject
 
     public override void activateChanged()
     {
+        if (startingColour == Color.clear)
+        {
+            startingColour = renderer.color;
+        }
         if (active)
         {
             //was inactive
             renderer.color = startingColour;
         }
         else {
-            renderer.color = startingColour + Color.grey;
+            Color fadedColour = startingColour + Color.grey; ;
+            for (int i = 0; i < 4; i++)
+            {
+                fadedColour[i] = Mathf.Min(0.99f, fadedColour[i]);
+            }
+            renderer.color = fadedColour;
+
         }
     }
 
@@ -64,17 +70,15 @@ public class Block : MapObject
         return BLOCK;
     }
 
-    internal override void parseArgs(string args)
+    internal override void parseArg(string arg)
     {
-        base.parseArgs(args);
-        string[] argList = args.Split(',');
-        foreach (string arg in argList)
+        base.parseArg(arg);
+        if (arg.Contains(Platform.BLOCK_POSITION+":"))
         {
-            if (arg.Contains("pos"))
-            {
-                string pos = arg.Split(':')[1];
-                blockPosition = pos;
-            }
+            string pos = arg.Split(':')[1];
+            blockPosition = pos;
         }
     }
+
+
 }

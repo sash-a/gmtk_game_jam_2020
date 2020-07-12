@@ -8,12 +8,36 @@ public class Platform : Chunk
     public int width, height;
 
     public List<String> specialBlockTypes;
-    public List<int> specialPositions; 
+    public List<int> specialPositions;
+
+    public static string BLOCK_POSITION = "pos";
 
     public override void start()
     {
         base.start();
+        sortSpecialBlocks();
         spawnPlatform();
+    }
+
+    private void sortSpecialBlocks()
+    {//ensures positions increase in list orderS
+        for (int j = 0; j <= specialPositions.Count - 2; j++)
+        {
+            for (int i = 0; i <= specialPositions.Count - 2; i++)
+            {
+                if (specialPositions[i] > specialPositions[i + 1])
+                {
+                    int tempS = specialPositions[i + 1];
+                    string tempT = specialBlockTypes[i + 1];
+
+                    specialPositions[i + 1] = specialPositions[i];
+                    specialBlockTypes[i + 1] = specialBlockTypes[i];
+
+                    specialPositions[i] = tempS;
+                    specialBlockTypes[i] = tempT;
+                }
+            }
+        }
     }
 
     private void spawnPlatform()
@@ -50,7 +74,10 @@ public class Platform : Chunk
                         }
                     }
                 }
-                string posArg = "pos:" + verticalPrefix + horizontalPrefix;
+
+
+                string posArg = BLOCK_POSITION + verticalPrefix + horizontalPrefix;
+
                 if (!arguments.ContainsKey(i))
                 {
                     arguments.Add(i, posArg);

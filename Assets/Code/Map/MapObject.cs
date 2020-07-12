@@ -55,21 +55,25 @@ public abstract class MapObject : MonoBehaviour
         set { transform.localPosition = new Vector3(value.x, value.y, transform.localPosition.z); }
     }
 
-    internal virtual void parseArgs(string args)
+    public void parseArgs(string args)
     {
-        //Debug.Log(gameObject + " parsing " + args);
         string[] argList = args.Split(',');
         foreach (string arg in argList)
         {
-            if (arg.Contains(SwitchBlock.SWITCH_BLOCK))
-            {
-                int switchID = int.Parse(arg.Split(':')[1]);
-                Debug.Log(gameObject + " is triggered by " + arg);
-                SwitchBlock.registerSwitchTarget(switchID, this);
-
-                active = false;
-            }
+            parseArg(arg);
         }
     }
+
+    internal virtual void parseArg(string arg) {
+        if (arg.Contains(SwitchBlock.SWITCH_BLOCK))
+        {
+            int switchID = int.Parse(arg.Split(':')[1]);
+            //Debug.Log(gameObject + " is triggered by " + arg);
+            SwitchBlock.registerSwitchTarget(switchID, this);
+
+            active = false;
+        }
+    }
+
 
 }

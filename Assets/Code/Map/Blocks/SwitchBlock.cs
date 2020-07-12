@@ -8,8 +8,11 @@ public class SwitchBlock : EffectBlock
 {
 
     public static string SWITCH_BLOCK = "switch";
+    public static string SWITCH_ID = "id";//used as an arg to provide the switch block with its id
+
     public static Dictionary<int, SwitchBlock> switchMap;
-    public static Dictionary<int, List<MapObject>> switchTargets;
+    public static Dictionary<int, List<MapObject>> switchTargets;//maps switch to each of its targets
+    public static Dictionary<MapObject, List<int>> targetSwitches;//maps target to each of its switches
 
     int switchID;
 
@@ -17,7 +20,7 @@ public class SwitchBlock : EffectBlock
     {
         base.start();
         allowReeffects = true;
-        updateSWitch();
+        updateSwitch();
         active = true;
     }
 
@@ -28,19 +31,20 @@ public class SwitchBlock : EffectBlock
 
     public override void affect(PlayerController pc)
     {
-        updateSWitch();
+        updateSwitch();
     }
 
 
     public override void unaffect(PlayerController pc)
     {
-        updateSWitch();
+        updateSwitch();
     }
 
-    private void updateSWitch() 
+    private void updateSwitch() 
     {
+        //this switch has changed state - go through all its triggers and re-eval them
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-        sr.color = on ? Color.black : Color.red;
+        sr.color = on ? Color.black : Color.magenta;
         //Debug.Log("swtich now " + on);
         if (switchTargets == null) {
             switchTargets = new Dictionary<int, List<MapObject>>();
@@ -49,9 +53,22 @@ public class SwitchBlock : EffectBlock
         if (switchTargets.ContainsKey(switchID)) {
             //this switch has targets
             foreach (MapObject mo in switchTargets[switchID]) {
-                mo.active = on;
+                //for each of this switches targets, check their state
+                updateObject(mo);
             }
         }
+    }
+
+    private void updateObject(MapObject mo)
+    {
+        //at least one switch this object is attached to has changed states
+        //check if all the objects switches are on
+        bool allOn = true;
+        foreach (int id in targetSwitches[mo])
+        {
+            allOn = allOn && switchMap[id].on;
+        }
+        mo.active = allOn;
     }
 
     public override void activateChanged()
@@ -64,27 +81,23 @@ public class SwitchBlock : EffectBlock
         return SWITCH_BLOCK;
     }
 
-    internal override void parseArgs(string args) {
-        string[] argList = args.Split(',');
-        foreach (string arg in argList)
-        {
-            if (arg.Contains("id")) {
-                Debug.Log("found id arg:" + arg);
-                switchID = int.Parse(arg.Split(':')[1]);
+    internal override void parseArg(string arg) {
+        base.parseArg(arg);
+        if (arg.Contains(SWITCH_ID)) {
+            switchID = int.Parse(arg.Split(':')[1]);
 
-                if (switchMap == null)
-                {
-                    switchMap = new Dictionary<int, SwitchBlock>();
-                }
-                switchMap.Add(switchID, this);//registers this switch
+            if (switchMap == null)
+            {
+                switchMap = new Dictionary<int, SwitchBlock>();
             }
+            switchMap.Add(switchID, this);//registers this switch
             
         }
-        base.parseArgs(args);
     }
 
     internal static void registerSwitchTarget(int triggerID, MapObject mapObject)
     {
+        //mapping is possibly many to many, so both mapping directions are needed
         if (switchTargets == null) {
             switchTargets = new Dictionary<int, List<MapObject>>();
         }
@@ -92,11 +105,20 @@ public class SwitchBlock : EffectBlock
             switchTargets.Add(triggerID, new List<MapObject>());
         }
         switchTargets[triggerID].Add(mapObject);
+
+        if (targetSwitches == null) {
+            targetSwitches = new Dictionary<MapObject, List<int>>();
+        }
+        if (!targetSwitches.ContainsKey(mapObject)) {
+            targetSwitches.Add(mapObject, new List<int>());
+        }
+        targetSwitches[mapObject].Add(triggerID);
     }
 
     private void OnDestroy()
     {
         switchMap?.Clear();
         switchTargets?.Clear();
+        targetSwitches?.Clear();
     }
 }

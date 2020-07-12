@@ -52,8 +52,8 @@ public class Chunk : MapObject
 
     public override void activateChanged()
     {
-        foreach (Block block in blocks) {
-            block.active = active;
-        }
+        //foreach (Block block in blocks) {
+        //    block.active = active;
+        //}
     }
 }
