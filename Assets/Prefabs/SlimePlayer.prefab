@@ -223,7 +223,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   airborn: 1
-  animator: {fileID: 9050498371102198338}
 --- !u!114 &4400904328241726621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,8 +261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSplitSize: 0.5
-  maxSize: 1.25
+  minSplitSize: 10
+  maxSize: 30
   grow: 1
   autosplit: 1
 --- !u!114 &4400904328241726595
