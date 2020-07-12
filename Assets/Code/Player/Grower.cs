@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace Code.Player
@@ -15,10 +16,13 @@ namespace Code.Player
         private Jelly jelly;
         public bool grow = true;
         public bool autosplit = true;
+        
+        private ObjectShake shake;
 
         public void Start()
         {
             jelly = GetComponent<Jelly>();
+            shake = GetComponent<ObjectShake>();
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
@@ -27,6 +31,9 @@ namespace Code.Player
         {
             if (autosplit && TooBig())
                 GetComponent<Splitter>().Split();
+            
+            if (AlmostTooBig())
+                shake.Shake();
             
             if (grow)
                 transform.localScale += growthVec;
@@ -44,6 +51,12 @@ namespace Code.Player
         public bool TooSmall()
         {
             return gameObject.transform.localScale.x < minSplitSize;
+        }
+
+        public bool AlmostTooBig()
+        {
+            return gameObject.transform.localScale.x > maxSize * 0.9f;
+
         }
     }
 }
