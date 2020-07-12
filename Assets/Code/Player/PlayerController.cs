@@ -20,7 +20,7 @@ namespace Code.Player
         [HideInInspector] public bool airborn = true;
         private Vector2 velocity;  // for movement interp
         private Rigidbody2D rb;
-        private int horizontalFlip = 1;
+        [HideInInspector] public int horizontalFlip = 1;
         private Vector2 targetVelocity;
 
         // public Animator animator;
