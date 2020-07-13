@@ -6,8 +6,9 @@ using UnityEngine;
 public class GravityBlock : EffectBlock
 {
 
-    string GRAVITY = "gravity";
-    float gravityForce = 1.1f;
+    static string GRAVITY = "gravity";
+    static string FORCE_STRENGTH = "g";
+    float gravityForce = 1.4f;
     public override void start()
     {
         base.start();
@@ -16,7 +17,7 @@ public class GravityBlock : EffectBlock
 
     public override void affect(PlayerController pc)
     {
-        //Debug.Log("grav effect");
+        //Debug.Log("grav effect with force " + gravityForce);
         pc.Jump(multiplier: gravityForce, force: true);
     }
 
@@ -27,5 +28,13 @@ public class GravityBlock : EffectBlock
     public override string getTypeString()
     {
         return GRAVITY;
+    }
+
+    internal override void parseArg(string arg)
+    {
+        base.parseArg(arg);
+        if (arg.Contains(FORCE_STRENGTH + ":")) {
+            gravityForce = int.Parse(arg.Split(':')[1]);
+        }
     }
 }

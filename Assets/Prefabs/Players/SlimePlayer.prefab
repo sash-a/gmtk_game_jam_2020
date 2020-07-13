@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snappyness: 0.1
   speed: 5
-  jumpSpeed: 12
+  jumpSpeed: 10
   sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   moveSound: {fileID: 8300000, guid: 7a597ba086a123af98ee645ea9642366, type: 3}

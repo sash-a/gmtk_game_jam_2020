@@ -31,6 +31,10 @@ namespace Code.Player
             AllBlobs.singleton.livingPlayers.Add(this);
         }
 
+        public float size {
+            get { return transform.localScale.x; }
+        }
+
         void Update()
         {
             //animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
@@ -49,7 +53,7 @@ namespace Code.Player
             
             
             // print(transform.localScale.x);
-            float scaleFactor = -1.5f*Mathf.Log(transform.localScale.x + 1f) + 2f;
+            float scaleFactor = -1.5f*Mathf.Log(Mathf.Pow(size, sizeJumpInfluence) + 1f) + 2f;
             targetVelocity += new Vector2(dir * speed + scaleFactor * dir, rb.velocity.y);
             // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
 
@@ -106,7 +110,7 @@ namespace Code.Player
                 audioSource.Stop();
 
                 airborn = true;
-                float scaleFactor = -15 * Mathf.Log10(transform.localScale.x + 1) + 1;
+                float scaleFactor = -15 * Mathf.Log10(Mathf.Pow(size, sizeJumpInfluence) + 1) + 1;
                 targetVelocity.y += (jumpSpeed + scaleFactor) * multiplier;
             }
         }
