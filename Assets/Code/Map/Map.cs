@@ -9,7 +9,10 @@ public class Map : MonoBehaviour
 
     public Camera mapCam;
     public float baseCamSize = 5;
-    [HideInInspector] public float maxPlayerHeight;
+    public float mapSpeed = 0;//the passive screen rise speed
+
+    [HideInInspector] public float maxPlayerHeight;//an independant count of the map height. rises via mapSpeed, unaffected by player actions
+    private float baseMapHeight;
     static int playerOverhead = 2;
 
     internal static GameObject getBlockPrefab(string name)
@@ -29,17 +32,21 @@ public class Map : MonoBehaviour
         mapCam = GetComponentInChildren<Camera>();
         spikes = GetComponentInChildren<Spikes>();
         maxPlayerHeight = camTop;
+        baseMapHeight = camTop;
 
         createBlockTypeDict();
     }
 
     private void Update()
     {
-        camTop = maxPlayerHeight;
+        camTop = Mathf.Max(maxPlayerHeight, baseMapHeight);
+        baseMapHeight += Time.deltaTime * mapSpeed;
+
         Vector2 blobBounds = AllBlobs.singleton.getHorizontalBounds();
         float boundsSize = (blobBounds.y - blobBounds.x) * 1.1f / mapCam.aspect;
         mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
         mapCam.transform.position = new Vector3((blobBounds.y + blobBounds.x) / 2f, mapCam.transform.position.y, mapCam.transform.position.z);
+
         spikes.positionSpikes();
     }
 
