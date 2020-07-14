@@ -21,10 +21,15 @@ public class Jelly : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
+       
         rb = GetComponent<Rigidbody2D>();
-        polyCollider = GetComponent<PolygonCollider2D>();
+        //polyCollider = GetComponent<PolygonCollider2D>();
         PolyMesh(radius, vertexNum);
         MakeMeshJelly();
+        
+        
+
+       // StartCoroutine("E");
     }
 
     void Update()
@@ -34,6 +39,7 @@ public class Jelly : MonoBehaviour
             verticies[i] = points[i].transform.localPosition;
         }
         mesh.vertices = verticies;
+
     }
 
     public void PolyMesh(float radius, int n)
@@ -77,6 +83,7 @@ public class Jelly : MonoBehaviour
         mesh.triangles = triangles;
         mesh.normals = normals;
 
+        /*
         //polyCollider
         polyCollider.pathCount = 1;
 
@@ -88,6 +95,7 @@ public class Jelly : MonoBehaviour
         Vector2[] path = pathList.ToArray();
 
         polyCollider.SetPath(0, path);
+        */
     }
 
     public void MakeMeshJelly()
@@ -104,15 +112,16 @@ public class Jelly : MonoBehaviour
             points.Add(childObject);
         }
 
-        //GameObject centre = points[CenterPoint];
         for (int i = 0; i < points.Count; i++)
         {
             if (i == points.Count - 1)
                 points[i].GetComponent<HingeJoint2D>().connectedBody = points[0].GetComponent<Rigidbody2D>();
             else
                 points[i].GetComponent<HingeJoint2D>().connectedBody = points[i + 1].GetComponent<Rigidbody2D>();
+
             points[i].GetComponent<SpringJoint2D>().connectedBody = rb;
         }
+
     }
 
     public void Enlarge(float scale)
@@ -120,13 +129,20 @@ public class Jelly : MonoBehaviour
         for (int i = 0; i < verticies.Length; i++)
         {
             verticies[i] *= scale;
-            polyCollider.points[i] *= scale;
+            //polyCollider.points[i] *= scale;
             points[i].transform.position *= scale;
             points[i].transform.localScale *= scale;
         }
-        // GameObject childObject = Instantiate(toBeInstantiated, transform.position, Quaternion.identity) as GameObject;
-        // childObject.transform.parent = gameObject.transform;
-        // points.Add(childObject);
-        // transform.localScale *= scale;
+    }
+
+
+    IEnumerator E()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Enlarge(1.025f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        
     }
 }

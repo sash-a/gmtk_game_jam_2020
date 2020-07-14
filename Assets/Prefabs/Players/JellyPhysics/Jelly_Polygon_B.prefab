@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 1888675705213167909}
   - component: {fileID: 1888675705213167906}
   - component: {fileID: 1888675705213167908}
-  - component: {fileID: 610455117}
-  - component: {fileID: 7063395786828113289}
+  - component: {fileID: 1888675706281879864}
+  - component: {fileID: 1888675706281879871}
   m_Layer: 0
   m_Name: Jelly_Polygon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888675705213167928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   polyCollider: {fileID: 1888675705213167929}
   radius: 1
   vertexNum: 100
-  material: {fileID: 2100000, guid: e56ead41864b48e4c825c916f01cd7ff, type: 2}
+  material: {fileID: 0}
 --- !u!23 &1888675705213167906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156,8 +156,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &610455117
+  m_Constraints: 4
+--- !u!114 &1888675706281879864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,16 +166,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888675705213167928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 032d4bc7f961ad244a4d1c6023edd8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappyness: 1
-  speed: 10
-  jumpForce: 5000
-  sizeSpeedInfluence: 0
+  snappyness: 0.1
+  speed: 20
+  jumpSpeed: 10
+  sizeSpeedInfluence: 1
   sizeJumpInfluence: 1
   airborn: 1
---- !u!114 &7063395786828113289
+  horizontalFlip: 1
+--- !u!114 &1888675706281879871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,9 +185,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888675705213167928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a443b8e821aafa41b57244ea0b94a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 0
-  minSplitSize: 0
-  maxSize: 0
+  playerPrefab: {fileID: 5880784439415046403, guid: c68fde94ae6a4ac4da38e06aa54aa206,
+    type: 3}
+  maxSplits: 5
+  splitPerpMag: 600
+  splitDirMag: 600
+  nSplits: 0
