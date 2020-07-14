@@ -202,6 +202,14 @@ PrefabInstance:
       propertyPath: travelHeight
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1478302071, guid: 52ded000ff49de94fbed9d3a48e35ca4, type: 3}
+      propertyPath: travelDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478302071, guid: 52ded000ff49de94fbed9d3a48e35ca4, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1248276145034775884, guid: 52ded000ff49de94fbed9d3a48e35ca4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -419,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: maxSplits
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
