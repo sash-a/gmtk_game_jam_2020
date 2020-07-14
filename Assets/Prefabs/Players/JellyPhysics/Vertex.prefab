@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7883322127782638124}
   - component: {fileID: -3884643403323039976}
   - component: {fileID: -3196061831182183651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vertex
   m_TagString: Player
   m_Icon: {fileID: 0}

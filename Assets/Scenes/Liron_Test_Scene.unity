@@ -354,6 +354,11 @@ PrefabInstance:
       propertyPath: splitDirMag
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 5880784439415046402, guid: c68fde94ae6a4ac4da38e06aa54aa206,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5880784439415046403, guid: c68fde94ae6a4ac4da38e06aa54aa206,
         type: 3}
       propertyPath: m_Name
@@ -412,6 +417,16 @@ PrefabInstance:
     - target: {fileID: 5880784439415046428, guid: c68fde94ae6a4ac4da38e06aa54aa206,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880784439415046431, guid: c68fde94ae6a4ac4da38e06aa54aa206,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880784439415046431, guid: c68fde94ae6a4ac4da38e06aa54aa206,
+        type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

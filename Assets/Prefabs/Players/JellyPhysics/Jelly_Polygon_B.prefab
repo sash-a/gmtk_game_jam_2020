@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1888675705213167908}
   - component: {fileID: 1888675706281879864}
   - component: {fileID: 1888675706281879871}
-  m_Layer: 0
-  m_Name: Jelly_Polygon
+  m_Layer: 8
+  m_Name: Jelly_Polygon_B
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

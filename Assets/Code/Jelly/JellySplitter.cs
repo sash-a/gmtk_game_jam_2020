@@ -39,13 +39,22 @@ public class JellySplitter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             Split();
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+            GetComponent<Rigidbody2D>().AddForce(transform.right * 10000);
     }
 
     public void Split()
     {
-        //Vector3 offset = new Vector3(2, 2, 0);
-        GameObject jellyBall = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        Vector3 offset = new Vector3(0, 0, 0);
+        GameObject jellyBall = Instantiate(playerPrefab, transform.position+offset, Quaternion.identity);
 
-        //jellyBall.GetComponent<Rigidbody2D>().AddForce(transform.forward * 600);
+        jellyBall.GetComponent<Rigidbody2D>().AddForce(transform.right * 100000);
     }
 }
+
+// NOTE: applying force only seems to work when rigidbody gravity is 0 (or potentially very low)
