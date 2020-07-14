@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2932391487199770309, guid: d2608a76fefae8540aabebc1b1b565fe,
     type: 3}
-  m_Color: {r: 0.13550194, g: 0.8207547, b: 0.13950026, a: 0.53333336}
+  m_Color: {r: 0.17137258, g: 0.81960785, b: 0.13725488, a: 0.53333336}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -240,13 +240,6 @@ MonoBehaviour:
   maxSplits: 5
   splitPerpMag: 600
   splitDirMag: 600
-  colours:
-  - {r: 0.3765515, g: 1, b: 0, a: 0.8745098}
-  - {r: 0.94556963, g: 0.9716981, b: 0.1512549, a: 0.79607844}
-  - {r: 0.9716981, g: 0.7287736, b: 0, a: 0.9254902}
-  - {r: 0.4716981, g: 0.23648524, b: 0, a: 0.88235295}
-  - {r: 1, g: 0, b: 0.066735744, a: 0.8156863}
-  - {r: 0, g: 0, b: 0, a: 0.85490197}
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
 --- !u!114 &4400904328241726594

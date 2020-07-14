@@ -11,7 +11,6 @@ namespace Code.Player
         public int maxSplits;
         public int splitPerpMag;
         public int splitDirMag;
-        public Color[] colours;
 
         public AudioClip splitSound;
         
@@ -30,8 +29,7 @@ namespace Code.Player
         private void Start()
         {
             // Assert(colours.Length >= maxSplits);
-            Color colour = colours[Mathf.Min(nSplits, colours.Length-1)];
-            GetComponent<SpriteRenderer>().color = colour;
+            GetComponent<SpriteRenderer>().color = getSplitColour();
             // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
@@ -43,6 +41,27 @@ namespace Code.Player
 
             rb = GetComponent<Rigidbody2D>();
             rb.AddForce(dir + side);
+        }
+
+        private Color getSplitColour()
+        {//gets redder and darker the more splits
+            float progress = Mathf.Max(nSplits / (float)maxSplits, 0.01f);
+            float hBase = 0.15f;//green. moves to 0 which is red
+            float vBase = 1f;//full colour. moves to 0 which is black
+
+            float hChange = getColourComp(progress, 6f, 1.5f);//drops off quickly, flattens early. ie green-red happens early
+            hChange *= hBase;//now [0,hBase]
+            float vChange = getColourComp(progress, 0.75f, 5);//drops off slower, is flat early and only flattens later
+
+            Debug.Log("n splits: " + nSplits + " prog: " + progress + " col: " + Color.HSVToRGB(hBase - hChange, 1, vBase - vChange) + " hChange: " + hChange + " vChange: " + vChange);
+
+            return Color.HSVToRGB(hBase - hChange, 1, vBase - vChange);
+        }
+
+        private float getColourComp(float progress, float a, float b) {
+            //s shaped curve which starts flat at 0, increases in gradient then flattens off again to asymptotically approach 1 
+            //here a and b are coefficients which control how quickly values drop off and how much they drop
+            return -1 / (a * Mathf.Pow(progress, b) + 1) + 1;
         }
 
         void Update()
