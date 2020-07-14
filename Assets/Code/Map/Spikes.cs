@@ -1,18 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Code.Player;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour
+public class Spikes : EffectBlock
 {
     SpriteRenderer renderer;
+    static string SPIKES = "spike";
+    public bool camSpikes;
 
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        if (renderer == null) {
+            renderer = GetComponentInChildren<SpriteRenderer>();
+        }
+        if (renderer == null)
+        {
+            renderer = GetComponentInParent<SpriteRenderer>();
+        }
         renderer.enabled = true;
 
-        positionSpikes();
+        if (camSpikes)
+        {
+            positionSpikes();
+        }
     }
 
     public void positionSpikes()
@@ -22,5 +35,19 @@ public class Spikes : MonoBehaviour
 
         float spikesHeight = Map.singleton.mapCam.transform.position.y - Map.singleton.baseCamSize -0.5f;
         transform.position = new Vector3(transform.position.x, spikesHeight , transform.position.z);
+    }
+
+    public override void affect(PlayerController pc)
+    {
+        Destroy(pc.gameObject);
+    }
+
+    public override void unaffect(PlayerController pc)
+    {
+    }
+
+    public override string getTypeString()
+    {
+        return SPIKES;
     }
 }

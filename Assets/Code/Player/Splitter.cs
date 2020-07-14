@@ -53,7 +53,7 @@ namespace Code.Player
             hChange *= hBase;//now [0,hBase]
             float vChange = getColourComp(progress, 0.75f, 5);//drops off slower, is flat early and only flattens later
 
-            Debug.Log("n splits: " + nSplits + " prog: " + progress + " col: " + Color.HSVToRGB(hBase - hChange, 1, vBase - vChange) + " hChange: " + hChange + " vChange: " + vChange);
+            //Debug.Log("n splits: " + nSplits + " prog: " + progress + " col: " + Color.HSVToRGB(hBase - hChange, 1, vBase - vChange) + " hChange: " + hChange + " vChange: " + vChange);
 
             return Color.HSVToRGB(hBase - hChange, 1, vBase - vChange);
         }
