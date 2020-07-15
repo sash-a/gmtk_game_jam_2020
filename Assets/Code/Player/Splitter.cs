@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions;
-using Random = UnityEngine.Random;
 
 namespace Code.Player
 {
@@ -12,11 +12,15 @@ namespace Code.Player
         public int splitPerpMag;
         public int splitDirMag;
 
+        public float splitCooldown;
+        private float lastSplit;
+        
         public AudioClip splitSound;
 
         [HideInInspector] public int nSplits;
 
         private Rigidbody2D rb;
+        private Controls controls;
         private bool canSplit;
 
         private static Vector3 minScale = Vector3.zero;
@@ -24,16 +28,13 @@ namespace Code.Player
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            GetComponent<SpriteRenderer>().color = getSplitColour();
+
             if (minScale == Vector3.zero) // this should only be called once and so we can store min scale
             {
                 var min = GetComponent<Grower>().minSize;
                 minScale = new Vector3(min, min, min);
             }
-        }
-
-        private void Start()
-        {
-            GetComponent<SpriteRenderer>().color = getSplitColour();
         }
 
         private Color getSplitColour()
@@ -48,8 +49,6 @@ namespace Code.Player
             hChange *= hBase; //now [0,hBase]
             float vChange = getColourComp(progress, 0.75f, 5); //drops off slower, is flat early and only flattens later
 
-            //Debug.Log("n splits: " + nSplits + " prog: " + progress + " col: " + Color.HSVToRGB(hBase - hChange, 1, vBase - vChange) + " hChange: " + hChange + " vChange: " + vChange);
-
             return Color.HSVToRGB(hBase - hChange, 1, vBase - vChange);
         }
 
@@ -60,18 +59,18 @@ namespace Code.Player
             return -1 / (a * Mathf.Pow(progress, b) + 1) + 1;
         }
 
-        void Update()
+        private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && canSplit)
-            {
+            lastSplit += Time.deltaTime;
+            
+            if (AllBlobs.singleton.controls.Player.Split.ReadValue<float>() == 1)
                 Split();
-                canSplit = false;
-            }
         }
 
         public void Split()
         {
-            // Spawn them a random amount above the parent
+            if (!canSplit || lastSplit < splitCooldown) return;
+
             if (nSplits < maxSplits)
             {
                 for (int i = 0; i < 2; i++)
@@ -86,8 +85,10 @@ namespace Code.Player
             }
 
             AudioSource.PlayClipAtPoint(splitSound, transform.position);
+
             Destroy(gameObject);
         }
+
 
         void OnSpawn(int parentSplits, int startDir, PlayerController parentController)
         {
@@ -101,7 +102,7 @@ namespace Code.Player
             if (childScale.x < minScale.x)
                 childScale = minScale;
             transform.localScale = childScale;
-            
+
             // setting scale-size modifiers
             var controller = GetComponent<PlayerController>();
             controller.inheritSizeModifiers(parentController, childScale == minScale);
@@ -113,8 +114,8 @@ namespace Code.Player
 
         void ApplyInitialForces(int startDir)
         {
-            var x = Input.GetAxisRaw("Horizontal");
-            var y = Input.GetKey(KeyCode.W) ? 1 : 0;
+            var x = AllBlobs.singleton.controls.Player.Move.ReadValue<float>();
+            var y = AllBlobs.singleton.controls.Player.Jump.ReadValue<float>();
 
             var dir = new Vector2(x, y) * splitDirMag;
 
@@ -128,7 +129,7 @@ namespace Code.Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            canSplit = other.gameObject.CompareTag("Floor");
+            canSplit = other.gameObject.CompareTag("Floor") || canSplit;
         }
     }
 }

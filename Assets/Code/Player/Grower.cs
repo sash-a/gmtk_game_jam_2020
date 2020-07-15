@@ -19,12 +19,15 @@ namespace Code.Player
         public float shakePercent; // Percent of max size, at which player starts shaking
         private ObjectShake shake;
 
-        public void Start()
+        private void Awake()
         {
             shake = GetComponent<ObjectShake>();
             splitter = GetComponent<Splitter>();
+        }
 
-            growthRate *= Random.Range(0.5f, 1.5f);
+        public void Start()
+        {
+            growthRate *= Random.Range(0.5f, 1.5f);  // TODO except for first player
             growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
 

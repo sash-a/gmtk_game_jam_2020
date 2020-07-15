@@ -7,10 +7,15 @@ public class AllBlobs : MonoBehaviour
 {
     public static AllBlobs singleton; 
     public HashSet<PlayerController> livingPlayers;
+    public Controls controls;
 
     private void Awake()
     {
         livingPlayers = new HashSet<PlayerController>();
+        controls = new Controls();
+        
+        controls.Enable();
+
         singleton = this;
     }
 

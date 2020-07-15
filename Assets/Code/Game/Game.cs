@@ -11,7 +11,7 @@ namespace Code
     {
         public static Game instance;
         
-        [HideInInspector] public int nPlayers = 0;
+        [HideInInspector] public int nPlayers;
         
         public TextMeshProUGUI loseText;
         public TextMeshProUGUI winText;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Code.Player
 {
@@ -6,6 +7,8 @@ namespace Code.Player
     {
         public float speed;
         public float jumpSpeed;
+        [HideInInspector] public int lrDir;
+
         public float sizeSpeedDecreaseRate;
         public float sizeJumpDecreaseRate;
         private float sizeSpeedModifier;
@@ -16,7 +19,6 @@ namespace Code.Player
         [HideInInspector] public bool airborn;
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
-        private Vector2 targetVelocity;
 
         void Awake()
         {
@@ -29,32 +31,17 @@ namespace Code.Player
             sizeSpeedModifier += sizeSpeedDecreaseRate;
             sizeJumpModifier += sizeJumpDecreaseRate;
 
-//            print(sizeSpeedModifier + " " + sizeJumpModifier);
+            MoveLR((int) AllBlobs.singleton.controls.Player.Move.ReadValue<float>());
+            if (AllBlobs.singleton.controls.Player.Jump.ReadValue<float>() == 1) Jump();
         }
 
         void Update()
         {
-            targetVelocity.y = rb.velocity.y; // so that the player falls downwards
-            if (rb.gravityScale == 0f)
-                return; // has been sucked into tractor beam
-
-            // left right
-            var dir = (int) Input.GetAxisRaw("Horizontal") * horizontalFlip;
-            if (OnWall(dir))
-                dir = 0;
-
-
-            GetComponent<SpriteRenderer>().flipX = dir > 0; // this is hella ineficient
-
-            MoveLR(dir);
-            if (Input.GetKeyDown(KeyCode.W))
-                Jump();
-
-            rb.velocity = targetVelocity;
+            if (rb.gravityScale == 0f) // has been sucked into tractor beam
+                airborn = true;
 
             // if this player has just reached a new high point the camera will move up
             Map.singleton.reportPlayerHeight(transform.position.y);
-            targetVelocity = Vector2.zero; // any velocities added before the next update call will be accumulated
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -63,18 +50,23 @@ namespace Code.Player
                 airborn = false;
         }
 
-        public void MoveLR(int dir, float multiplier = 1)
+        private void MoveLR(int dir)
         {
-            targetVelocity.x += dir * Mathf.Max(speed - sizeSpeedModifier, 0);
+            if (OnWall(dir))
+                dir = 0;
+
+            var x = dir * horizontalFlip * Mathf.Max(speed - sizeSpeedModifier, 0);
+            rb.velocity = new Vector2(x, rb.velocity.y);
         }
 
         public void Jump(float multiplier = 1, bool force = false)
         {
-            //Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
             if (!airborn || force)
             {
                 airborn = true;
-                targetVelocity.y += Mathf.Max(jumpSpeed - sizeJumpModifier, 0) * multiplier;
+
+                var upVel = rb.velocity.y + Mathf.Max(jumpSpeed - sizeJumpModifier, 0) * multiplier;
+                rb.velocity = new Vector2(rb.velocity.x, upVel);
             }
         }
 

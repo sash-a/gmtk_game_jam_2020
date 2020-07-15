@@ -139,16 +139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappyness: 0.1
   speed: 3
   jumpSpeed: 12
-  sizeSpeedInfluence: 1
-  sizeJumpInfluence: 1
-  moveSound: {fileID: 0}
+  sizeSpeedDecreaseRate: 0
+  sizeJumpDecreaseRate: 0
   onlyFloor:
     serializedVersion: 2
     m_Bits: 512
   airborn: 1
+  rb: {fileID: 0}
+  horizontalFlip: 1
 --- !u!114 &1237596767535505612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,13 +165,6 @@ MonoBehaviour:
   maxSplits: 5
   splitPerpMag: 600
   splitDirMag: 600
-  colours:
-  - {r: 0.3765515, g: 1, b: 0, a: 0.49019608}
-  - {r: 0.30188677, g: 0.8018868, b: 0, a: 0.49019608}
-  - {r: 0.25926745, g: 0.6886792, b: 0, a: 0.49019608}
-  - {r: 0.16337402, g: 0.4339623, b: 0, a: 0.49019608}
-  - {r: 0.10299666, g: 0.2735849, b: 0, a: 0.49019608}
-  - {r: 0.05327413, g: 0.14150941, b: 0, a: 0.4862745}
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
 --- !u!114 &1237596767535505619
@@ -187,10 +180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSplitSize: 0.5
+  minSize: 0
   maxSize: 1.25
   grow: 1
   autosplit: 1
+  shakePercent: 0
 --- !u!114 &1237596767535505618
 MonoBehaviour:
   m_ObjectHideFlags: 0
