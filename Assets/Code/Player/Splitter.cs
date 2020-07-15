@@ -13,9 +13,9 @@ namespace Code.Player
         public int splitDirMag;
 
         public AudioClip splitSound;
-        
-        [HideInInspector] public int nSplits = 0;
 
+        [HideInInspector] public int nSplits;
+        
         private Rigidbody2D rb;
         private Grower grower;
         private int startDir;
@@ -33,7 +33,7 @@ namespace Code.Player
             // When a slime spawns give it a random force in a similar dir to parent force
             var x = Input.GetAxisRaw("Horizontal");
             var y = Input.GetKey(KeyCode.W) ? 1 : 0;
-            
+
             var dir = new Vector2(x, y) * splitDirMag;
             var side = new Vector2(y, x);
             side[0] *= startDir;
@@ -44,21 +44,24 @@ namespace Code.Player
         }
 
         private Color getSplitColour()
-        {//gets redder and darker the more splits
-            float progress = Mathf.Max(nSplits / (float)maxSplits, 0.01f);
-            float hBase = 0.15f;//green. moves to 0 which is red
-            float vBase = 1f;//full colour. moves to 0 which is black
+        {
+            //gets redder and darker the more splits
+            float progress = Mathf.Max(nSplits / (float) maxSplits, 0.01f);
+            float hBase = 0.15f; //green. moves to 0 which is red
+            float vBase = 1f; //full colour. moves to 0 which is black
 
-            float hChange = getColourComp(progress, 6f, 1.5f);//drops off quickly, flattens early. ie green-red happens early
-            hChange *= hBase;//now [0,hBase]
-            float vChange = getColourComp(progress, 0.75f, 5);//drops off slower, is flat early and only flattens later
+            float hChange =
+                getColourComp(progress, 6f, 1.5f); //drops off quickly, flattens early. ie green-red happens early
+            hChange *= hBase; //now [0,hBase]
+            float vChange = getColourComp(progress, 0.75f, 5); //drops off slower, is flat early and only flattens later
 
             //Debug.Log("n splits: " + nSplits + " prog: " + progress + " col: " + Color.HSVToRGB(hBase - hChange, 1, vBase - vChange) + " hChange: " + hChange + " vChange: " + vChange);
 
             return Color.HSVToRGB(hBase - hChange, 1, vBase - vChange);
         }
 
-        private float getColourComp(float progress, float a, float b) {
+        private float getColourComp(float progress, float a, float b)
+        {
             //s shaped curve which starts flat at 0, increases in gradient then flattens off again to asymptotically approach 1 
             //here a and b are coefficients which control how quickly values drop off and how much they drop
             return -1 / (a * Mathf.Pow(progress, b) + 1) + 1;
@@ -80,30 +83,28 @@ namespace Code.Player
                 for (int i = 0; i < 2; i++)
                 {
                     // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
-                    var spawned = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
+                    var spawned = Instantiate(playerPrefab, gameObject.transform.position,
+                        gameObject.transform.rotation);
                     spawned.transform.SetParent(transform.parent);
                     var splitter = spawned.GetComponent<Splitter>();
-                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale, GetComponent<PlayerController>().horizontalFlip);
+                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale,  GetComponent<PlayerController>());
                 }
             }
 
             AudioSource.PlayClipAtPoint(splitSound, transform.position);
             Destroy(gameObject);
-
         }
-    
-        void OnSpawn(int parentSplits, int startDir, Vector3 parentScale, int flip)
+
+        void OnSpawn(int parentSplits, int startDir, Vector3 parentScale, PlayerController parentController)
         {
+            var controller = GetComponent<PlayerController>();
+            
             nSplits = parentSplits + 1;
             this.startDir = startDir;
+            
+            controller.inheritSizeModifiers(parentController);
             transform.localScale = parentScale / 2;
-            GetComponent<PlayerController>().horizontalFlip = flip;
             transform.parent = AllBlobs.singleton.transform;
-        }
-
-        public static Vector3 RandomArc(Vector2 dir, float minAngle, float maxAngle)
-        {
-            return Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle)) * dir;
         }
     }
 }

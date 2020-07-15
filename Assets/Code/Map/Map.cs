@@ -9,7 +9,7 @@ public class Map : MonoBehaviour
 
     public Camera mapCam;
     public float baseCamSize = 5;
-    public float mapSpeed = 0;//the passive screen rise speed
+    public float mapSpeed;//the passive screen rise speed
 
     [HideInInspector] public float maxPlayerHeight;//an independant count of the map height. rises via mapSpeed, unaffected by player actions
     private float baseMapHeight;

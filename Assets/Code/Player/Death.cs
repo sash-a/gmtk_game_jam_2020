@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Code.Player
@@ -14,7 +13,6 @@ namespace Code.Player
         public void OnDestroy()
         {
             Instantiate(dieEffect, transform.position, transform.rotation).Play();
-            // dieEffect.Play();
             Game.instance.nPlayers -= 1;
             AllBlobs.singleton.livingPlayers.Remove(GetComponent<PlayerController>());
         }

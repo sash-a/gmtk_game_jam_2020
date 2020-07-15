@@ -1,84 +1,81 @@
-﻿using System;
-using UnityEditor.U2D.Path;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float snappyness;
         public float speed;
         public float jumpSpeed;
-        public float sizeSpeedInfluence;
-        public float sizeJumpInfluence;
+        public float sizeSpeedDecreaseRate;
+        public float sizeJumpDecreaseRate;
+        private float sizeSpeedModifier;
+        private float sizeJumpModifier;
 
-        public AudioClip moveSound;
-        private AudioSource audioSource;
-        
         public LayerMask onlyFloor;
 
         [HideInInspector] public bool airborn = true;
-        private Vector2 velocity;  // for movement interp
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
         private Vector2 targetVelocity;
 
-        //public Animator animator;
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            audioSource = GetComponent<AudioSource>();
             AllBlobs.singleton.livingPlayers.Add(this);
         }
 
-        public float size {
-            get { return transform.localScale.x; }
+        private void FixedUpdate()
+        {
+            sizeSpeedModifier += sizeSpeedDecreaseRate;
+            sizeJumpModifier += sizeJumpDecreaseRate;
+
+//            print(sizeSpeedModifier + " " + sizeJumpModifier);
         }
 
         void Update()
         {
-            //animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
-            // player movement
-            // todo decrease l/r speed in air?
+            targetVelocity.y = rb.velocity.y; // so that the player falls downwards
+            if (rb.gravityScale == 0f)
+                return; // has been sucked into tractor beam
 
-            if(rb.gravityScale == 0)
-            {
-                return;// has been sucked into tractor beam
-            }
-            
-            if (Input.GetAxisRaw("Horizontal") > 0)
-            {GetComponent<SpriteRenderer>().flipX = true;}
-            else{GetComponent<SpriteRenderer>().flipX = false;}
-            
-        
             // left right
             var dir = (int) Input.GetAxisRaw("Horizontal") * horizontalFlip;
             if (OnWall(dir))
                 dir = 0;
-            
-            
-            // print(transform.localScale.x);
-            float scaleFactor = -1.5f*Mathf.Log(Mathf.Pow(size, sizeJumpInfluence) + 1f) + 2f;
-            targetVelocity += new Vector2(dir * speed + scaleFactor * dir, rb.velocity.y);
-            // rb.velocity = Vector2.SmoothDamp(currVelocity, targetVelocity, ref velocity, snappyness * (transform.localScale.magnitude * sizeSpeedInfluence));
 
-            //animator.SetBool("isJumping", airborn);
-            // Jump
-            if (Input.GetKeyDown(KeyCode.W)) { 
+
+            GetComponent<SpriteRenderer>().flipX = dir > 0; // this is hella ineficient
+
+            MoveLR(dir);
+            if (Input.GetKeyDown(KeyCode.W))
                 Jump();
-            }
 
             rb.velocity = targetVelocity;
 
-            Map.singleton.reportPlayerHeight(transform.position.y); // if this player has just reached a new high point the camera will move up
-            playSound();
-
+            // if this player has just reached a new high point the camera will move up
+            Map.singleton.reportPlayerHeight(transform.position.y);
             targetVelocity = Vector2.zero; // any velocities added before the next update call will be accumulated
         }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Floor"))
                 airborn = false;
+        }
+
+        public void MoveLR(int dir, float multiplier = 1)
+        {
+            targetVelocity.x += dir * Mathf.Max(speed - sizeSpeedModifier, 0);
+        }
+
+        public void Jump(float multiplier = 1, bool force = false)
+        {
+            //Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
+            if (!airborn || force)
+            {
+                airborn = true;
+                targetVelocity.y += Mathf.Max(jumpSpeed - sizeJumpModifier, 0) * multiplier;
+            }
         }
 
         public void InvertHorizontal()
@@ -86,11 +83,10 @@ namespace Code.Player
             horizontalFlip *= -1;
         }
 
-
-        bool OnWall(int right)
         /*
          * right = 1 then check right wall, right = -1 then check left
          */
+        bool OnWall(int right)
         {
             var t = transform;
             var scale = t.localScale;
@@ -99,26 +95,12 @@ namespace Code.Player
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
 
-        private void playSound()
+        public void inheritSizeModifiers(PlayerController parentController)
         {
-            if (rb.velocity.magnitude > 1 && !airborn && !audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(moveSound, 0.5f);
-            }
-        }
+            sizeSpeedModifier = parentController.sizeSpeedModifier / 2;
+            sizeJumpModifier = parentController.sizeSpeedModifier / 2;
 
-        public void Jump(float multiplier = 1, bool force = false)
-        {
-            //Debug.Log("jumping mult: " + multiplier + " airborn: " + airborn + " success: " + (!airborn || force));
-            if (!airborn || force)
-            {
-                audioSource.Stop();
-
-                airborn = true;
-                float scaleFactor = -15 * Mathf.Log10(Mathf.Pow(size, sizeJumpInfluence) + 1) + 1;
-                targetVelocity.y += (jumpSpeed + scaleFactor) * multiplier;
-            }
+            horizontalFlip = parentController.horizontalFlip;
         }
-        
     }
 }

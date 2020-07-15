@@ -505,7 +505,7 @@ PrefabInstance:
     - target: {fileID: 1603222444647623712, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: mapSpeed
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2350001272075311698, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
@@ -570,6 +570,31 @@ PrefabInstance:
     - target: {fileID: 3485320989785199447, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: camSpikes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217920, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217920, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: sizeSpeedDecreaseRate
+      value: 0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217920, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: sizeJumpDecreaseRate
+      value: 0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: grow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: autosplit
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8835847472120751356, guid: 25c22e5b7b7422a488a410cf4a3cc540,

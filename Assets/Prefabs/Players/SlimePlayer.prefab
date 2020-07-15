@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 4400904328241726616}
   - component: {fileID: 4400904328241726617}
   - component: {fileID: 4400904328241726622}
-  - component: {fileID: 4400904328241726623}
+  - component: {fileID: 1905084480344780786}
   - component: {fileID: 4400904328241726620}
   - component: {fileID: 4400904328241726621}
   - component: {fileID: 4400904328241726594}
@@ -177,16 +177,16 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4400904328241726623
-CircleCollider2D:
+--- !u!60 &1905084480344780786
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -199,8 +199,25 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.2
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5227907, y: 0.99999994}
+      - {x: -1.1936113, y: 0.20444049}
+      - {x: -1.1758537, y: -0.69110054}
+      - {x: -0.7975078, y: -0.99361104}
+      - {x: 0.8166741, y: -1.0191661}
+      - {x: 1.1765654, y: -0.63890547}
+      - {x: 1.2022723, y: 0.27873358}
+      - {x: 0.688899, y: 0.9808336}
 --- !u!114 &4400904328241726620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,12 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a6104df618a4b4ba5a498412e1fa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snappyness: 0.1
   speed: 5
-  jumpSpeed: 10
-  sizeSpeedInfluence: 1
-  sizeJumpInfluence: 1
-  moveSound: {fileID: 8300000, guid: 7a597ba086a123af98ee645ea9642366, type: 3}
+  jumpSpeed: 12
+  sizeSpeedDecreaseRate: 0.001
+  sizeJumpDecreaseRate: 0.002
   onlyFloor:
     serializedVersion: 2
     m_Bits: 512
@@ -256,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSplitSize: 0.3
+  minSize: 0.2
   maxSize: 0.6
   grow: 1
   autosplit: 1

@@ -35,7 +35,6 @@ public class TractorBeam : MonoBehaviour
         float sin = (Mathf.Sin(Time.time * alphaFrequency) + 1) * 0.5f; //between 0 and 1
         c.a = 0.2f + sin* 0.5f;
         renderer.color = c;
-        Debug.Log("sin:" + sin);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -115,6 +115,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8587486291733504763, guid: a160a0c19ca28ea499764ea8f9f7351a,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8587486291733504767, guid: a160a0c19ca28ea499764ea8f9f7351a,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -130,7 +135,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8587486291733504760, guid: a160a0c19ca28ea499764ea8f9f7351a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a160a0c19ca28ea499764ea8f9f7351a, type: 3}
 --- !u!4 &6241129034783654365 stripped
 Transform:
@@ -473,6 +479,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2350001272075311698}
     m_Modifications:
+    - target: {fileID: 2070867416278353483, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2070867416371083190, guid: 1ffea2c37c661870db2efab0282bcc99,
         type: 3}
       propertyPath: winText
@@ -488,6 +499,16 @@ PrefabInstance:
       propertyPath: slimeContainer
       value: 
       objectReference: {fileID: 7463022336632535970}
+    - target: {fileID: 5494543488642813653, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647420691318714786, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8895874343610225076, guid: 1ffea2c37c661870db2efab0282bcc99,
         type: 3}
       propertyPath: m_Name

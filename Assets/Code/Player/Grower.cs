@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Object = System.Object;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Code.Player
@@ -8,13 +6,15 @@ namespace Code.Player
     public class Grower : MonoBehaviour
     {
         public float growthRate;
-        public float minSplitSize;
+        public float minSize;
         public float maxSize;
 
         private Vector3 growthVec;
 
         public bool grow = true;
         public bool autosplit = true;
+
+        private Splitter splitter;
         
         private ObjectShake shake;
 
@@ -28,16 +28,19 @@ namespace Code.Player
         public void Start()
         {
             shake = GetComponent<ObjectShake>();
+            sr = GetComponent<SpriteRenderer>();
+            splitter = GetComponent<Splitter>();
+            
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
-            sr = GetComponent<SpriteRenderer>();
+            
             color = sr.color;
         }
 
         private void FixedUpdate()
         {
             if (autosplit && TooBig())
-                GetComponent<Splitter>().Split();
+                splitter.Split();
             
             if (AlmostTooBig())
                 shake.Shake();
@@ -45,7 +48,7 @@ namespace Code.Player
             if (grow)
                 transform.localScale += growthVec;
 
-            if (transform.localScale.x < minSplitSize)
+            if (transform.localScale.x < minSize)
             {//too small to split
                 var col = color * 0.5f;
                 float shift = (Mathf.Sin(Time.time * blinkingFrequency) + 1) * 0.5f;//between 0 and 1
@@ -60,9 +63,6 @@ namespace Code.Player
                 sr.color = col;
             }
 
-            // jelly.radius += growthRate;
-            // jelly.PolyMesh(jelly.radius, jelly.vertexNum);
-            // jelly.MakeMeshJelly();
         }
 
         public bool TooBig()
@@ -72,7 +72,7 @@ namespace Code.Player
 
         public bool TooSmall()
         {
-            return gameObject.transform.localScale.x < minSplitSize;
+            return gameObject.transform.localScale.x < minSize;
         }
 
         public bool AlmostTooBig()
