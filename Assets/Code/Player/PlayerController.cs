@@ -21,11 +21,7 @@ namespace Code.Player
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            
             grower = GetComponent<Grower>();
-            print("Shane is a dumbass");
-
-            AllBlobs.singleton.livingPlayers.Add(this);
         }
 
         private void FixedUpdate()

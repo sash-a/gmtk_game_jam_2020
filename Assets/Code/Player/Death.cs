@@ -17,7 +17,8 @@ namespace Code.Player
         {
             Instantiate(dieEffect, transform.position, transform.rotation).Play();
             Game.instance.nPlayers -= 1;
-            AllBlobs.singleton.livingPlayers.Remove(GetComponent<PlayerController>());
+
+            AllBlobs.singleton.livingPlayers.Remove(GetComponent<Player>());
         }
     }
 }

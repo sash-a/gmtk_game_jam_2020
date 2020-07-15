@@ -14,6 +14,7 @@ public class Finished : MonoBehaviour
     [HideInInspector] public int nFinished;
 
     public TextMeshProUGUI finishedCounter;
+    public TextMeshProUGUI remainingCounter;
 
     private void Awake()
     {
@@ -22,17 +23,28 @@ public class Finished : MonoBehaviour
 
     private void Start()
     {
-        finishedCounter.text = "Finished: " + nFinished + " / " + Game.instance.requiredToFinish;
+        finishedCounter.text = "Rescued: " + nFinished + " / " + Game.instance.requiredToFinish;
+    }
+
+    private void Update()
+    {
+        int remainingMass = AllBlobs.singleton.getTotalMassRemaining();
+        remainingCounter.text = "Remaining: " + remainingMass ;
+
+        int neededToWin = Game.instance.requiredToFinish - nFinished;
+        if(neededToWin > remainingMass)
+        {
+            remainingCounter.color = Color.red;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            var playerSplitter = other.gameObject.GetComponent<Splitter>();
+            var player = other.gameObject.GetComponent<Player>();
             
-            
-            nFinished += (int) math.pow(2, playerSplitter.maxSplits - playerSplitter.nSplits);
+            nFinished += player.remainingMass;
             finishedCounter.text = "Finished: " + nFinished + " / " + Game.instance.requiredToFinish;
 
             Destroy(other.gameObject);
