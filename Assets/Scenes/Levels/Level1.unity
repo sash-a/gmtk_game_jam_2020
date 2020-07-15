@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -482,6 +482,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 864538296763456816, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.044260263
+      objectReference: {fileID: 0}
+    - target: {fileID: 864538296763456816, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 1.8143775
+      objectReference: {fileID: 0}
+    - target: {fileID: 864538296763456816, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.4352998
+      objectReference: {fileID: 0}
+    - target: {fileID: 864538296763456816, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1603222444647623712, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: mapSpeed
