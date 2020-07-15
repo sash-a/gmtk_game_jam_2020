@@ -13,7 +13,7 @@ namespace Code.Player
 
         public LayerMask onlyFloor;
 
-        [HideInInspector] public bool airborn = true;
+        [HideInInspector] public bool airborn;
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
         private Vector2 targetVelocity;
@@ -95,10 +95,16 @@ namespace Code.Player
             // Debug.DrawRay(transform.position, Vector3.right * right * transform.localScale.x, Color.red, 2f);
         }
 
-        public void inheritSizeModifiers(PlayerController parentController)
+        public void inheritSizeModifiers(PlayerController parentController, bool minSize)
         {
             sizeSpeedModifier = parentController.sizeSpeedModifier / 2;
             sizeJumpModifier = parentController.sizeSpeedModifier / 2;
+
+            if (minSize)
+            {
+                sizeSpeedModifier = 0;
+                sizeJumpModifier = 0;
+            }
 
             horizontalFlip = parentController.horizontalFlip;
         }

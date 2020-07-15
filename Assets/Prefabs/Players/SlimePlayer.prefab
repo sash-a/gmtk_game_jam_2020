@@ -271,10 +271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthRate: 0.00085
-  minSize: 0.2
+  minSize: 0.15
   maxSize: 0.6
   grow: 1
   autosplit: 1
+  shakePercent: 0.85
 --- !u!114 &4400904328241726595
 MonoBehaviour:
   m_ObjectHideFlags: 0

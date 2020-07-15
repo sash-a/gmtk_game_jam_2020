@@ -15,32 +15,25 @@ namespace Code.Player
         public AudioClip splitSound;
 
         [HideInInspector] public int nSplits;
-        
+
         private Rigidbody2D rb;
-        private Grower grower;
-        private int startDir;
+        private bool canSplit;
+
+        private static Vector3 minScale = Vector3.zero;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            grower = GetComponent<Grower>();
+            if (minScale == Vector3.zero) // this should only be called once and so we can store min scale
+            {
+                var min = GetComponent<Grower>().minSize;
+                minScale = new Vector3(min, min, min);
+            }
         }
 
         private void Start()
         {
-            // Assert(colours.Length >= maxSplits);
             GetComponent<SpriteRenderer>().color = getSplitColour();
-            // When a slime spawns give it a random force in a similar dir to parent force
-            var x = Input.GetAxisRaw("Horizontal");
-            var y = Input.GetKey(KeyCode.W) ? 1 : 0;
-
-            var dir = new Vector2(x, y) * splitDirMag;
-            var side = new Vector2(y, x);
-            side[0] *= startDir;
-            side *= Mathf.Clamp(Random.value, 0.2f, 1f) * splitPerpMag;
-
-            rb = GetComponent<Rigidbody2D>();
-            rb.AddForce(dir + side);
         }
 
         private Color getSplitColour()
@@ -69,25 +62,26 @@ namespace Code.Player
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && canSplit)
+            {
                 Split();
+                canSplit = false;
+            }
         }
 
         public void Split()
         {
-            if (grower.TooSmall()) return;
-
             // Spawn them a random amount above the parent
             if (nSplits < maxSplits)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    // var posOffset = RandomArc(Vector2.up, 30) * Random.Range(0.1f, 2f);
-                    var spawned = Instantiate(playerPrefab, gameObject.transform.position,
-                        gameObject.transform.rotation);
+                    var spawned =
+                        Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
+
                     spawned.transform.SetParent(transform.parent);
                     var splitter = spawned.GetComponent<Splitter>();
-                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, transform.localScale,  GetComponent<PlayerController>());
+                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, GetComponent<PlayerController>());
                 }
             }
 
@@ -95,16 +89,46 @@ namespace Code.Player
             Destroy(gameObject);
         }
 
-        void OnSpawn(int parentSplits, int startDir, Vector3 parentScale, PlayerController parentController)
+        void OnSpawn(int parentSplits, int startDir, PlayerController parentController)
         {
-            var controller = GetComponent<PlayerController>();
-            
+            if (minScale == Vector3.zero)
+                throw new Exception("Min scale was never set!");
+
             nSplits = parentSplits + 1;
-            this.startDir = startDir;
+
+            // setting scale
+            var childScale = parentController.transform.localScale / 2;
+            if (childScale.x < minScale.x)
+                childScale = minScale;
+            transform.localScale = childScale;
             
-            controller.inheritSizeModifiers(parentController);
-            transform.localScale = parentScale / 2;
+            // setting scale-size modifiers
+            var controller = GetComponent<PlayerController>();
+            controller.inheritSizeModifiers(parentController, childScale == minScale);
+
             transform.parent = AllBlobs.singleton.transform;
+
+            ApplyInitialForces(startDir);
+        }
+
+        void ApplyInitialForces(int startDir)
+        {
+            var x = Input.GetAxisRaw("Horizontal");
+            var y = Input.GetKey(KeyCode.W) ? 1 : 0;
+
+            var dir = new Vector2(x, y) * splitDirMag;
+
+            var side = new Vector2(y, x);
+            side[0] *= startDir;
+            side *= splitPerpMag;
+
+            rb = GetComponent<Rigidbody2D>();
+            rb.AddForce(dir + side);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            canSplit = other.gameObject.CompareTag("Floor");
         }
     }
 }
