@@ -572,26 +572,6 @@ PrefabInstance:
       propertyPath: camSpikes
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6164548484279217920, guid: 25c22e5b7b7422a488a410cf4a3cc540,
-        type: 3}
-      propertyPath: jumpSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
-        type: 3}
-      propertyPath: splitPerpMag
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
-        type: 3}
-      propertyPath: splitDirMag
-      value: 450
-      objectReference: {fileID: 0}
-    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
-        type: 3}
-      propertyPath: splitCooldown
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8835847472120751356, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_LocalPosition.x
