@@ -857,12 +857,12 @@ PrefabInstance:
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}
       propertyPath: specialBlockTypes.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}
       propertyPath: specialPositions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}
@@ -877,12 +877,12 @@ PrefabInstance:
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}
       propertyPath: specialBlockTypes.Array.data[1]
-      value: spike
+      value: projectile{dir:L,rate:0.25}
       objectReference: {fileID: 0}
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}
       propertyPath: specialPositions.Array.data[1]
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7355668318819447468, guid: f182823cd1f6381499bda61aac8b0ade,
         type: 3}

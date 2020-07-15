@@ -76,7 +76,7 @@ public class Platform : Chunk
                 }
 
 
-                string posArg = BLOCK_POSITION + verticalPrefix + horizontalPrefix;
+                string posArg = BLOCK_POSITION + ":"+ verticalPrefix + horizontalPrefix;
 
                 if (!arguments.ContainsKey(i))
                 {
