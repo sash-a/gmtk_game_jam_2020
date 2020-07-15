@@ -63,7 +63,7 @@ namespace Code.Player
         {
             lastSplit += Time.deltaTime;
             
-            if (AllBlobs.singleton.controls.Player.Split.ReadValue<float>() == 1)
+            if (AllBlobs.singleton.controls.Player.Split.triggered)
                 Split();
         }
 

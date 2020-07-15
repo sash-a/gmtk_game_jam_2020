@@ -32,7 +32,7 @@ namespace Code.Player
             sizeJumpModifier += sizeJumpDecreaseRate;
 
             MoveLR((int) AllBlobs.singleton.controls.Player.Move.ReadValue<float>());
-            if (AllBlobs.singleton.controls.Player.Jump.ReadValue<float>() == 1) Jump();
+            if (AllBlobs.singleton.controls.Player.Jump.triggered) Jump();
         }
 
         void Update()
