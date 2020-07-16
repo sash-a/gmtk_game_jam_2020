@@ -502,6 +502,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1280941815092863732, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 1603222444647623712, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: mapSpeed
@@ -571,6 +576,56 @@ PrefabInstance:
         type: 3}
       propertyPath: camSpikes
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: splitDirMag
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: lrSplitMag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: udSplitMag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: perpSplitMag
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: stationarySplitFrac
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217922, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: grow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: autosplit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: sizeSpeedDecreaseRate
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164548484279217950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: sizeJumpDecreaseRate
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 8835847472120751356, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}

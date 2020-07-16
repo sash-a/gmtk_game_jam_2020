@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Code.Player
@@ -8,7 +9,7 @@ namespace Code.Player
         public float speed;
         public float jumpSpeed;
 
-        public LayerMask onlyFloor;
+        private float additionalSpeed = 0f;
 
         [HideInInspector] public bool airborn;
         [HideInInspector] public Rigidbody2D rb;
@@ -60,7 +61,7 @@ namespace Code.Player
 
         private void MoveLR(int dir)
         {
-            var x = dir * horizontalFlip * Mathf.Max(speed - grower.sizeSpeedModifier, 0);
+            var x = dir * horizontalFlip * speed - Mathf.Max(grower.sizeSpeedModifier, 0) + additionalSpeed;
             rb.velocity = new Vector2(x, rb.velocity.y);
         }
 
@@ -74,6 +75,18 @@ namespace Code.Player
                 var upVel = rb.velocity.y + Mathf.Max(jumpSpeed - grower.sizeJumpModifier, 0) * multiplier;
                 rb.velocity = new Vector2(rb.velocity.x, upVel);
             }
+        }
+
+        public void addSpeedForSeconds(float amount, float seconds)
+        {
+            StartCoroutine(_addSpeedForSeconds(amount, seconds));
+        }
+        
+        private IEnumerator _addSpeedForSeconds(float amount, float seconds)
+        {
+            additionalSpeed += amount;
+            yield return new WaitForSeconds(seconds);
+            additionalSpeed -= amount;
         }
 
         public void InvertHorizontal()

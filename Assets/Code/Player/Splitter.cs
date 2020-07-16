@@ -9,14 +9,17 @@ namespace Code.Player
     {
         public GameObject playerPrefab;
         public int maxSplits;
-        public int splitPerpMag;
-        public int splitDirMag;
+
+        public float lrSplitMag;
+        public float lrSplitDuration;
+        public float udSplitMag;
+        public float perpSplitMag;
+        public float stationarySplitFrac;
 
         public AudioClip splitSound;
 
         [HideInInspector] public int nSplits;
 
-        private Rigidbody2D rb;
         private Controls controls;
         private bool canSplit;
 
@@ -24,7 +27,6 @@ namespace Code.Player
 
         void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
             GetComponent<SpriteRenderer>().color = getSplitColour();
 
             if (minScale == Vector3.zero) // this should only be called once and so we can store min scale
@@ -89,7 +91,7 @@ namespace Code.Player
         {
             if (minScale == Vector3.zero)
                 throw new Exception("Min scale was never set!");
-            
+
             // setting scale
             var childScale = parent.transform.localScale / 2;
             if (childScale.x < minScale.x)
@@ -100,7 +102,7 @@ namespace Code.Player
             grower.inheritSizeModifiers(parent.GetComponent<Grower>(), childScale == minScale);
             // setting horizontal flip
             GetComponent<PlayerController>().horizontalFlip = parent.GetComponent<PlayerController>().horizontalFlip;
-            
+
             nSplits = parentSplits + 1;
             transform.parent = AllBlobs.singleton.transform;
             ApplyInitialForces(startDir);
@@ -111,14 +113,23 @@ namespace Code.Player
             var x = AllBlobs.singleton.controls.Player.Move.ReadValue<float>();
             var y = AllBlobs.singleton.controls.Player.Jump.ReadValue<float>();
 
-            var dir = new Vector2(x, y) * splitDirMag;
+            var dir = new Vector2(x, y);  // directions held by player
+            
+            // Getting directions perpendicular to dir.
+            var flipIdx = dir.y == 0 ? 1 : 0; // if w held make children have perp force to left/right otherwise up/down.
+            var perp = new Vector2(y, x); 
+            perp[flipIdx] *= startDir;
+            perp *= perpSplitMag;
 
-            var side = new Vector2(y, x);
-            side[0] *= startDir;
-            side *= splitPerpMag;
+            if (dir == Vector2.zero)  // if player is still
+            {
+                dir = new Vector2(stationarySplitFrac * startDir, stationarySplitFrac);
+                perp *= stationarySplitFrac;
+            }
 
-            rb = GetComponent<Rigidbody2D>();
-            rb.AddForce(dir + side);
+            var controller = GetComponent<PlayerController>();
+            controller.addSpeedForSeconds(dir.x * lrSplitMag + perp.x, lrSplitDuration);
+            controller.Jump(dir.y * udSplitMag + perp.y, true);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
