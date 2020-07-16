@@ -65,5 +65,10 @@ namespace Code
                 desiredScene = 0;
             SceneManager.LoadScene(desiredScene);
         }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

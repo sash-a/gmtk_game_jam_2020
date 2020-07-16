@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3738287728123436025}
   m_Layer: 0
   m_Name: Cage
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab880321bd6e7f4ead6253069d1c749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  width: 0
+  height: 0
