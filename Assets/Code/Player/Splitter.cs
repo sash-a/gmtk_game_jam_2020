@@ -12,9 +12,6 @@ namespace Code.Player
         public int splitPerpMag;
         public int splitDirMag;
 
-        public float splitCooldown;
-        private float lastSplit;
-        
         public AudioClip splitSound;
 
         [HideInInspector] public int nSplits;
@@ -61,15 +58,13 @@ namespace Code.Player
 
         private void Update()
         {
-            lastSplit += Time.deltaTime;
-            
             if (AllBlobs.singleton.controls.Player.Split.triggered)
                 Split();
         }
 
         public void Split()
         {
-            if (!canSplit || lastSplit < splitCooldown) return;
+            if (!canSplit) return;
 
             if (nSplits < maxSplits)
             {
@@ -80,7 +75,7 @@ namespace Code.Player
 
                     spawned.transform.SetParent(transform.parent);
                     var splitter = spawned.GetComponent<Splitter>();
-                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, GetComponent<PlayerController>());
+                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, gameObject);
                 }
             }
 
@@ -90,25 +85,24 @@ namespace Code.Player
         }
 
 
-        void OnSpawn(int parentSplits, int startDir, PlayerController parentController)
+        void OnSpawn(int parentSplits, int startDir, GameObject parent)
         {
             if (minScale == Vector3.zero)
                 throw new Exception("Min scale was never set!");
-
-            nSplits = parentSplits + 1;
-
+            
             // setting scale
-            var childScale = parentController.transform.localScale / 2;
+            var childScale = parent.transform.localScale / 2;
             if (childScale.x < minScale.x)
                 childScale = minScale;
             transform.localScale = childScale;
-
             // setting scale-size modifiers
-            var controller = GetComponent<PlayerController>();
-            controller.inheritSizeModifiers(parentController, childScale == minScale);
-
+            var grower = GetComponent<Grower>();
+            grower.inheritSizeModifiers(parent.GetComponent<Grower>(), childScale == minScale);
+            // setting horizontal flip
+            GetComponent<PlayerController>().horizontalFlip = parent.GetComponent<PlayerController>().horizontalFlip;
+            
+            nSplits = parentSplits + 1;
             transform.parent = AllBlobs.singleton.transform;
-
             ApplyInitialForces(startDir);
         }
 

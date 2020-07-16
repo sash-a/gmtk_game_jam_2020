@@ -179,7 +179,7 @@ Rigidbody2D:
   m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2e637fbc45c9d6b468ef5f314651af05, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -193,7 +193,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 4400904328241726592}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2e637fbc45c9d6b468ef5f314651af05, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -231,9 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpSpeed: 12
-  lrDir: 0
-  sizeSpeedDecreaseRate: 0.001
-  sizeJumpDecreaseRate: 0.002
   onlyFloor:
     serializedVersion: 2
     m_Bits: 512
@@ -256,7 +253,6 @@ MonoBehaviour:
   maxSplits: 5
   splitPerpMag: 100
   splitDirMag: 450
-  splitCooldown: 0.5
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
 --- !u!114 &4400904328241726594
@@ -274,6 +270,10 @@ MonoBehaviour:
   growthRate: 0.00085
   minSize: 0.15
   maxSize: 0.6
+  sizeSpeedDecreaseRate: 0
+  sizeJumpDecreaseRate: 0
+  sizeSpeedModifier: 0
+  sizeJumpModifier: 0
   grow: 1
   autosplit: 1
   shakePercent: 0.85

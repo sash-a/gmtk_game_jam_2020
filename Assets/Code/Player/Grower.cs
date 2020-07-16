@@ -9,6 +9,11 @@ namespace Code.Player
         public float minSize;
         public float maxSize;
 
+        public float sizeSpeedDecreaseRate;
+        public float sizeJumpDecreaseRate;
+        [HideInInspector] public float sizeSpeedModifier;
+        [HideInInspector] public float sizeJumpModifier;
+
         private Vector3 growthVec;
 
         public bool grow = true;
@@ -27,7 +32,7 @@ namespace Code.Player
 
         public void Start()
         {
-            growthRate *= Random.Range(0.5f, 1.5f);  // TODO except for first player
+            growthRate *= Random.Range(0.5f, 1.5f); // TODO except for first player
             growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
 
@@ -40,7 +45,11 @@ namespace Code.Player
                 shake.Shake();
 
             if (grow)
+            {
                 transform.localScale += growthVec;
+                sizeSpeedModifier += sizeSpeedDecreaseRate;
+                sizeJumpModifier += sizeJumpDecreaseRate;
+            }
         }
 
         public bool TooBig()
@@ -51,6 +60,18 @@ namespace Code.Player
         public bool AlmostTooBig()
         {
             return gameObject.transform.localScale.x > maxSize * shakePercent;
+        }
+        
+        public void inheritSizeModifiers(Grower oher, bool minSize)
+        {
+            sizeSpeedModifier = oher.sizeSpeedModifier / 2;
+            sizeJumpModifier = oher.sizeSpeedModifier / 2;
+
+            if (minSize)
+            {
+                sizeSpeedModifier = 0;
+                sizeJumpModifier = 0;
+            }
         }
     }
 }

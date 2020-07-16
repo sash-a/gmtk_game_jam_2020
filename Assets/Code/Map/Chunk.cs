@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using UnityEngine;
 
 public class Chunk : MapObject
@@ -18,25 +19,32 @@ public class Chunk : MapObject
         blocks = new HashSet<Block>();
     }
 
-    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes, Dictionary<int, String> arguments) {
+    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes,
+        Dictionary<int, String> arguments)
+    {
         /*
          * positions: list of relative positions from the chunks center
          */
+
         int i = 0;
         foreach (Vector2Int relativePos in positions)
         {
             Block newBlock;
             if (specialTypes.ContainsKey(i))
-            {//is a special block
+            {
+                //is a special block
                 newBlock = Block.spawnBlock(Map.getBlockPrefab(specialTypes[i]));
             }
-            else {
+            else
+            {
                 newBlock = Block.spawnBlock();
             }
+
             if (arguments.ContainsKey(i))
             {
                 newBlock.parseArgs(arguments[i]);
             }
+
             newBlock.transform.parent = transform;
             newBlock.localPos = relativePos;
 
