@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Airborn : MonoBehaviour
 {
-    private PlayerController controller;
+    private JellyPlayerController controller;
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponentInParent<PlayerController>();
+        controller = GetComponentInParent<JellyPlayerController>();
     }
     
     private void OnCollisionEnter2D(Collision2D other)

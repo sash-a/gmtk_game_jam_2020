@@ -13,15 +13,16 @@ namespace Code.Player
 
         public LayerMask onlyFloor;
 
-        [HideInInspector] public bool airborn;
-        [HideInInspector] public Rigidbody2D rb;
+        [HideInInspector] public bool airborn = true;
+        private Vector2 velocity;  // for movement interp
+        private Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
         private Vector2 targetVelocity;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            AllBlobs.singleton.livingPlayers.Add(this);
+            //AllBlobs.singleton.livingPlayers.Add(this);
         }
 
         private void FixedUpdate()
@@ -29,7 +30,7 @@ namespace Code.Player
             sizeSpeedModifier += sizeSpeedDecreaseRate;
             sizeJumpModifier += sizeJumpDecreaseRate;
 
-//            print(sizeSpeedModifier + " " + sizeJumpModifier);
+            // print(sizeSpeedModifier + " " + sizeJumpModifier);
         }
 
         void Update()
@@ -53,7 +54,7 @@ namespace Code.Player
             rb.velocity = targetVelocity;
 
             // if this player has just reached a new high point the camera will move up
-            Map.singleton.reportPlayerHeight(transform.position.y);
+            //Map.singleton.reportPlayerHeight(transform.position.y);
             targetVelocity = Vector2.zero; // any velocities added before the next update call will be accumulated
         }
 

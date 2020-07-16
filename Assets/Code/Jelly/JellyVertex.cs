@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JellyVertex : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     int count;
     // Start is called before the first frame update
     void Start()

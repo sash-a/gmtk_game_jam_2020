@@ -9,30 +9,24 @@ public class JellySplitter : MonoBehaviour
     public int splitPerpMag;
     public int splitDirMag;
 
-    [HideInInspector] public int nSplits = 0;
+    public AudioClip splitSound;
+
+    [HideInInspector] public int nSplits;
 
     private Rigidbody2D rb;
-    //private Grower grower;
-    private int startDir;
+    private bool canSplit;
+
+    private static Vector3 minScale = Vector3.zero;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+       
     }
 
     private void Start()
     {
-        // When a slime spawns give it a random force in a similar dir to parent force
-        var x = Input.GetAxisRaw("Horizontal");
-        var y = Input.GetKey(KeyCode.W) ? 1 : 0;
 
-        var dir = new Vector2(x, y) * splitDirMag;
-        var side = new Vector2(y, x);
-        side[0] *= startDir;
-        side *= Mathf.Clamp(Random.value, 0.2f, 1f) * splitPerpMag;
-
-        rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(dir + side);
     }
 
     void Update()
@@ -53,7 +47,7 @@ public class JellySplitter : MonoBehaviour
         Vector3 offset = new Vector3(0, 0, 0);
         GameObject jellyBall = Instantiate(playerPrefab, transform.position+offset, Quaternion.identity);
 
-        jellyBall.GetComponent<Rigidbody2D>().AddForce(transform.right * 100000);
+       // jellyBall.GetComponent<Rigidbody2D>().AddForce(transform.right * 100000);
     }
 }
 

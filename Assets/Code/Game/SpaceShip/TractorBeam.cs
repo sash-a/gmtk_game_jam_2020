@@ -5,7 +5,7 @@ using UnityEngine;
 public class TractorBeam : MonoBehaviour
 {
     public Finished ufo;
-    HashSet<PlayerController> caughtPlayers;
+    HashSet<JellyPlayerController> caughtPlayers;
     SpriteRenderer renderer;
 
     static float tractionSpeed = 2;
@@ -13,7 +13,7 @@ public class TractorBeam : MonoBehaviour
 
     private void Start()
     {
-        caughtPlayers = new HashSet<PlayerController>();
+        caughtPlayers = new HashSet<JellyPlayerController>();
         renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -21,7 +21,7 @@ public class TractorBeam : MonoBehaviour
 
     private void Update()
     {
-        foreach (PlayerController blob in caughtPlayers)
+        foreach (JellyPlayerController blob in caughtPlayers)
         {
             if(blob == null)
             {
@@ -39,7 +39,7 @@ public class TractorBeam : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+        JellyPlayerController pc = collision.gameObject.GetComponent<JellyPlayerController>();
         if (pc == null)
         {
             throw new System.Exception("no playercontroller on object " + collision.gameObject + " triggering trigger");

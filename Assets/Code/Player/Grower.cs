@@ -26,6 +26,7 @@ namespace Code.Player
 
             growthRate *= Random.Range(0.5f, 1.5f);
             growthVec = new Vector3(growthRate, growthRate, growthRate);
+
         }
 
         private void FixedUpdate()
@@ -38,6 +39,7 @@ namespace Code.Player
 
             if (grow)
                 transform.localScale += growthVec;
+                
         }
 
         public bool TooBig()
@@ -49,5 +51,7 @@ namespace Code.Player
         {
             return gameObject.transform.localScale.x > maxSize * shakePercent;
         }
+
     }
+
 }

@@ -20,16 +20,12 @@ public class Jelly : MonoBehaviour
 
     private Rigidbody2D rb;
     void Start()
-    {
-       
+    {    
         rb = GetComponent<Rigidbody2D>();
         //polyCollider = GetComponent<PolygonCollider2D>();
         PolyMesh(radius, vertexNum);
         MakeMeshJelly();
-        
-        
-
-       // StartCoroutine("E");
+        StartCoroutine("En");
     }
 
     void Update()
@@ -38,7 +34,7 @@ public class Jelly : MonoBehaviour
         {
             verticies[i] = points[i].transform.localPosition;
         }
-        mesh.vertices = verticies;
+       mesh.vertices = verticies;
 
     }
 
@@ -105,12 +101,16 @@ public class Jelly : MonoBehaviour
         verticiesCount = verticies.Length;
         GetComponent<MeshRenderer>().material = material;
 
-        for (int i = 0; i < verticies.Length; i++)
+        if (points.Count == 0)
         {
-            GameObject childObject = Instantiate(toBeInstantiated, transform.position + verticies[i], Quaternion.identity) as GameObject;
-            childObject.transform.parent = gameObject.transform;
-            points.Add(childObject);
+            for (int i = 0; i < verticies.Length; i++)
+            {
+                GameObject childObject = Instantiate(toBeInstantiated, transform.position + verticies[i], Quaternion.identity) as GameObject;
+                childObject.transform.parent = gameObject.transform;
+                points.Add(childObject);
+            }
         }
+       
 
         for (int i = 0; i < points.Count; i++)
         {
@@ -122,6 +122,18 @@ public class Jelly : MonoBehaviour
             points[i].GetComponent<SpringJoint2D>().connectedBody = rb;
         }
 
+    } 
+
+    public void Enlarge(Vector3 scale)
+    {
+        for (int i = 0; i < verticies.Length; i++)
+        {
+            verticies[i] += scale;
+            //polyCollider.points[i] *= scale;
+            points[i].transform.position += scale;
+            points[i].transform.localScale += scale;
+
+        }
     }
 
     public void Enlarge(float scale)
@@ -129,20 +141,25 @@ public class Jelly : MonoBehaviour
         for (int i = 0; i < verticies.Length; i++)
         {
             verticies[i] *= scale;
-            //polyCollider.points[i] *= scale;
-            points[i].transform.position *= scale;
+            points[i].transform.localPosition *= scale;
             points[i].transform.localScale *= scale;
         }
     }
 
-
-    IEnumerator E()
+    public void Grow(float scale)
     {
-        for (int i = 0; i < 10; i++)
+        PolyMesh(radius * scale, vertexNum);
+        MakeMeshJelly();
+    }
+
+    IEnumerator En()
+    {
+        for (int i = 0; i < 20; i++)
         {
             Enlarge(1.025f);
             yield return new WaitForSeconds(0.1f);
         }
-        
+
     }
+
 }
