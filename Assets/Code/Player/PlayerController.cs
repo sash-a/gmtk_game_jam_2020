@@ -15,12 +15,15 @@ namespace Code.Player
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
 
+        
         private Grower grower;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            
             grower = GetComponent<Grower>();
+            print("Shane is a dumbass");
 
             AllBlobs.singleton.livingPlayers.Add(this);
         }
