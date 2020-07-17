@@ -11,7 +11,7 @@ namespace Code
     {
         public static Game instance;
         
-        [HideInInspector] public int nPlayers = 0;
+        [HideInInspector] public int nPlayers;
         
         public TextMeshProUGUI loseText;
         public TextMeshProUGUI winText;
@@ -64,6 +64,11 @@ namespace Code
             if (desiredScene > SceneManager.sceneCountInBuildSettings - 1)
                 desiredScene = 0;
             SceneManager.LoadScene(desiredScene);
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

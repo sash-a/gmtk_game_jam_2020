@@ -23,10 +23,9 @@ public class Trigger : MonoBehaviour
             return;
         }
         Code.Player.PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
-        if (pc == null) {
-            throw new System.Exception("no playercontroller on object " + collision.gameObject + " triggering trigger");
+        if (pc != null) {
+            block.trigger(pc);
         }
-        block.trigger(pc);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

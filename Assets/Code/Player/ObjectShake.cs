@@ -20,7 +20,9 @@ public class ObjectShake : MonoBehaviour {
     }
 
     void Update (){
-        if (temp_shake_intensity > 0){
+        if (temp_shake_intensity > 0)
+        {
+            // transform.position += Random.insideUnitSphere * temp_shake_intensity;
             rb.AddForce(Random.insideUnitSphere * temp_shake_intensity);
             temp_shake_intensity -= shake_decay;
         }

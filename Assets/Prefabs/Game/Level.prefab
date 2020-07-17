@@ -115,26 +115,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8587486291733504763, guid: a160a0c19ca28ea499764ea8f9f7351a,
-        type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587486291733504767, guid: a160a0c19ca28ea499764ea8f9f7351a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587486291733504767, guid: a160a0c19ca28ea499764ea8f9f7351a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587486291733504767, guid: a160a0c19ca28ea499764ea8f9f7351a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8587486291733504760, guid: a160a0c19ca28ea499764ea8f9f7351a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a160a0c19ca28ea499764ea8f9f7351a, type: 3}
@@ -216,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 1159522114057975904, guid: 7190d784a0028a3a99985bb7c5b6fd91,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1159522114057975904, guid: 7190d784a0028a3a99985bb7c5b6fd91,
         type: 3}
@@ -380,6 +360,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7900812141711603630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6019012690530357882, guid: 7190d784a0028a3a99985bb7c5b6fd91,
+    type: 3}
+  m_PrefabInstance: {fileID: 4477289339313808852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3329837801404746538 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1159522113998335742, guid: 7190d784a0028a3a99985bb7c5b6fd91,
@@ -404,6 +396,11 @@ PrefabInstance:
       propertyPath: finishedCounter
       value: 
       objectReference: {fileID: 3329837801529400756}
+    - target: {fileID: 4610187457792568756, guid: fafc9ceccbea67dccb16e9848e8095f0,
+        type: 3}
+      propertyPath: remainingCounter
+      value: 
+      objectReference: {fileID: 7900812141711603630}
     - target: {fileID: 4610187457792568757, guid: fafc9ceccbea67dccb16e9848e8095f0,
         type: 3}
       propertyPath: m_Name
