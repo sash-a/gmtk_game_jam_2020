@@ -38,8 +38,8 @@ public class JellySplitter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-            GetComponent<Rigidbody2D>().AddForce(transform.right * 10000);
+        //if (Input.GetKeyDown(KeyCode.Z))
+            //GetComponent<Rigidbody2D>().AddForce(transform.right * 10000);
     }
 
     public void Split()

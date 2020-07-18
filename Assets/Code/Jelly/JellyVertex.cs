@@ -13,22 +13,9 @@ public class JellyVertex : MonoBehaviour
         count = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.forward * 100);
-        }
-    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Split();
-    }
-
-    public void Split()
-    {
-        //GetComponent<Rigidbody2D>().AddForce(transform.forward * 600);
+           
     }
 }

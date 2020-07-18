@@ -1,31 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Jelly : MonoBehaviour
 {
     private Mesh mesh;
     public Vector3[] verticies;
-    public int CenterPoint;
-    public int verticiesCount;
 
     public List<GameObject> points;
     public GameObject toBeInstantiated;
 
-    public PolygonCollider2D polyCollider;
     public float radius;
     public int vertexNum;
 
     public Material material;
 
     private Rigidbody2D rb;
+
+    private Vector3[] hinge_connectedAnchor;
+    private Vector3[] hinge_anchor;
+
+    private Vector3[] spring_connectedAnchor;
+    private Vector3[] spring_anchor;
+
     void Start()
     {    
         rb = GetComponent<Rigidbody2D>();
-        //polyCollider = GetComponent<PolygonCollider2D>();
         PolyMesh(radius, vertexNum);
         MakeMeshJelly();
-        StartCoroutine("En");
+
+        
+        hinge_connectedAnchor = new Vector3[vertexNum];
+        hinge_anchor = new Vector3[vertexNum];
+
+        for (int i = 0; i < vertexNum; i++)
+        {
+            if (points[i].GetComponent<HingeJoint2D>() != null)
+            {
+                hinge_connectedAnchor[i] = points[i].GetComponent<HingeJoint2D>().connectedAnchor;
+                hinge_anchor[i] = points[i].GetComponent<HingeJoint2D>().anchor;
+            }
+        }
+        
+        spring_connectedAnchor = new Vector3[vertexNum];
+        spring_anchor = new Vector3[vertexNum];
+
+        for (int i = 0; i < vertexNum; i++)
+        {
+            if (points[i].GetComponent<SpringJoint2D>() != null)
+            {
+                spring_connectedAnchor[i] = points[i].GetComponent<SpringJoint2D>().connectedAnchor;
+                spring_anchor[i] = points[i].GetComponent<SpringJoint2D>().anchor;
+            }
+        }
+        
+       // StartCoroutine("En");
+
     }
 
     void Update()
@@ -34,7 +65,25 @@ public class Jelly : MonoBehaviour
         {
             verticies[i] = points[i].transform.localPosition;
         }
-       mesh.vertices = verticies;
+        
+        mesh.vertices = verticies;
+
+        
+        for (int i = 0; i < vertexNum; i++)
+        {
+            if (points[i].GetComponent<HingeJoint2D>() != null)
+            {
+                points[i].GetComponent<HingeJoint2D>().connectedAnchor = hinge_connectedAnchor[i];
+                points[i].GetComponent<HingeJoint2D>().anchor = hinge_anchor[i];
+            }
+
+            if (points[i].GetComponent<SpringJoint2D>() != null)
+            {
+                points[i].GetComponent<SpringJoint2D>().connectedAnchor = spring_connectedAnchor[i];
+                points[i].GetComponent<SpringJoint2D>().anchor = spring_anchor[i];
+            }
+        }
+        
 
     }
 
@@ -78,27 +127,13 @@ public class Jelly : MonoBehaviour
         mesh.vertices = verticies;
         mesh.triangles = triangles;
         mesh.normals = normals;
-
-        /*
-        //polyCollider
-        polyCollider.pathCount = 1;
-
-        List<Vector2> pathList = new List<Vector2> { };
-        for (int i = 0; i < n; i++)
-        {
-            pathList.Add(new Vector2(verticies[i].x, verticies[i].y));
-        }
-        Vector2[] path = pathList.ToArray();
-
-        polyCollider.SetPath(0, path);
-        */
     }
 
     public void MakeMeshJelly()
     {
         mesh = GetComponent<MeshFilter>().mesh;
         verticies = mesh.vertices;
-        verticiesCount = verticies.Length;
+    
         GetComponent<MeshRenderer>().material = material;
 
         if (points.Count == 0)
@@ -115,11 +150,20 @@ public class Jelly : MonoBehaviour
         for (int i = 0; i < points.Count; i++)
         {
             if (i == points.Count - 1)
+            {
                 points[i].GetComponent<HingeJoint2D>().connectedBody = points[0].GetComponent<Rigidbody2D>();
+                points[i].GetComponent<HingeJoint2D>().anchor = verticies[i];
+            }
+                
             else
+            { 
                 points[i].GetComponent<HingeJoint2D>().connectedBody = points[i + 1].GetComponent<Rigidbody2D>();
+                points[i].GetComponent<HingeJoint2D>().anchor = verticies[i];
+
+            }
 
             points[i].GetComponent<SpringJoint2D>().connectedBody = rb;
+            
         }
 
     } 
@@ -129,15 +173,20 @@ public class Jelly : MonoBehaviour
         for (int i = 0; i < verticies.Length; i++)
         {
             verticies[i] += scale;
-            //polyCollider.points[i] *= scale;
-            points[i].transform.position += scale;
+            points[i].transform.localPosition += scale;
             points[i].transform.localScale += scale;
 
+            //hinge_connectedAnchor[i] += scale;
+            //hinge_anchor[i] += scale;
+
+            //spring_connectedAnchor[i] += scale;
+            //spring_anchor[i] += scale;
         }
     }
 
     public void Enlarge(float scale)
     {
+       
         for (int i = 0; i < verticies.Length; i++)
         {
             verticies[i] *= scale;
@@ -146,19 +195,16 @@ public class Jelly : MonoBehaviour
         }
     }
 
-    public void Grow(float scale)
-    {
-        PolyMesh(radius * scale, vertexNum);
-        MakeMeshJelly();
-    }
 
     IEnumerator En()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 50; i++)
         {
-            Enlarge(1.025f);
-            yield return new WaitForSeconds(0.1f);
+            Enlarge(new Vector3(0.010f, 0.010f, 0.010f));
+            yield return new WaitForSeconds(0.05f);
         }
+
+        Debug.Log("Done Growing");
 
     }
 

@@ -33,20 +33,21 @@ public class JellyGrower : MonoBehaviour
         growthRate *= Random.Range(1f, 1.05f);
         growthVec = new Vector3(growthRate, growthRate, growthRate);
 
-        //StartCoroutine("E");
+        StartCoroutine("E");
     }
 
     private void FixedUpdate()
     {
         //if (autosplit && TooBig())
-            //splitter.Split();
+        //splitter.Split();
 
         //if (AlmostTooBig())
-            //shake.Shake();
+        //shake.Shake();
 
-        if (grow)
-            jelly.Enlarge(1.0005f);
+        //if (grow)
+            //jelly.Enlarge(1.0005f);
             //transform.localScale *= 1.0005f;
+            //jelly.Grow(new Vector3(0.00005f, 0.00005f, 0));
     }
 
     public bool TooBig()
@@ -61,11 +62,10 @@ public class JellyGrower : MonoBehaviour
 
     IEnumerator E()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 20; i++)
         {
             //jelly.Enlarge(1.15f);
-            //jelly.Grow(1.15f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.1f);
         }
 
     }
