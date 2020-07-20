@@ -107,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 5439049526796166639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1658022937127139089}
   m_Father: {fileID: 0}
@@ -173,7 +173,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.1
 --- !u!231 &-3884643403323039976
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.5
-  m_DampingRatio: 1
+  m_DampingRatio: 0
   m_Frequency: 3
 --- !u!114 &-3196061831182183651
 MonoBehaviour:

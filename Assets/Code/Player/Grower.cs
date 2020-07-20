@@ -44,7 +44,7 @@ namespace Code.Player
             if (AlmostTooBig())
                 shake.Shake();
 
-            if (grow)
+            if (grow && !TooBig())
             {
                 //transform.localScale += growthVec;
                 GetComponent<Jelly>().Grow(growthVec);

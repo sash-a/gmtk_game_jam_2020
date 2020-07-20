@@ -140,20 +140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452420589}
     m_Modifications:
-    - target: {fileID: 395637833210198145, guid: d954b4f5cdb107f40ae5e25fed4b7410,
-        type: 3}
-      propertyPath: radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 395637833210198145, guid: d954b4f5cdb107f40ae5e25fed4b7410,
-        type: 3}
-      propertyPath: vertexNum
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1234303984448270200, guid: d954b4f5cdb107f40ae5e25fed4b7410,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1234303984448270200, guid: d954b4f5cdb107f40ae5e25fed4b7410,
         type: 3}
