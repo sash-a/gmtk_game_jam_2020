@@ -15,7 +15,7 @@ namespace Code.Player
         [HideInInspector] public Jelly jelly;
 
 
-        private void Start()
+        private void Awake()
         {
             pc = GetComponent<PlayerController>();
             grower = GetComponent<Grower>();

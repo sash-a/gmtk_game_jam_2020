@@ -23,6 +23,8 @@ namespace Code.Player
 
         private Player player;
 
+        public float size { get { return gameObject.transform.localScale.x; } }
+
         private void Awake()
         {
             player = GetComponent<Player>();
@@ -52,13 +54,13 @@ namespace Code.Player
 
         public bool TooBig()
         {
-            return gameObject.transform.localScale.x > maxSize;
+            return size > maxSize;
             //return transform.GetChild(0).transform.localScale.x > maxSize;
         }
 
         public bool AlmostTooBig()
         {
-            return gameObject.transform.localScale.x > maxSize * shakePercent;
+            return size > maxSize * shakePercent;
             //return transform.GetChild(0).transform.localScale.x > maxSize * shakePercent;
         }
 

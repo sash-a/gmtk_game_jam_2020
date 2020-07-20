@@ -1,4 +1,5 @@
 ﻿using Code.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,34 +19,34 @@ public class Jelly : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private Vector3[] hinge_connectedAnchor;
-    private Vector3[] hinge_anchor;
-
-    private Vector3[] spring_connectedAnchor;
-    private Vector3[] spring_anchor;
-
     public Player player;
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        PolyMesh();
+        player = GetComponentInParent<Player>();
         MakeJellyVertices();
+
+        CreateMesh();
+        UpdateMesh();
     }
 
     void Update()
     {
         transform.position = player.transform.position;
-
-        Vector3[] newVertexPositions = new Vector3[vertexNum];
-        for (int i = 0; i < vertexNum; i++)
-        {
-            newVertexPositions[i] = vertexObjects[i].transform.localPosition;
-        }
-        mesh.vertices = newVertexPositions;
+        UpdateMesh();
     }
 
-    public void PolyMesh()
+    public void UpdateMesh() {
+        Vector3[] newPoses = new Vector3[vertexNum];
+        for (int i = 0; i < vertexNum; i++)
+        { // instantiate the vertex objects
+            newPoses[i] = vertexObjects[i].transform.localPosition * player.grower.size/0.15f;
+        }
+        mesh.vertices = newPoses;
+    }
+
+    public void CreateMesh()
     {
         /*
          * creates the mesh outline
@@ -53,19 +54,6 @@ public class Jelly : MonoBehaviour
         MeshFilter mf = GetComponent<MeshFilter>();
         mesh = new Mesh();
         mf.mesh = mesh;
-
-        //verticies
-        List<Vector3> verticiesList = new List<Vector3> { };
-        float x;
-        float y;
-        for (int i = 0; i < vertexNum; i++)
-        {
-            float angle = 2f * Mathf.PI * ((float)i / (float) vertexNum);
-            x = radius * Mathf.Sin(angle);
-            y = radius * Mathf.Cos(angle);
-            verticiesList.Add(new Vector3(x, y, 0f));
-        }
-        Vector3 [] verticies = verticiesList.ToArray();
 
         //triangles
         List<int> trianglesList = new List<int> { };
@@ -78,15 +66,20 @@ public class Jelly : MonoBehaviour
         int[] triangles = trianglesList.ToArray();
 
         //normals
-        List<Vector3> normalsList = new List<Vector3> { };
-        for (int i = 0; i < triangles.Length; i++)
-        {
-            normalsList.Add(-Vector3.forward);
-        }
-        Vector3[] normals = normalsList.ToArray();
+        //List<Vector3> normalsList = new List<Vector3> { };
+        //for (int i = 0; i < triangles.Length; i++)
+        //{
+        //    normalsList.Add(-Vector3.forward);
+        //}
+        //Vector3[] normals = normalsList.ToArray();
 
         //initialise
-        mesh.vertices = verticies;
+        Vector3[] zeros = new Vector3[vertexNum];
+        for (int i = 0; i < vertexNum; i++)
+        {
+            zeros[i] = Vector3.zero;
+        }
+        mesh.vertices = zeros;
         mesh.triangles = triangles;
         //mesh.normals = normals;
     }
@@ -95,24 +88,21 @@ public class Jelly : MonoBehaviour
     {
         /*
          * creates the vertex objects
-         */
-        mesh = GetComponent<MeshFilter>().mesh;
-    
+         */    
         GetComponent<MeshRenderer>().material = material;
 
-        if (vertexNum != mesh.vertices.Length) {
-            throw new System.Exception();
-        }
 
         //if (vertexObjects.Count == 0)
         //{
+
         for (int i = 0; i < vertexNum; i++)
         { // instantiate the vertex objects
-            GameObject childObject = Instantiate<GameObject>(vertexPrefab);
-            childObject.transform.parent = transform;
-            childObject.transform.localPosition = mesh.vertices[i];
+            GameObject vertex = Instantiate(vertexPrefab);
+            vertex.GetComponent<SpringJoint2D>().distance = radius;
+            vertex.transform.parent = transform;
+            vertex.transform.localPosition = getVertexStartingLocalPos(i);
 
-            vertexObjects.Add(childObject);
+            vertexObjects.Add(vertex);
         }
         //}
        
@@ -124,6 +114,13 @@ public class Jelly : MonoBehaviour
             vertexObjects[i].GetComponent<SpringJoint2D>().connectedBody = rb;
         }
 
-    } 
+    }
 
+    private Vector3 getVertexStartingLocalPos(int i)
+    {
+        float angle = 2f * Mathf.PI * ((float)i / (float)vertexNum);
+        float x = radius * Mathf.Sin(angle);
+        float y = radius * Mathf.Cos(angle);
+        return new Vector3(x, y, 0f);
+    }
 }
