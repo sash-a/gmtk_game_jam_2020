@@ -19,15 +19,13 @@ namespace Code.Player
         public bool grow = true;
         public bool autosplit = true;
 
-        private Splitter splitter;
-
         public float shakePercent; // Percent of max size, at which player starts shaking
-        private ObjectShake shake;
+
+        private Player player;
 
         private void Awake()
         {
-            shake = GetComponent<ObjectShake>();
-            splitter = GetComponent<Splitter>();
+            player = GetComponent<Player>();
         }
 
         public void Start()
@@ -39,15 +37,14 @@ namespace Code.Player
         private void FixedUpdate()
         {
             if (autosplit && TooBig())
-                splitter.Split();
+                player.splitter.Split();
 
             if (AlmostTooBig())
-                shake.Shake();
+                player.shaker.Shake();
 
             if (grow && !TooBig())
             {
-                //transform.localScale += growthVec;
-                GetComponent<Jelly>().Grow(growthVec);
+                transform.localScale += growthVec;
                 sizeSpeedModifier += sizeSpeedDecreaseRate;
                 sizeJumpModifier += sizeJumpDecreaseRate;
             }
@@ -55,14 +52,14 @@ namespace Code.Player
 
         public bool TooBig()
         {
-            //return gameObject.transform.localScale.x > maxSize;
-            return transform.GetChild(0).transform.localScale.x > maxSize;
+            return gameObject.transform.localScale.x > maxSize;
+            //return transform.GetChild(0).transform.localScale.x > maxSize;
         }
 
         public bool AlmostTooBig()
         {
-            //return gameObject.transform.localScale.x > maxSize * shakePercent;
-            return transform.GetChild(0).transform.localScale.x > maxSize * shakePercent;
+            return gameObject.transform.localScale.x > maxSize * shakePercent;
+            //return transform.GetChild(0).transform.localScale.x > maxSize * shakePercent;
         }
 
         public void inheritSizeModifiers(Grower oher, bool minSize)

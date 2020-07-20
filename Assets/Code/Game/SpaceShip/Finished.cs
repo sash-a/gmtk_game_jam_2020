@@ -43,7 +43,13 @@ public class Finished : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             var player = other.gameObject.GetComponent<Player>();
-            
+            if (player == null) {
+                if (other.gameObject.GetComponent<JellyVertex>() != null)
+                {
+                    return;
+                }
+                throw new Exception("whatever");
+            }
             nFinished += player.remainingMass;
             finishedCounter.text = "Finished: " + nFinished + " / " + Game.instance.requiredToFinish;
 

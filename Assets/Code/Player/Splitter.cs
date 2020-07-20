@@ -24,7 +24,7 @@ namespace Code.Player
 
         private static Vector3 minScale = Vector3.zero;
 
-        JellyVertex[] vertices;
+        private Player player;
 
         void Awake()
         {
@@ -35,11 +35,7 @@ namespace Code.Player
                 var min = GetComponent<Grower>().minSize;
                 minScale = new Vector3(min, min, min);
             }
-        }
-
-        private void Start()
-        {
-            vertices = GetComponentsInChildren<JellyVertex>();
+            player = GetComponent<Player>();
         }
 
         /*
@@ -74,14 +70,15 @@ namespace Code.Player
 
         public void Split()
         {
-            if (!CanSplit()) return;
+            //if (!CanSplit()) return;
+            if (!canSplit) return;
+
 
             if (nSplits < maxSplits)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    var spawned =
-                        Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
+                    var spawned = Instantiate<GameObject>(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
 
                     spawned.transform.SetParent(transform.parent);
                     var splitter = spawned.GetComponent<Splitter>();
@@ -104,8 +101,7 @@ namespace Code.Player
             var childScale = parent.transform.localScale / 2;
             if (childScale.x < minScale.x)
                 childScale = minScale;
-            //transform.localScale = childScale;
-            GetComponent<Jelly>().SetSize(childScale);
+            transform.localScale = childScale;
             // setting scale-size modifiers
             var grower = GetComponent<Grower>();
             grower.inheritSizeModifiers(parent.GetComponent<Grower>(), childScale == minScale);
@@ -141,16 +137,23 @@ namespace Code.Player
             controller.Jump(dir.y * udSplitMag + perp.y, true);
         }
 
-        private bool CanSplit()
+        //private bool CanSplit()
+        //{
+        //    foreach (JellyVertex v in vertices)
+        //    {
+        //        if (v.canSplit)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
+        public bool canSplit;
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            foreach (JellyVertex v in vertices)
-            {
-                if (v.canSplit)
-                {
-                    return true;
-                }
-            }
-            return false;
+            canSplit = other.gameObject.CompareTag("Floor") || canSplit;
         }
     }
 }

@@ -42,6 +42,9 @@ public class TractorBeam : MonoBehaviour
         PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
         if (pc == null)
         {
+            if (collision.gameObject.GetComponent<JellyVertex>() != null) {
+                return;
+            }
             throw new System.Exception("no playercontroller on object " + collision.gameObject + " triggering trigger");
         }
         caughtPlayers.Add(pc);

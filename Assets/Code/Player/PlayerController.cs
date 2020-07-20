@@ -99,17 +99,17 @@ namespace Code.Player
             horizontalFlip *= -1;
         }
 
-        private bool IsAirborn()
-        {
-            foreach (JellyVertex v in vertices)
-            {
-                if (!v.airborn)
-                {
-                    return false;
-                }
-            }
+        //private bool IsAirborn()
+        //{
+        //    foreach (JellyVertex v in vertices)
+        //    {
+        //        if (!v.airborn)
+        //        {
+        //            return false;
+        //        }
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

@@ -200,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JellyHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 6920650973808349978, guid: d954b4f5cdb107f40ae5e25fed4b7410,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d954b4f5cdb107f40ae5e25fed4b7410, type: 3}
 --- !u!114 &830054199 stripped
@@ -583,6 +588,16 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092624, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092624, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: vertexNum
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1429257423706012927, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -673,15 +688,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 3228850537593981451, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3485320989785199447, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: camSpikes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078387760757116941, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078387760757116950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: splitDirMag
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290073559860002517, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7363452630597748591, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
