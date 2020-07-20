@@ -21,7 +21,7 @@ public class AllBlobs : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("total remaining: " + getTotalMassRemaining()); 
+        //Debug.Log("total remaining: " + getTotalMassRemaining()); 
     }
 
     public Vector2 getHorizontalBounds() {

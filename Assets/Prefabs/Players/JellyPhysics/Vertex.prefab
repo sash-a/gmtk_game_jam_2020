@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 7351170186816304004}
   - component: {fileID: -2921221402866322717}
   - component: {fileID: -492731084081699675}
-  - component: {fileID: -7883322127782638124}
   - component: {fileID: -3884643403323039976}
   - component: {fileID: -3196061831182183651}
   m_Layer: 8
@@ -108,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 5439049526796166639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1658022937127139089}
   m_Father: {fileID: 0}
@@ -174,19 +173,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
---- !u!114 &-7883322127782638124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5439049526796166639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ba48f8c22d6b10d831fe103adda358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.2
 --- !u!231 &-3884643403323039976
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -219,3 +206,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bcf286357aee64aa5dc3645b6628cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  airborn: 0
+  canSplit: 0

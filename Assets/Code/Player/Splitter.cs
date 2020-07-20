@@ -21,13 +21,14 @@ namespace Code.Player
         [HideInInspector] public int nSplits;
 
         private Controls controls;
-        private bool canSplit;
 
         private static Vector3 minScale = Vector3.zero;
 
+        JellyVertex[] vertices;
+
         void Awake()
         {
-            GetComponent<SpriteRenderer>().color = getSplitColour();
+            // GetComponent<SpriteRenderer>().color = getSplitColour();
 
             if (minScale == Vector3.zero) // this should only be called once and so we can store min scale
             {
@@ -36,6 +37,12 @@ namespace Code.Player
             }
         }
 
+        private void Start()
+        {
+            vertices = GetComponentsInChildren<JellyVertex>();
+        }
+
+        /*
         private Color getSplitColour()
         {
             //gets redder and darker the more splits
@@ -57,6 +64,7 @@ namespace Code.Player
             //here a and b are coefficients which control how quickly values drop off and how much they drop
             return -1 / (a * Mathf.Pow(progress, b) + 1) + 1;
         }
+        */
 
         private void Update()
         {
@@ -66,7 +74,7 @@ namespace Code.Player
 
         public void Split()
         {
-            if (!canSplit) return;
+            if (!CanSplit()) return;
 
             if (nSplits < maxSplits)
             {
@@ -96,7 +104,8 @@ namespace Code.Player
             var childScale = parent.transform.localScale / 2;
             if (childScale.x < minScale.x)
                 childScale = minScale;
-            transform.localScale = childScale;
+            //transform.localScale = childScale;
+            GetComponent<Jelly>().SetSize(childScale);
             // setting scale-size modifiers
             var grower = GetComponent<Grower>();
             grower.inheritSizeModifiers(parent.GetComponent<Grower>(), childScale == minScale);
@@ -132,9 +141,16 @@ namespace Code.Player
             controller.Jump(dir.y * udSplitMag + perp.y, true);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private bool CanSplit()
         {
-            canSplit = other.gameObject.CompareTag("Floor") || canSplit;
+            foreach (JellyVertex v in vertices)
+            {
+                if (v.canSplit)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -14,14 +14,20 @@ namespace Code.Player
         [HideInInspector] public bool airborn;
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
-
-        
+      
         private Grower grower;
+
+        private JellyVertex[] vertices;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             grower = GetComponent<Grower>();
+        }
+
+        private void Start()
+        {
+            vertices = GetComponentsInChildren<JellyVertex>();
         }
 
         private void FixedUpdate()
@@ -91,6 +97,19 @@ namespace Code.Player
         public void InvertHorizontal()
         {
             horizontalFlip *= -1;
+        }
+
+        private bool IsAirborn()
+        {
+            foreach (JellyVertex v in vertices)
+            {
+                if (!v.airborn)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

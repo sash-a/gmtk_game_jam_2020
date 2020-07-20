@@ -46,7 +46,8 @@ namespace Code.Player
 
             if (grow)
             {
-                transform.localScale += growthVec;
+                //transform.localScale += growthVec;
+                GetComponent<Jelly>().Grow(growthVec);
                 sizeSpeedModifier += sizeSpeedDecreaseRate;
                 sizeJumpModifier += sizeJumpDecreaseRate;
             }
@@ -54,14 +55,16 @@ namespace Code.Player
 
         public bool TooBig()
         {
-            return gameObject.transform.localScale.x > maxSize;
+            //return gameObject.transform.localScale.x > maxSize;
+            return transform.GetChild(0).transform.localScale.x > maxSize;
         }
 
         public bool AlmostTooBig()
         {
-            return gameObject.transform.localScale.x > maxSize * shakePercent;
+            //return gameObject.transform.localScale.x > maxSize * shakePercent;
+            return transform.GetChild(0).transform.localScale.x > maxSize * shakePercent;
         }
-        
+
         public void inheritSizeModifiers(Grower oher, bool minSize)
         {
             sizeSpeedModifier = oher.sizeSpeedModifier / 2;

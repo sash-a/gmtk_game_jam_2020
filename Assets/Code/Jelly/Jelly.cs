@@ -24,13 +24,13 @@ public class Jelly : MonoBehaviour
     private Vector3[] spring_connectedAnchor;
     private Vector3[] spring_anchor;
 
-    void Start()
-    {    
+    private void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         PolyMesh(radius, vertexNum);
         MakeMeshJelly();
 
-        
+
         hinge_connectedAnchor = new Vector3[vertexNum];
         hinge_anchor = new Vector3[vertexNum];
 
@@ -42,7 +42,7 @@ public class Jelly : MonoBehaviour
                 hinge_anchor[i] = points[i].GetComponent<HingeJoint2D>().anchor;
             }
         }
-        
+
         spring_connectedAnchor = new Vector3[vertexNum];
         spring_anchor = new Vector3[vertexNum];
 
@@ -54,8 +54,6 @@ public class Jelly : MonoBehaviour
                 spring_anchor[i] = points[i].GetComponent<SpringJoint2D>().anchor;
             }
         }
-        
-       // StartCoroutine("En");
 
     }
 
@@ -168,23 +166,18 @@ public class Jelly : MonoBehaviour
 
     } 
 
-    public void Enlarge(Vector3 scale)
+    public void Grow(Vector3 scale)
     {
+        transform.localScale += scale;
         for (int i = 0; i < verticies.Length; i++)
         {
-            verticies[i] += scale;
-            points[i].transform.localPosition += scale;
+            //verticies[i] += scale;
+            //points[i].transform.localPosition += scale;
             points[i].transform.localScale += scale;
-
-            //hinge_connectedAnchor[i] += scale;
-            //hinge_anchor[i] += scale;
-
-            //spring_connectedAnchor[i] += scale;
-            //spring_anchor[i] += scale;
         }
     }
 
-    public void Enlarge(float scale)
+    public void Grow(float scale)
     {
        
         for (int i = 0; i < verticies.Length; i++)
@@ -195,12 +188,20 @@ public class Jelly : MonoBehaviour
         }
     }
 
+    public void SetSize(Vector3 size)
+    {
+        transform.localScale = size;
+        for (int i = 0; i < verticies.Length; i++)
+        {
+            points[i].transform.localScale = size;
+        }
+    }
 
-    IEnumerator En()
+    IEnumerator Grow()
     {
         for (int i = 0; i < 50; i++)
         {
-            Enlarge(new Vector3(0.010f, 0.010f, 0.010f));
+            Grow(new Vector3(0.010f, 0.010f, 0.010f));
             yield return new WaitForSeconds(0.05f);
         }
 
