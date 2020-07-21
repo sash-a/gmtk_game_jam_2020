@@ -588,6 +588,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092621, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1201872305827092624, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: radius
@@ -598,6 +603,16 @@ PrefabInstance:
       propertyPath: vertexNum
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092624, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092624, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e0399d78a7795a5fa56e3b9b5ebc0dc, type: 2}
     - target: {fileID: 1201872305827092626, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -606,6 +621,26 @@ PrefabInstance:
     - target: {fileID: 1201872305827092626, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092631, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092631, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092631, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201872305827092631, guid: 25c22e5b7b7422a488a410cf4a3cc540,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1429257423706012927, guid: 25c22e5b7b7422a488a410cf4a3cc540,
@@ -721,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 6078387760757116950, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6164548484279217921, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}

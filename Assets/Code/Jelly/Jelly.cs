@@ -44,6 +44,8 @@ public class Jelly : MonoBehaviour
             newPoses[i] = vertexObjects[i].transform.localPosition * player.grower.size/0.15f;
         }
         mesh.vertices = newPoses;
+        //Recalculate the bounding volume of the Mesh from the vertices
+        mesh.RecalculateBounds();
     }
 
     public void CreateMesh()
@@ -91,20 +93,15 @@ public class Jelly : MonoBehaviour
          */    
         GetComponent<MeshRenderer>().material = material;
 
-
-        //if (vertexObjects.Count == 0)
-        //{
-
         for (int i = 0; i < vertexNum; i++)
         { // instantiate the vertex objects
             GameObject vertex = Instantiate(vertexPrefab);
-            vertex.GetComponent<SpringJoint2D>().distance = radius;
+            //vertex.GetComponent<SpringJoint2D>().distance = radius;
             vertex.transform.parent = transform;
             vertex.transform.localPosition = getVertexStartingLocalPos(i);
 
             vertexObjects.Add(vertex);
         }
-        //}
        
 
         for (int i = 0; i < vertexNum; i++)
