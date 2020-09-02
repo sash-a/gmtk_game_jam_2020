@@ -12,6 +12,7 @@ namespace Code.Player
         [HideInInspector] public Splitter splitter;
         [HideInInspector] public ObjectShake shaker;
         [HideInInspector] public Death death;
+        [HideInInspector] public SpriteRenderer sprite;
         [HideInInspector] public Jelly jelly;
 
 
@@ -23,6 +24,7 @@ namespace Code.Player
             shaker = GetComponent<ObjectShake>();
             death = GetComponent<Death>();
             jelly = GetComponentInChildren<Jelly>();
+            sprite = GetComponent<SpriteRenderer>();
 
             AllBlobs.singleton.livingPlayers.Add(this);//registers player
         }
