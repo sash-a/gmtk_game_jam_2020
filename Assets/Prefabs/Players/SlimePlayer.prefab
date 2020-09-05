@@ -152,9 +152,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2932391487199770309, guid: d2608a76fefae8540aabebc1b1b565fe,
-    type: 3}
-  m_Color: {r: 0.17137258, g: 0.81960785, b: 0.13725488, a: 0.53333336}
+  m_Sprite: {fileID: 21300000, guid: adb18c2b0a620384cabeab4c7e4bf450, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,7 +179,7 @@ Rigidbody2D:
   m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 6200000, guid: 2e637fbc45c9d6b468ef5f314651af05, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -194,7 +193,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 4400904328241726592}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2e637fbc45c9d6b468ef5f314651af05, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -202,7 +201,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.4, y: 2}
+    oldSize: {x: 0.99, y: 0.74}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -235,6 +234,8 @@ MonoBehaviour:
   splitter: {fileID: 0}
   shaker: {fileID: 0}
   death: {fileID: 0}
+  sprite: {fileID: 0}
+  jelly: {fileID: 0}
 --- !u!114 &4400904328241726620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   stationarySplitFrac: 0.1
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
+  canSplit: 0
 --- !u!114 &4400904328241726594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +297,7 @@ MonoBehaviour:
   grow: 1
   autosplit: 1
   shakePercent: 0.85
+  size: 0.15
 --- !u!114 &4400904328241726595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +336,7 @@ Animator:
   m_GameObject: {fileID: 4400904328241726592}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a075e9c686f7b804fabc1381b2e0327a, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
