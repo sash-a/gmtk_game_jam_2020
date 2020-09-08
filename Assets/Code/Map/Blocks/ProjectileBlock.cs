@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class ProjectileBlock : Block
+public class ProjectileBlock : DirectedBlock
 {
-    static string PROJECTILE = "projectile";
-    static string DIR_ARG = "dir";
+    static string PROJECTILE = "projectile";  // type
     static string SPEED_ARG = "speed";
     static string RATE_ARG = "rate";
 
-    public string dir = "u";//u,d,l,r
-    Vector2 dirVec;
-    public float shootRate = 0.5f;//every 2 seconds
-    public float projectileSpeed = 1;
+    [HideInInspector] public float shootRate = 0.5f;//every 2 seconds
+    [HideInInspector] public float projectileSpeed = 1;
     float timeSinceShot;
 
     public GameObject projectilePrefab;
@@ -22,19 +19,13 @@ public class ProjectileBlock : Block
     public override void start()
     {
         base.start();
-        setDirVec();
         timeSinceShot = 1f / shootRate;//warm start
-    }
-
-    void setDirVec() {
-        dir = dir.ToLower();
-        dirVec = new Vector2(dir == "l" ? -1 : (dir == "r" ? 1 : 0), dir == "d" ? -1 : (dir == "u" ? 1 : 0));
     }
 
     private void Update()
     {
         timeSinceShot += Time.deltaTime;
-        if (timeSinceShot > 1f / shootRate) {
+        if (active && timeSinceShot > 1f / shootRate) {
             shoot();
         }
     }
@@ -58,10 +49,6 @@ public class ProjectileBlock : Block
     {
         string argVal = arg.Split(':')[1];
         base.parseArg(arg);
-        if (arg.Contains(DIR_ARG + ":")) {
-            dir = argVal;
-            setDirVec();
-        }
         if (arg.Contains(SPEED_ARG + ":"))
         {
             projectileSpeed = float.Parse(argVal, CultureInfo.InvariantCulture);

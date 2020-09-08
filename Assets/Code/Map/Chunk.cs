@@ -4,64 +4,41 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using UnityEngine;
 
-public class Chunk : MapObject
+public class Chunk
 {
     /*
      * A chunk is a group of blocks which are typically adjacent. 
-     * A platform is a chunk
      */
 
-    HashSet<Block> blocks = new HashSet<Block>();
+    public static Dictionary<int, Chunk> chunkMap; // all chunks created
+    public static Dictionary<int, HashSet<Block>> chunkBlocks; // maps chunk to its blocks
 
-    public override void start()
-    {
-        base.start();
-        blocks = new HashSet<Block>();
+    public int chunkID;
+
+    public Chunk(int id) {
+        chunkID = id;
     }
 
-    public void spawnChunk(IEnumerable<Vector2Int> positions, Dictionary<int, String> specialTypes,
-        Dictionary<int, String> arguments)
+    internal static void registerChunk(int chunkID)
     {
-        /*
-         * positions: list of relative positions from the chunks center
-         */
-
-        int i = 0;
-        foreach (Vector2Int relativePos in positions)
-        {
-            Block newBlock;
-            if (specialTypes.ContainsKey(i))
-            {
-                //is a special block
-                newBlock = Block.spawnBlock(Map.getBlockPrefab(specialTypes[i]));
-            }
-            else
-            {
-                newBlock = Block.spawnBlock();
-            }
-
-            if (arguments.ContainsKey(i))
-            {
-                newBlock.parseArgs(arguments[i]);
-            }
-
-            newBlock.transform.parent = transform;
-            newBlock.localPos = relativePos;
-
-            blocks.Add(newBlock);
-            i++;
+        if (chunkMap == null) {
+            chunkMap = new Dictionary<int, Chunk>();
+            chunkBlocks = new Dictionary<int, HashSet<Block>>();
+        }
+        if (!chunkMap.ContainsKey(chunkID)) {
+            Chunk newChunk = new Chunk(chunkID);
+            chunkMap.Add(chunkID, newChunk);
+            chunkBlocks.Add(chunkID, new HashSet<Block>());
         }
     }
 
-    public void spawnChunk(IEnumerable<Vector2Int> positions)
+    internal static void removeBlock(Block block, int chunkID)
     {
-        spawnChunk(positions, new Dictionary<int, string>(), new Dictionary<int, string>());
+        chunkBlocks[chunkID].Remove(block);
     }
 
-    public override void activateChanged()
+    internal static void addBlock(Block block, int chunkID)
     {
-        //foreach (Block block in blocks) {
-        //    block.active = active;
-        //}
+        chunkBlocks[chunkID].Add(block);
     }
 }

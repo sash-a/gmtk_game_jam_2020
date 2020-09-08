@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class MapObject : MonoBehaviour
 {
+    public string args;  // comma ',' separated. each arg follows ~ arg:val. EG: 
+    [HideInInspector] public string lastParsedArgs; // to keep track of changing args while you edit a level
 
     private void Start()
     {
@@ -12,7 +14,7 @@ public abstract class MapObject : MonoBehaviour
     }
 
     public virtual void start() {
-
+        Map.singleton.objects.registerObject(this);
     }
 
     private bool activeValue = true;
@@ -57,19 +59,32 @@ public abstract class MapObject : MonoBehaviour
 
     public void parseArgs(string args)
     {
+        if (args == lastParsedArgs) {
+            return;
+        }
         string[] argList = args.Split(',');
         foreach (string arg in argList)
         {
             parseArg(arg);
         }
+        lastParsedArgs = args;
     }
 
     internal virtual void parseArg(string arg) {
-        if (arg.Contains(SwitchBlock.SWITCH_BLOCK))
+        if (arg.Contains(SwitchBlock.SWITCH_BLOCK)) // this object is triggered by a switch
         {
             int switchID = int.Parse(arg.Split(':')[1]);
             //Debug.Log(gameObject + " is triggered by " + arg);
+            if (SwitchBlock.targetSwitches.ContainsKey(this)) {
+                //had previous switches, must remove
+                foreach (int oldSwith in SwitchBlock.targetSwitches[this])
+                {
+                    SwitchBlock.switchTargets[oldSwith].Remove(this);
+                }
+                SwitchBlock.targetSwitches.Remove(this);
+            }
             SwitchBlock.registerSwitchTarget(switchID, this);
+            Debug.Log(this + " is registering switch " + switchID);
 
             active = false;
         }

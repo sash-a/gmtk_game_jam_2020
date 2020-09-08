@@ -6,11 +6,21 @@ using UnityEngine;
 public class Block : MapObject
 {
     static string BLOCK = "block";
+    public static string CHUNK_ID = "chunkID";
+
+
     private SpriteRenderer rendererRef;
     protected Color startingColour;
 
     public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
 
+    [HideInInspector] public int chunkID; // which chunk this object belongs to
+
+    private void Start()
+    {
+        chunkID = -1; // no chunk
+        start();
+    }
 
     SpriteRenderer renderer {
         get {
@@ -46,6 +56,7 @@ public class Block : MapObject
 
     public override void activateChanged()
     {
+        Debug.Log(this + "chaning active state to " + active);
         if (startingColour == Color.clear)
         {
             startingColour = renderer.color;
@@ -73,10 +84,23 @@ public class Block : MapObject
     internal override void parseArg(string arg)
     {
         base.parseArg(arg);
-        if (arg.Contains(Platform.BLOCK_POSITION+":"))
+
+        if (arg.Contains(CHUNK_ID))
         {
-            string pos = arg.Split(':')[1];
-            blockPosition = pos;
+            // this object is a part of a chunk
+            int chunkIDArg = int.Parse(arg.Split(':')[1]);
+            if (Chunk.chunkMap == null || !Chunk.chunkMap.ContainsKey(chunkIDArg))
+            {
+                Chunk.registerChunk(chunkIDArg);
+            }
+            if (chunkID != -1)
+            {
+                //was a part of a chunk aready
+                Chunk.removeBlock(this, chunkID);
+            }
+            chunkID = chunkIDArg;
+
+            Chunk.addBlock(this, chunkID);
         }
     }
 

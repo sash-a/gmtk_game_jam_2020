@@ -10,9 +10,10 @@ public class SwitchBlock : EffectBlock
     public static string SWITCH_BLOCK = "switch";
     public static string SWITCH_ID = "id";//used as an arg to provide the switch block with its id
 
-    public static Dictionary<int, SwitchBlock> switchMap;
-    public static Dictionary<int, List<MapObject>> switchTargets;//maps switch to each of its targets
-    public static Dictionary<MapObject, List<int>> targetSwitches;//maps target to each of its switches
+    public static Dictionary<int, SwitchBlock> switchMap; //all switches
+    public static Dictionary<int, HashSet<MapObject>> switchTargets;//maps switch to each of its targets
+    public static Dictionary<MapObject, HashSet<int>> targetSwitches;//maps target to each of its switches
+    // a target can be a chunk or a block
 
     int switchID;
 
@@ -47,7 +48,11 @@ public class SwitchBlock : EffectBlock
         sr.color = on ? Color.black : Color.magenta;
         //Debug.Log("swtich now " + on);
         if (switchTargets == null) {
-            switchTargets = new Dictionary<int, List<MapObject>>();
+            switchTargets = new Dictionary<int, HashSet<MapObject>>();
+        }
+
+        if (targetSwitches == null) {
+            targetSwitches = new Dictionary<MapObject, HashSet<int>>();
         }
  
         if (switchTargets.ContainsKey(switchID)) {
@@ -99,18 +104,18 @@ public class SwitchBlock : EffectBlock
     {
         //mapping is possibly many to many, so both mapping directions are needed
         if (switchTargets == null) {
-            switchTargets = new Dictionary<int, List<MapObject>>();
+            switchTargets = new Dictionary<int, HashSet<MapObject>>();
         }
         if (!switchTargets.ContainsKey(triggerID)) {
-            switchTargets.Add(triggerID, new List<MapObject>());
+            switchTargets.Add(triggerID, new HashSet<MapObject>());
         }
         switchTargets[triggerID].Add(mapObject);
 
         if (targetSwitches == null) {
-            targetSwitches = new Dictionary<MapObject, List<int>>();
+            targetSwitches = new Dictionary<MapObject, HashSet<int>>();
         }
         if (!targetSwitches.ContainsKey(mapObject)) {
-            targetSwitches.Add(mapObject, new List<int>());
+            targetSwitches.Add(mapObject, new HashSet<int>());
         }
         targetSwitches[mapObject].Add(triggerID);
     }
