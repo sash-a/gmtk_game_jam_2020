@@ -12,14 +12,14 @@ public class Block : MapObject
     private SpriteRenderer rendererRef;
     protected Color startingColour;
 
-    public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
+    [HideInInspector] public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
 
     [HideInInspector] public int chunkID; // which chunk this object belongs to
 
-    private void Start()
+    public override void start()
     {
         chunkID = -1; // no chunk
-        start();
+        base.start();
     }
 
     SpriteRenderer renderer {

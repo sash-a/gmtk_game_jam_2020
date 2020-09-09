@@ -10,11 +10,16 @@ public abstract class MapObject : MonoBehaviour
 
     private void Start()
     {
+        parseArgs(args);
         start();
     }
 
     public virtual void start() {
         Map.singleton.objects.registerObject(this);
+        if (SwitchBlock.targetSwitches.ContainsKey(this)) {
+            //this object is attached to a switch, deactivate it
+            active = false;
+        }
     }
 
     private bool activeValue = true;

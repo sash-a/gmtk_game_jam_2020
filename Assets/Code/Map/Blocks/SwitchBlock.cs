@@ -17,6 +17,13 @@ public class SwitchBlock : EffectBlock
 
     int switchID;
 
+    private void Start()
+    {
+        switchID = -1;
+        parseArgs(args);
+        start();
+    }
+
     public override void start()
     {
         base.start();
@@ -89,27 +96,54 @@ public class SwitchBlock : EffectBlock
     internal override void parseArg(string arg) {
         base.parseArg(arg);
         if (arg.Contains(SWITCH_ID)) {
-            switchID = int.Parse(arg.Split(':')[1]);
+            int newSwitchID = int.Parse(arg.Split(':')[1]);
 
             if (switchMap == null)
             {
                 switchMap = new Dictionary<int, SwitchBlock>();
             }
+            if (switchMap.ContainsKey(switchID)){
+                if (switchMap[switchID] == this)
+                {//remove old switch mapping
+                    switchMap.Remove(switchID);
+                }
+            }
+
+            switchID = newSwitchID;
             switchMap.Add(switchID, this);//registers this switch
-            
+            return;
+        }
+
+        if (arg.Contains(Block.CHUNK_ID)) {
+            //this switch triggers a chunk
+            int chunkID = int.Parse(arg.Split(':')[1]);
+            Chunk chunk = Chunk.chunkMap[chunkID];
+            registerSwitchTarget(switchID, chunk);
+            StartCoroutine(deactivateChunk());
         }
     }
 
-    internal static void registerSwitchTarget(int triggerID, MapObject mapObject)
+    private IEnumerator deactivateChunk() {
+        yield return new WaitForSeconds(0.15f);
+        foreach (MapObject obj in switchTargets[switchID])
+        {
+            Chunk chunk = obj.GetComponent<Chunk>();
+            if (chunk != null) {
+                chunk.active = false;
+            }
+        }
+    }
+
+    internal static void registerSwitchTarget(int switchID, MapObject mapObject)
     {
         //mapping is possibly many to many, so both mapping directions are needed
         if (switchTargets == null) {
             switchTargets = new Dictionary<int, HashSet<MapObject>>();
         }
-        if (!switchTargets.ContainsKey(triggerID)) {
-            switchTargets.Add(triggerID, new HashSet<MapObject>());
+        if (!switchTargets.ContainsKey(switchID)) {
+            switchTargets.Add(switchID, new HashSet<MapObject>());
         }
-        switchTargets[triggerID].Add(mapObject);
+        switchTargets[switchID].Add(mapObject);
 
         if (targetSwitches == null) {
             targetSwitches = new Dictionary<MapObject, HashSet<int>>();
@@ -117,7 +151,7 @@ public class SwitchBlock : EffectBlock
         if (!targetSwitches.ContainsKey(mapObject)) {
             targetSwitches.Add(mapObject, new HashSet<int>());
         }
-        targetSwitches[mapObject].Add(triggerID);
+        targetSwitches[mapObject].Add(switchID);
     }
 
     private void OnDestroy()

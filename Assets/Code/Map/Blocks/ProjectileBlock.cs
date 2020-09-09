@@ -9,23 +9,36 @@ public class ProjectileBlock : DirectedBlock
     static string PROJECTILE = "projectile";  // type
     static string SPEED_ARG = "speed";
     static string RATE_ARG = "rate";
+    static string DELAY_ARG = "delay";
+
 
     [HideInInspector] public float shootRate = 0.5f;//every 2 seconds
     [HideInInspector] public float projectileSpeed = 1;
+    [HideInInspector] public float delay = 0; //how many seconds to wait before first firing
+
     float timeSinceShot;
 
     public GameObject projectilePrefab;
 
+    public float shootPeriod{ get { return 1f / shootRate; } }
+
+    private void Start()
+    {
+        delay = 0;
+        parseArgs(args);
+        start();
+    }
+
     public override void start()
     {
         base.start();
-        timeSinceShot = 1f / shootRate;//warm start
+        timeSinceShot = shootPeriod - delay; // if delay=0 will fire immediately
     }
 
     private void Update()
     {
         timeSinceShot += Time.deltaTime;
-        if (active && timeSinceShot > 1f / shootRate) {
+        if (active && timeSinceShot > shootPeriod) {
             shoot();
         }
     }
@@ -45,6 +58,15 @@ public class ProjectileBlock : DirectedBlock
         timeSinceShot = 0;
     }
 
+    public override void activateChanged()
+    {
+        base.activateChanged();
+        if (active) {
+            // just started firing again
+            timeSinceShot = shootPeriod - delay;
+        }
+    }
+
     internal override void parseArg(string arg)
     {
         string argVal = arg.Split(':')[1];
@@ -56,6 +78,9 @@ public class ProjectileBlock : DirectedBlock
         if (arg.Contains(RATE_ARG + ":"))
         {
             shootRate = float.Parse(argVal, CultureInfo.InvariantCulture);
+        }
+        if (arg.Contains(DELAY_ARG)) {
+            delay = float.Parse(argVal, CultureInfo.InvariantCulture);
         }
     }
 

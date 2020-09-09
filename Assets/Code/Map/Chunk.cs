@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using UnityEngine;
 
-public class Chunk
+public class Chunk: MapObject
 {
     /*
      * A chunk is a group of blocks which are typically adjacent. 
@@ -15,10 +15,6 @@ public class Chunk
 
     public int chunkID;
 
-    public Chunk(int id) {
-        chunkID = id;
-    }
-
     internal static void registerChunk(int chunkID)
     {
         if (chunkMap == null) {
@@ -26,8 +22,11 @@ public class Chunk
             chunkBlocks = new Dictionary<int, HashSet<Block>>();
         }
         if (!chunkMap.ContainsKey(chunkID)) {
-            Chunk newChunk = new Chunk(chunkID);
-            chunkMap.Add(chunkID, newChunk);
+            //spawn new chunk
+            GameObject chunkObj = new GameObject();
+            Chunk chunk = chunkObj.AddComponent<Chunk>();
+
+            chunkMap.Add(chunkID, chunk);
             chunkBlocks.Add(chunkID, new HashSet<Block>());
         }
     }
@@ -40,5 +39,18 @@ public class Chunk
     internal static void addBlock(Block block, int chunkID)
     {
         chunkBlocks[chunkID].Add(block);
+        Chunk chunk = chunkMap[chunkID];
+        block.transform.parent = chunk.transform;
+        block.active = chunk.active;
+    }
+
+    public override void activateChanged()
+    {
+        //activate/deactivate constituents
+        Debug.Log("chunk changed to active= " + active + " with " + chunkBlocks[chunkID].Count + " blocks ");
+        foreach (Block block in chunkBlocks[chunkID])
+        {
+            block.active = active;
+        }
     }
 }
