@@ -1,0 +1,44 @@
+{
+    "name": "LevelDesignControls",
+    "maps": [
+        {
+            "name": "LevelDesign",
+            "id": "912f5c18-f35e-43ec-8a43-3e33aeec78ef",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "c2747272-8ed3-480a-9d76-745c15a79a26",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e27ef067-d652-4d06-ba08-65faaec59b58",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a40bf02-6ba7-4865-a602-948ee2c4d640",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
