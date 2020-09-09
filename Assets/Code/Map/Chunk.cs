@@ -44,6 +44,7 @@ public class Chunk: MapObject
     {
         Chunk chunk = chunkMap[chunkID];
         chunk.transform.parent = block.transform.parent;
+        chunk.transform.localPosition = Vector3.zero;
 
         chunkBlocks[chunkID].Add(block);
         block.transform.parent = chunk.transform;
@@ -57,5 +58,10 @@ public class Chunk: MapObject
         {
             block.active = active;
         }
+    }
+
+    public override string getTypeString()
+    {
+        throw new NotImplementedException();
     }
 }

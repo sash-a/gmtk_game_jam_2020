@@ -2,30 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator: MonoBehaviour
+public class Elevator: Chunk
 {
-    static string ELEVATOR = "elevator";
-    static string MASTER = "master";
-    static string VERTICAL = "vertical";
+    /*
+     * created dynamically as any other chunk would be.
+     */
 
     public int travelDistance;
-    int startingHeight;  //todo adjust
+    float startingHeight;  //todo adjust
     public float speed;
-    private bool ascending;//current going up (pos dir)
     public bool vertical = true;//if false moves horizontally
-    private int dim;
 
-    public string args; 
-    public Block masterBlock;  // must be set from outside
+    public ElevatorBlock masterBlock;  // must be set from outside
 
-    private void Start()
+    public override void start()
     {
-        dim = vertical ? 1 : 0;
-
-        startingHeight = (int)transform.position[dim];
-        ascending = true;
+        base.start();
     }
 
+    public void setMasterBlock(ElevatorBlock master) {
+        masterBlock = master;
+        startingHeight = transform.position[masterBlock.dim];
+    }
 
     private void Update()
     {
@@ -33,14 +31,15 @@ public class Elevator: MonoBehaviour
         {//elevator is using a disabled switch
             return;
         }
+        int dim = masterBlock.dim;
         if (transform.position[dim] > startingHeight + travelDistance) {
-            ascending = false;
+            masterBlock.increasing = false;
         }
         if (transform.position[dim] < startingHeight) {
-            ascending = true;
+            masterBlock.increasing = true;
         }
         Vector3 movement = Vector3.zero;
-        movement[dim] = speed * Time.deltaTime * (ascending?1:-1);
+        movement[dim] = speed * Time.deltaTime * (masterBlock.increasing ? 1:-1);
         transform.position = transform.position + movement;
     }
 }

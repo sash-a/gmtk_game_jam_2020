@@ -77,7 +77,7 @@ public class Block : MapObject
         }
     }
 
-    public virtual string getTypeString() {
+    public override string getTypeString() {
         return BLOCK;
     }
 

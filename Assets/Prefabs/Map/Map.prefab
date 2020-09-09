@@ -524,7 +524,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8895874343610225079}
   - component: {fileID: 5494543488642813653}
-  - component: {fileID: 2070867416371083190}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -575,23 +574,6 @@ MonoBehaviour:
   - {fileID: 7243752380917271157, guid: cfeadcbdf26125f438e74259278ef435, type: 3}
   - {fileID: 6059279025734460964, guid: c183956cee6d7544f98dbfd581827e01, type: 3}
   - {fileID: 6541411482961782375, guid: 1fbc68aee9b7364458aec853b976611d, type: 3}
---- !u!114 &2070867416371083190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8895874343610225076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa145cfd0d14ee193897ca0518ada1c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nPlayers: 0
-  loseText: {fileID: 0}
-  winText: {fileID: 0}
-  requiredToFinish: 15
-  exitDelay: 2
 --- !u!1 &9082481574797392703
 GameObject:
   m_ObjectHideFlags: 0

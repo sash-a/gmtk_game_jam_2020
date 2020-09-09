@@ -15,6 +15,11 @@ public class DirectedBlock : Block
         setDirVec();
     }
 
+    public bool vertical { get { return dir == "u" || dir == "d"; } }
+    public int dim { get { return vertical ? 1 : 0; } }
+
+    public bool positiveDir { get { return dir == "u" || dir == "r"; } }
+
     void setDirVec()
     {
         dir = dir.ToLower();
