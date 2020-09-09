@@ -62,9 +62,13 @@ public abstract class MapObject : MonoBehaviour
         set { transform.localPosition = new Vector3(value.x, value.y, transform.localPosition.z); }
     }
 
-    public void parseArgs(string args)
+    public virtual void parseArgs(string args)
     {
         if (args == lastParsedArgs) {
+            return;
+        }
+        lastParsedArgs = args;
+        if (args == "") {
             return;
         }
         string[] argList = args.Split(',');
@@ -72,7 +76,6 @@ public abstract class MapObject : MonoBehaviour
         {
             parseArg(arg);
         }
-        lastParsedArgs = args;
     }
 
     internal virtual void parseArg(string arg) {

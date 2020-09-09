@@ -20,6 +20,7 @@ public class SwitchBlock : EffectBlock
     private void Start()
     {
         switchID = -1;
+        chunkID = -1;
         parseArgs(args);
         start();
     }
@@ -119,7 +120,7 @@ public class SwitchBlock : EffectBlock
             int chunkID = int.Parse(arg.Split(':')[1]);
             Chunk chunk = Chunk.chunkMap[chunkID];
             registerSwitchTarget(switchID, chunk);
-            StartCoroutine(deactivateChunk());
+            StartCoroutine(deactivateChunk()); // must wait for all blocks to be added to chunk first
         }
     }
 

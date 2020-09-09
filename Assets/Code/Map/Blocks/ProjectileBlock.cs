@@ -25,6 +25,7 @@ public class ProjectileBlock : DirectedBlock
     private void Start()
     {
         delay = 0;
+        chunkID = -1;
         parseArgs(args);
         start();
     }

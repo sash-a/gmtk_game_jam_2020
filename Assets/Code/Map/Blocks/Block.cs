@@ -16,9 +16,10 @@ public class Block : MapObject
 
     [HideInInspector] public int chunkID; // which chunk this object belongs to
 
-    public override void start()
+    private void Start()
     {
         chunkID = -1; // no chunk
+        parseArgs(args);
         base.start();
     }
 
@@ -56,7 +57,6 @@ public class Block : MapObject
 
     public override void activateChanged()
     {
-        Debug.Log(this + "chaning active state to " + active);
         if (startingColour == Color.clear)
         {
             startingColour = renderer.color;
@@ -81,6 +81,22 @@ public class Block : MapObject
         return BLOCK;
     }
 
+    public override void parseArgs(string args)
+    {
+        if (args == lastParsedArgs)
+        {
+            return;
+        }
+
+        if (chunkID != -1) {
+            //previously belonged to a chunk, must remove
+            //Debug.Log(this + " starting arg parsing, with an existing chunkID: " + chunkID);
+            Chunk.removeBlock(this, chunkID);
+            chunkID = -1;
+        }
+        base.parseArgs(args);
+    }
+
     internal override void parseArg(string arg)
     {
         base.parseArg(arg);
@@ -88,19 +104,24 @@ public class Block : MapObject
         if (arg.Contains(CHUNK_ID))
         {
             // this object is a part of a chunk
-            int chunkIDArg = int.Parse(arg.Split(':')[1]);
-            if (Chunk.chunkMap == null || !Chunk.chunkMap.ContainsKey(chunkIDArg))
-            {
-                Chunk.registerChunk(chunkIDArg);
-            }
+
             if (chunkID != -1)
             {
-                //was a part of a chunk aready
-                Chunk.removeBlock(this, chunkID);
+                throw new Exception("cannot assign block to chunk " + int.Parse(arg.Split(':')[1]) + " block already in chunk: " + chunkID);
             }
-            chunkID = chunkIDArg;
 
-            Chunk.addBlock(this, chunkID);
+            chunkID = int.Parse(arg.Split(':')[1]);
+            if (Chunk.chunkMap == null || !Chunk.chunkMap.ContainsKey(chunkID))
+            {
+                Chunk.registerChunk(chunkID);
+            }
+
+            bool isSwitchBlock = this.GetType() == typeof(SwitchBlock) || this.GetType().IsSubclassOf(typeof(SwitchBlock));
+
+            if (!isSwitchBlock){
+                //don't add switches to the chunks they control
+                Chunk.addBlock(this, chunkID);
+            }
         }
     }
 

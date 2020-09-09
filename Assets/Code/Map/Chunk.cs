@@ -23,7 +23,7 @@ public class Chunk: MapObject
         }
         if (!chunkMap.ContainsKey(chunkID)) {
             //spawn new chunk
-            GameObject chunkObj = new GameObject();
+            GameObject chunkObj = new GameObject("Block group");
             Chunk chunk = chunkObj.AddComponent<Chunk>();
 
             chunkMap.Add(chunkID, chunk);
@@ -33,13 +33,19 @@ public class Chunk: MapObject
 
     internal static void removeBlock(Block block, int chunkID)
     {
+        Chunk chunk = chunkMap[chunkID];
+        block.transform.parent = chunk.transform.parent;
         chunkBlocks[chunkID].Remove(block);
+        bool hasSwitch = SwitchBlock.targetSwitches.ContainsKey(block);
+        block.active = !hasSwitch;
     }
 
     internal static void addBlock(Block block, int chunkID)
     {
-        chunkBlocks[chunkID].Add(block);
         Chunk chunk = chunkMap[chunkID];
+        chunk.transform.parent = block.transform.parent;
+
+        chunkBlocks[chunkID].Add(block);
         block.transform.parent = chunk.transform;
         block.active = chunk.active;
     }
@@ -47,7 +53,6 @@ public class Chunk: MapObject
     public override void activateChanged()
     {
         //activate/deactivate constituents
-        Debug.Log("chunk changed to active= " + active + " with " + chunkBlocks[chunkID].Count + " blocks ");
         foreach (Block block in chunkBlocks[chunkID])
         {
             block.active = active;
