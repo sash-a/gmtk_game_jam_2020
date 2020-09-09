@@ -2,31 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : Platform
+public class Elevator: MonoBehaviour
 {
+    static string ELEVATOR = "elevator";
+    static string MASTER = "master";
+    static string VERTICAL = "vertical";
+
     public int travelDistance;
-    int startingHeight;
+    int startingHeight;  //todo adjust
     public float speed;
     private bool ascending;//current going up (pos dir)
     public bool vertical = true;//if false moves horizontally
     private int dim;
 
-    public string args;
+    public string args; 
+    public Block masterBlock;  // must be set from outside
 
-    public override void start()
+    private void Start()
     {
-        base.start();
         dim = vertical ? 1 : 0;
 
         startingHeight = (int)transform.position[dim];
         ascending = true;
-        parseArgs(args);
     }
+
 
     private void Update()
     {
-        if (!active)
-        {
+        if (!masterBlock.active)
+        {//elevator is using a disabled switch
             return;
         }
         if (transform.position[dim] > startingHeight + travelDistance) {

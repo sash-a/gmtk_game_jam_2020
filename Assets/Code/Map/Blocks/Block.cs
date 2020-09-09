@@ -6,11 +6,22 @@ using UnityEngine;
 public class Block : MapObject
 {
     static string BLOCK = "block";
+    public static string CHUNK_ID = "chunkID";
+
+
     private SpriteRenderer rendererRef;
     protected Color startingColour;
 
-    public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
+    [HideInInspector] public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
 
+    [HideInInspector] public int chunkID; // which chunk this object belongs to
+
+    private void Start()
+    {
+        chunkID = -1; // no chunk
+        parseArgs(args);
+        base.start();
+    }
 
     SpriteRenderer renderer {
         get {
@@ -70,13 +81,47 @@ public class Block : MapObject
         return BLOCK;
     }
 
+    public override void parseArgs(string args)
+    {
+        if (args == lastParsedArgs)
+        {
+            return;
+        }
+
+        if (chunkID != -1) {
+            //previously belonged to a chunk, must remove
+            //Debug.Log(this + " starting arg parsing, with an existing chunkID: " + chunkID);
+            Chunk.removeBlock(this, chunkID);
+            chunkID = -1;
+        }
+        base.parseArgs(args);
+    }
+
     internal override void parseArg(string arg)
     {
         base.parseArg(arg);
-        if (arg.Contains(Platform.BLOCK_POSITION+":"))
+
+        if (arg.Contains(CHUNK_ID))
         {
-            string pos = arg.Split(':')[1];
-            blockPosition = pos;
+            // this object is a part of a chunk
+
+            if (chunkID != -1)
+            {
+                throw new Exception("cannot assign block to chunk " + int.Parse(arg.Split(':')[1]) + " block already in chunk: " + chunkID);
+            }
+
+            chunkID = int.Parse(arg.Split(':')[1]);
+            if (Chunk.chunkMap == null || !Chunk.chunkMap.ContainsKey(chunkID))
+            {
+                Chunk.registerChunk(chunkID);
+            }
+
+            bool isSwitchBlock = this.GetType() == typeof(SwitchBlock) || this.GetType().IsSubclassOf(typeof(SwitchBlock));
+
+            if (!isSwitchBlock){
+                //don't add switches to the chunks they control
+                Chunk.addBlock(this, chunkID);
+            }
         }
     }
 
