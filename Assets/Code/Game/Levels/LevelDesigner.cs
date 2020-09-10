@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class LevelDesigner : MonoBehaviour
 {
+    public static string levelFolderPath = "/Levels/";
 
     private LevelDesignControls levelDesignControls;
     public GameObject selectionSquare;
     public GameObject spawnableObject;
 
+    public string levelName;
     private void Awake()
     {
         levelDesignControls = new LevelDesignControls();
@@ -38,12 +40,15 @@ public class LevelDesigner : MonoBehaviour
         }
     }
 
+    public static string getLevelFilePath(string levelName) {
+        return Application.dataPath + levelFolderPath + levelName + ".json";
+    }
+
     public void saveLevel()
     {
         Map.singleton.objects.refreshArgs();
         string saveString = Map.singleton.objects.getSaveString();
-        string filePath = Application.dataPath + "/Levels/levelTest.json";
-        File.WriteAllText(filePath, saveString);
+        File.WriteAllText(getLevelFilePath(levelName), saveString);
     }
 
     private void spawnBlock(Vector3 mouseGridPos)

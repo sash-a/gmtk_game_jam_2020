@@ -10,15 +10,22 @@ namespace Code.Player
 
         public void Start()
         {
-            Game.instance.nPlayers += 1;
+            if (Game.instance != null)
+            {
+                Game.instance.nPlayers += 1;
+            }
         }
 
         public void OnDestroy()
         {
             Instantiate(dieEffect, transform.position, transform.rotation).Play();
-            Game.instance.nPlayers -= 1;
+            if (Game.instance != null)
+            {
 
-            AllBlobs.singleton.livingPlayers.Remove(GetComponent<Player>());
+                Game.instance.nPlayers -= 1;
+
+                AllBlobs.singleton.livingPlayers.Remove(GetComponent<Player>());
+            }
         }
     }
 }

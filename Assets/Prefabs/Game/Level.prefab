@@ -321,7 +321,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2350001272075311698}
-  - component: {fileID: 6995452928384636586}
+  - component: {fileID: 7404802806892416510}
+  - component: {fileID: 1725720815593952166}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -347,7 +348,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6995452928384636586
+--- !u!114 &7404802806892416510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,9 +357,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2932204638210187869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e54a628c399c841b254b0853f8b519, type: 3}
+  m_Script: {fileID: 11500000, guid: c5482fd7cb3576f4da4f8baaacfa4589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1725720815593952166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932204638210187869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa145cfd0d14ee193897ca0518ada1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPlayers: 0
+  loseText: {fileID: 2027758801721978893}
+  winText: {fileID: 1796591656753118802}
+  requiredToFinish: 6
+  exitDelay: 1
 --- !u!1 &5801652387644689164
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,12 +987,12 @@ PrefabInstance:
         type: 3}
       propertyPath: finishedCounter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4564526002040500345}
     - target: {fileID: 4610187457792568756, guid: fafc9ceccbea67dccb16e9848e8095f0,
         type: 3}
       propertyPath: remainingCounter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2143718789968641772}
     - target: {fileID: 4610187457792568757, guid: fafc9ceccbea67dccb16e9848e8095f0,
         type: 3}
       propertyPath: m_Name
@@ -1064,6 +1082,21 @@ PrefabInstance:
         type: 3}
       propertyPath: loseText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905336911275597608, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905336911275597608, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905336911275597608, guid: 1ffea2c37c661870db2efab0282bcc99,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5494543488642813653, guid: 1ffea2c37c661870db2efab0282bcc99,
         type: 3}
@@ -1178,7 +1211,7 @@ PrefabInstance:
     - target: {fileID: 8375834035133697062, guid: a160a0c19ca28ea499764ea8f9f7351a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8375834035133697062, guid: a160a0c19ca28ea499764ea8f9f7351a,
         type: 3}
