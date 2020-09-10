@@ -67,6 +67,7 @@ MonoBehaviour:
     type: 3}
   spawnableObject: {fileID: 2972981711545368055, guid: ae569e03822a9fb4d8763d5e56ad8681,
     type: 3}
+  levelName: 
 --- !u!1 &3819607244045413331
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,11 +781,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587486291733504761, guid: a160a0c19ca28ea499764ea8f9f7351a,
-        type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a160a0c19ca28ea499764ea8f9f7351a, type: 3}
