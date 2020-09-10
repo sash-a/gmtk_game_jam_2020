@@ -16,6 +16,7 @@ public class AllObjects : MonoBehaviour
             allObjects = new HashSet<MapObject>();
         }
         allObjects.Add(mapObject);
+        mapObject.transform.parent = Map.singleton.objects.transform;
     }
 
     public void refreshArgs() {
