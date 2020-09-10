@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Code.Player;
+
 public class AllSlimes : MonoBehaviour
 {
     public static AllSlimes singleton; 
