@@ -6,6 +6,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public static Map singleton;
+    public AllObjects objects;
 
     public Camera mapCam;
     public float baseCamSize = 5;

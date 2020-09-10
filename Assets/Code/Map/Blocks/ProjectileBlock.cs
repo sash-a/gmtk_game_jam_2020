@@ -4,37 +4,42 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class ProjectileBlock : Block
+public class ProjectileBlock : DirectedBlock
 {
-    static string PROJECTILE = "projectile";
-    static string DIR_ARG = "dir";
+    static string PROJECTILE = "projectile";  // type
     static string SPEED_ARG = "speed";
     static string RATE_ARG = "rate";
+    static string DELAY_ARG = "delay";
 
-    public string dir = "u";//u,d,l,r
-    Vector2 dirVec;
-    public float shootRate = 0.5f;//every 2 seconds
-    public float projectileSpeed = 1;
+
+    [HideInInspector] public float shootRate = 0.5f;//every 2 seconds
+    [HideInInspector] public float projectileSpeed = 1;
+    [HideInInspector] public float delay = 0; //how many seconds to wait before first firing
+
     float timeSinceShot;
 
     public GameObject projectilePrefab;
 
+    public float shootPeriod{ get { return 1f / shootRate; } }
+
+    private void Start()
+    {
+        delay = 0;
+        chunkID = -1;
+        parseArgs(args);
+        start();
+    }
+
     public override void start()
     {
         base.start();
-        setDirVec();
-        timeSinceShot = 1f / shootRate;//warm start
-    }
-
-    void setDirVec() {
-        dir = dir.ToLower();
-        dirVec = new Vector2(dir == "l" ? -1 : (dir == "r" ? 1 : 0), dir == "d" ? -1 : (dir == "u" ? 1 : 0));
+        timeSinceShot = shootPeriod - delay; // if delay=0 will fire immediately
     }
 
     private void Update()
     {
         timeSinceShot += Time.deltaTime;
-        if (timeSinceShot > 1f / shootRate) {
+        if (active && timeSinceShot > shootPeriod) {
             shoot();
         }
     }
@@ -54,14 +59,19 @@ public class ProjectileBlock : Block
         timeSinceShot = 0;
     }
 
+    public override void activateChanged()
+    {
+        base.activateChanged();
+        if (active) {
+            // just started firing again
+            timeSinceShot = shootPeriod - delay;
+        }
+    }
+
     internal override void parseArg(string arg)
     {
         string argVal = arg.Split(':')[1];
         base.parseArg(arg);
-        if (arg.Contains(DIR_ARG + ":")) {
-            dir = argVal;
-            setDirVec();
-        }
         if (arg.Contains(SPEED_ARG + ":"))
         {
             projectileSpeed = float.Parse(argVal, CultureInfo.InvariantCulture);
@@ -69,6 +79,9 @@ public class ProjectileBlock : Block
         if (arg.Contains(RATE_ARG + ":"))
         {
             shootRate = float.Parse(argVal, CultureInfo.InvariantCulture);
+        }
+        if (arg.Contains(DELAY_ARG)) {
+            delay = float.Parse(argVal, CultureInfo.InvariantCulture);
         }
     }
 

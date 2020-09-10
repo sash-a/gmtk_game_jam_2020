@@ -18,27 +18,26 @@ namespace Code.Player
 
         public AudioClip splitSound;
 
-        [HideInInspector] public int nSplits;
+        [HideInInspector] public int nSplits = 0;
 
         private Controls controls;
 
-        private static Vector3 minScale = Vector3.zero;
+        private static float minSize = 0;
 
         private Player player;
 
         void Awake()
         {
-            // GetComponent<SpriteRenderer>().color = getSplitColour();
-
-            if (minScale == Vector3.zero) // this should only be called once and so we can store min scale
-            {
-                var min = GetComponent<Grower>().minSize;
-                minScale = new Vector3(min, min, min);
-            }
             player = GetComponent<Player>();
+
+            Color c = getSplitColour();
+            c.a = 0.6f;
+            GetComponent<SpriteRenderer>().color = c;
+
+            nSplits = 0;
         }
 
-        /*
+        
         private Color getSplitColour()
         {
             //gets redder and darker the more splits
@@ -60,17 +59,18 @@ namespace Code.Player
             //here a and b are coefficients which control how quickly values drop off and how much they drop
             return -1 / (a * Mathf.Pow(progress, b) + 1) + 1;
         }
-        */
+        
 
         private void Update()
         {
             if (AllBlobs.singleton.controls.Player.Split.triggered)
+            {
                 Split();
+            }
         }
 
         public void Split()
         {
-            //if (!CanSplit()) return;
             if (!canSplit) return;
 
 
@@ -82,7 +82,7 @@ namespace Code.Player
 
                     spawned.transform.SetParent(transform.parent);
                     var splitter = spawned.GetComponent<Splitter>();
-                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, gameObject);
+                    splitter.OnSpawn(nSplits, i % 2 == 0 ? 1 : -1, player);
                 }
             }
 
@@ -92,21 +92,17 @@ namespace Code.Player
         }
 
 
-        void OnSpawn(int parentSplits, int startDir, GameObject parent)
+        void OnSpawn(int parentSplits, int startDir, Player parent)
         {
-            if (minScale == Vector3.zero)
-                throw new Exception("Min scale was never set!");
 
             // setting scale
-            var childScale = parent.transform.localScale / 2;
-            if (childScale.x < minScale.x)
-                childScale = minScale;
-            transform.localScale = childScale;
+            GetComponent<Grower>().size = Mathf.Max(parent.grower.size / 2.0f, player.grower.minSize) ;
+            transform.localScale = GetComponent<Grower>().size * Vector3.one;
             // setting scale-size modifiers
             var grower = GetComponent<Grower>();
-            grower.inheritSizeModifiers(parent.GetComponent<Grower>(), childScale == minScale);
+            grower.inheritSizeModifiers(parent.grower, GetComponent<Grower>().size == player.grower.minSize);
             // setting horizontal flip
-            GetComponent<PlayerController>().horizontalFlip = parent.GetComponent<PlayerController>().horizontalFlip;
+            GetComponent<PlayerController>().horizontalFlip = parent.pc.horizontalFlip;
 
             nSplits = parentSplits + 1;
             transform.parent = AllBlobs.singleton.transform;
@@ -136,18 +132,6 @@ namespace Code.Player
             controller.addSpeedForSeconds(dir.x * lrSplitMag + perp.x, lrSplitDuration);
             controller.Jump(dir.y * udSplitMag + perp.y, true);
         }
-
-        //private bool CanSplit()
-        //{
-        //    foreach (JellyVertex v in vertices)
-        //    {
-        //        if (v.canSplit)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
 
         public bool canSplit;
 

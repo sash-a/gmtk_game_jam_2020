@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,19 +16,17 @@ namespace Code.Player
         [HideInInspector] public Rigidbody2D rb;
         [HideInInspector] public int horizontalFlip = 1;
       
-        private Grower grower;
+        Player player;
 
-        private JellyVertex[] vertices;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            grower = GetComponent<Grower>();
+            player = GetComponent<Player>();
         }
 
         private void Start()
         {
-            vertices = GetComponentsInChildren<JellyVertex>();
         }
 
         private void FixedUpdate()
@@ -43,6 +42,54 @@ namespace Code.Player
 
             // if this player has just reached a new high point the camera will move up
             Map.singleton.reportPlayerHeight(transform.position.y);
+            updateScale();
+            player.sprite.flipX = rb.velocity.x > 0;
+        }
+
+        Vector2 smoothVelocity = Vector2.zero;
+
+        float shrinkSmoothingFac = 0.98f;
+        float growSmoothingFac = 0.94f;
+
+        float rotateCoeff = 25;
+        float squishCoeff = 0.6f;
+
+        private void updateScale()
+        {
+            for (int dim = 0; dim < 2; dim++)
+            {// rolling average to get smooth velocity
+                float v = rb.velocity[dim];
+                float s = smoothVelocity[dim];
+
+                bool increasing = Mathf.Abs(v) > Mathf.Abs(s);
+
+                float a = increasing ? shrinkSmoothingFac : growSmoothingFac;
+                smoothVelocity[dim] =  s * a + (1 - a) * v;
+            }
+
+            Vector2 squish = smoothVelocity / speed; //normalised velocity
+            float rotate = - squish.x * squish.y * rotateCoeff; //rotate when moving in both axis
+
+            float xDir = Mathf.Sign(squish.x);
+            float yDir = Mathf.Sign(squish.y);
+
+            if (squish.x < 0) // don't squish when moving in y
+            {
+                squish.x = Mathf.Min(0, squish.x + Mathf.Abs(squish.y));
+            }
+            else { // x > 0
+                squish.x = Mathf.Max(0, squish.x - Mathf.Abs(squish.y));
+            }
+
+            Vector3 scale = player.grower.size * Vector3.one;
+            //Debug.Log("scale: " + scale + " squish: " + squish + " smo vel: " + smoothVelocity + " rot: " + rotate);
+            float squishX = Mathf.Abs(squish.x * squishCoeff) + 1;
+            float squishY = Mathf.Abs(squish.y * squishCoeff) + 1;
+            scale.x /= squishX / squishY;
+            scale.y /= squishY / squishX;
+
+            transform.localScale = scale;
+            transform.localRotation = Quaternion.Euler(0, 0, rotate);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -66,7 +113,7 @@ namespace Code.Player
 
         private void MoveLR(int dir)
         {
-            var x = dir * horizontalFlip * speed - Mathf.Max(grower.sizeSpeedModifier, 0) + additionalSpeed;
+            var x = dir * horizontalFlip * speed - Mathf.Max(player.grower.sizeSpeedModifier, 0) + additionalSpeed;
             rb.velocity = new Vector2(x, rb.velocity.y);
         }
 
@@ -77,7 +124,7 @@ namespace Code.Player
             {
                 airborn = true;
 
-                var upVel = rb.velocity.y + Mathf.Max(jumpSpeed - grower.sizeJumpModifier, 0) * multiplier;
+                var upVel = rb.velocity.y + Mathf.Max(jumpSpeed - player.grower.sizeJumpModifier, 0) * multiplier;
                 rb.velocity = new Vector2(rb.velocity.x, upVel);
             }
         }

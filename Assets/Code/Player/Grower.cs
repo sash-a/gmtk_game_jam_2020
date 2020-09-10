@@ -23,7 +23,9 @@ namespace Code.Player
 
         private Player player;
 
-        public float size { get { return gameObject.transform.localScale.x; } }
+        //public float size { get { return gameObject.transform.localScale.x; } }
+        public float size = 0.15f;
+
 
         private void Awake()
         {
@@ -36,17 +38,22 @@ namespace Code.Player
             growthVec = new Vector3(growthRate, growthRate, growthRate);
         }
 
-        private void FixedUpdate()
-        {
+        private void FixedUpdate() { 
+        
+            // Debug.Log( " n: " + player.splitter.nSplits + " m: " + player.splitter.maxSplits);
             if (autosplit && TooBig())
+            {
+                //Debug.Log("too big, auto splitting. player can split: " + player.splitter.canSplit + " n: " + player.splitter.nSplits + " m: " + player.splitter.maxSplits);
                 player.splitter.Split();
+            }
 
             if (AlmostTooBig())
                 player.shaker.Shake();
 
             if (grow && !TooBig())
             {
-                transform.localScale += growthVec;
+                size += growthRate;
+                //transform.localScale += growthVec;
                 sizeSpeedModifier += sizeSpeedDecreaseRate;
                 sizeJumpModifier += sizeJumpDecreaseRate;
             }
