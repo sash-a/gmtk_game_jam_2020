@@ -241,7 +241,7 @@ PrefabInstance:
     - target: {fileID: 7404802806892416510, guid: 25c22e5b7b7422a488a410cf4a3cc540,
         type: 3}
       propertyPath: levelName
-      value: levelTest
+      value: levelTest2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6995452928384636586, guid: 25c22e5b7b7422a488a410cf4a3cc540, type: 3}
