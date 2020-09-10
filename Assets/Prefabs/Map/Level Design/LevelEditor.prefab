@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 261227638688940365}
   - component: {fileID: 594366911727453493}
   - component: {fileID: 8419319668572165651}
+  - component: {fileID: 1916240638514773077}
+  - component: {fileID: 8662755058159329801}
   m_Layer: 0
   m_Name: LevelEditor
   m_TagString: Untagged
@@ -68,6 +70,35 @@ MonoBehaviour:
   spawnableObject: {fileID: 2972981711545368055, guid: ae569e03822a9fb4d8763d5e56ad8681,
     type: 3}
   levelName: 
+--- !u!114 &1916240638514773077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832523845248694594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5482fd7cb3576f4da4f8baaacfa4589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: 
+--- !u!114 &8662755058159329801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832523845248694594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4c6359663db8b4cb7a42b93a4eef41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomFactor: 0.2
+  zoomLerpSpeed: 0.4
+  minZoom: 2
+  maxZoom: 10
 --- !u!1 &3819607244045413331
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Game.Player
+namespace Code.Player
 {
-    public class @Controls : IInputActionCollection, IDisposable
+    public class @PlayerControls : IInputActionCollection, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @Controls()
+        public @PlayerControls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerControls"",
@@ -177,8 +177,8 @@ namespace Game.Player
         private readonly InputAction m_Player_Move;
         public struct PlayerActions
         {
-            private @Controls m_Wrapper;
-            public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            private @PlayerControls m_Wrapper;
+            public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Split => m_Wrapper.m_Player_Split;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Move => m_Wrapper.m_Player_Move;

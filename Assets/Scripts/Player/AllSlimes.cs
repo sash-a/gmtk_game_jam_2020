@@ -1,6 +1,7 @@
 ﻿using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
+using Code.Player;
 using UnityEngine;
 
 public class AllSlimes : MonoBehaviour
@@ -17,11 +18,6 @@ public class AllSlimes : MonoBehaviour
 
         controls = new PlayerControls();
         controls.Enable();
-    }
-
-    private void Update()
-    {
-        //Debug.Log("total remaining: " + getTotalMassRemaining()); 
     }
 
     public Vector2 getHorizontalBounds() {

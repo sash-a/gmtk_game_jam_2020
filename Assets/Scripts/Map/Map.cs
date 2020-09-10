@@ -45,7 +45,7 @@ public class Map : MonoBehaviour
 
         Vector2 blobBounds = AllSlimes.singleton.getHorizontalBounds();
         float boundsSize = (blobBounds.y - blobBounds.x) * 1.1f / mapCam.aspect;
-        mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
+        // mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
         mapCam.transform.position = new Vector3((blobBounds.y + blobBounds.x) / 2f, mapCam.transform.position.y, mapCam.transform.position.z);
 
         spikes.positionSpikes();

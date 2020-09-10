@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class LevelDesigner : MonoBehaviour
 {
-    public static string levelFolderPath = "/Levels/";
-
-    private LevelDesignControls levelDesignControls;
+    public LevelDesignControls levelDesignControls;
     public GameObject selectionSquare;
     public GameObject spawnableObject;
 
@@ -40,17 +38,6 @@ public class LevelDesigner : MonoBehaviour
         }
     }
 
-    public static string getLevelFilePath(string levelName) {
-        return Application.dataPath + levelFolderPath + levelName + ".json";
-    }
-
-    public void saveLevel()
-    {
-        Map.singleton.objects.refreshArgs();
-        string saveString = Map.singleton.objects.getSaveString();
-        File.WriteAllText(getLevelFilePath(levelName), saveString);
-    }
-
     private void spawnBlock(Vector3 mouseGridPos)
     {
         if (!GridManager.Instance.IsOccupied(mouseGridPos)) {
@@ -67,7 +54,7 @@ public class LevelDesigner : MonoBehaviour
 
     private Vector3 getMouseGridPos() {
         Vector2 mousePos = levelDesignControls.LevelDesign.Position.ReadValue<Vector2>();
-        Vector3 worldPos = Util.GetMouseWorldPosition(new Vector3(mousePos.x, mousePos.y, 0), Camera.main);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0));
         Vector3 mouseGridPos = GridManager.instance.ValidateWorldGridPosition(worldPos);
         return mouseGridPos + new Vector3(1, 1, 0) * GridManager.instance.GetCellSize() * .5f;
     }

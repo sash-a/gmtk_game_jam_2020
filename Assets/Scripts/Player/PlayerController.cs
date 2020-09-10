@@ -15,7 +15,7 @@ namespace Game.Player
         [HideInInspector] public int horizontalFlip = 1;
 
         private float additionalSpeed = 0f;
-      
+
         Player player;
 
 
@@ -43,6 +43,19 @@ namespace Game.Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            checkAirborn(other);
+        }
+
+        private void drawPoint(Vector2 point, Color c, float duration = 1)
+        {
+            var x = point.x;
+            var y = point.y;
+            Debug.DrawLine(new Vector2(x, y - 1), new Vector2(x, y + 1), c, duration);
+            Debug.DrawLine(new Vector2(x - 1, y), new Vector2(x + 1, y), c, duration);
+        }
+
+        private void checkAirborn(Collision2D other)
+        {
             var coll = other.collider;
             if (airborn && coll.CompareTag("Floor"))
             {
@@ -51,11 +64,26 @@ namespace Game.Player
                 Vector3 center = coll.bounds.center;
                 Vector3 scale = coll.bounds.extents;
 
-                if (contactPoint.y > center.y + scale.y &&
-                    contactPoint.x < center.x + scale.x &&
-                    contactPoint.x > center.x - scale.x)
+
+                var moveCpAmnt = transform.localScale.x;
+                if (contactPoint.x < (transform.position - transform.localScale).x ||
+                    contactPoint.x > (transform.position + transform.localScale).x)
                 {
-                    airborn = false;
+                    moveCpAmnt = 0;
+                }
+                
+                var leftContact = contactPoint - new Vector3(moveCpAmnt, 0, 0);
+                var rightContact = contactPoint + new Vector3(moveCpAmnt, 0, 0);
+
+                foreach (Vector3 cp in new[] {leftContact, rightContact})
+                {
+                    // drawPoint(cp, Color.green);
+                    if (cp.y >= center.y + scale.y &&
+                        cp.x <= center.x + scale.x &&
+                        cp.x >= center.x - scale.x)
+                    {
+                        airborn = false;
+                    }
                 }
             }
         }
@@ -82,7 +110,7 @@ namespace Game.Player
         {
             StartCoroutine(_addSpeedForSeconds(amount, seconds));
         }
-        
+
         private IEnumerator _addSpeedForSeconds(float amount, float seconds)
         {
             additionalSpeed += amount;

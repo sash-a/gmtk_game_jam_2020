@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Code.Player;
 using TMPro;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Game.Player
 
         [HideInInspector] public int nSplits = 0;
 
-        private Controls controls;
+        private PlayerControls controls;
 
         private static float minSize = 0;
 

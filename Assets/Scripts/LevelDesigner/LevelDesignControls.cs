@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Code/Grid/LevelDesignControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/LevelDesigner/LevelDesignControls.inputactions'
 
 using System;
 using System.Collections;
@@ -30,6 +30,14 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                     ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""4819140c-2931-4cf6-926f-2c32a53afc3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""72663f25-ef29-49bf-bbc9-f112138562a2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -68,6 +76,39 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""a9512c22-fbe3-400d-b364-f9075ec98110"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""291ab6aa-30f1-47e8-afe2-57837e53a2d7"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c1732318-a803-4d0c-88a7-c9a5dbdb3bd2"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -78,6 +119,7 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
         m_LevelDesign = asset.FindActionMap("LevelDesign", throwIfNotFound: true);
         m_LevelDesign_Position = m_LevelDesign.FindAction("Position", throwIfNotFound: true);
         m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
+        m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -129,12 +171,14 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
     private ILevelDesignActions m_LevelDesignActionsCallbackInterface;
     private readonly InputAction m_LevelDesign_Position;
     private readonly InputAction m_LevelDesign_Select;
+    private readonly InputAction m_LevelDesign_Zoom;
     public struct LevelDesignActions
     {
         private @LevelDesignControls m_Wrapper;
         public LevelDesignActions(@LevelDesignControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_LevelDesign_Position;
         public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
+        public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_LevelDesign; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -150,6 +194,9 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                 @Select.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
+                @Zoom.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_LevelDesignActionsCallbackInterface = instance;
             if (instance != null)
@@ -160,6 +207,9 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -168,5 +218,6 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
     {
         void OnPosition(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }
