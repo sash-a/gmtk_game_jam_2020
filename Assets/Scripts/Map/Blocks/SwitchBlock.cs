@@ -20,7 +20,7 @@ public class SwitchBlock : EffectBlock
     private void Start()
     {
         switchID = -1;
-        chunkID = -1;
+        chunkID = null;
         parseArgs(args);
         start();
     }
@@ -117,8 +117,8 @@ public class SwitchBlock : EffectBlock
 
         if (arg.Contains(Block.CHUNK_ID)) {
             //this switch triggers a chunk
-            int chunkID = int.Parse(arg.Split(':')[1]);
-            Chunk chunk = Chunk.chunkMap[chunkID];
+            string chunkID = arg.Split(':')[1];
+            BlockGroup chunk = BlockGroup.groupMap[chunkID];
             registerSwitchTarget(switchID, chunk);
             StartCoroutine(deactivateChunk()); // must wait for all blocks to be added to chunk first
         }
@@ -128,7 +128,7 @@ public class SwitchBlock : EffectBlock
         yield return new WaitForSeconds(0.15f);
         foreach (MapObject obj in switchTargets[switchID])
         {
-            Chunk chunk = obj.GetComponent<Chunk>();
+            BlockGroup chunk = obj.GetComponent<BlockGroup>();
             if (chunk != null) {
                 chunk.active = false;
             }

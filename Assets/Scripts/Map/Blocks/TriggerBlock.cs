@@ -1,6 +1,6 @@
 ﻿using Game.Player;
 
-public abstract class TriggerBlock : Block
+public abstract class TriggerBlock : ElevatorBlock
 {
     public static string TRIGGER_BLOCK = "trigger";
 

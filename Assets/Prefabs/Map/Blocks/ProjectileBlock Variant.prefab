@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a7aad12ea1b34eb4eb4906d5be0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  args: 
+  lastParsedArgs: 
   blockPosition: 
+  chunkID: 
   dir: u
+  dirVec: {x: 0, y: 0}
+  travelDistance: 0
+  startingHeight: 0
+  speed: 0
+  increasing: 0
   shootRate: 0.5
   projectileSpeed: 1
+  delay: 0
   projectilePrefab: {fileID: 9108674328638076821}
 --- !u!1 &9108674328638076821
 GameObject:
@@ -90,12 +99,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06443816dcf9c55449f8c2107d2c0507, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d655a180e7705be4782e40bb9e6c19bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.8, y: 4.8}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -139,8 +148,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
-    newSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

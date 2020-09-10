@@ -14,11 +14,11 @@ public class Block : MapObject
 
     [HideInInspector] public string blockPosition = ""; //T,B,L,R corners are TR etc. blank means fully contained
 
-    [HideInInspector] public int chunkID; // which chunk this object belongs to
+    [HideInInspector] public string chunkID; // which chunk this object belongs to
 
     private void Start()
     {
-        chunkID = -1; // no chunk
+        chunkID = null; // no chunk
         parseArgs(args);
         base.start();
     }
@@ -88,11 +88,11 @@ public class Block : MapObject
             return;
         }
 
-        if (chunkID != -1) {
+        if (chunkID != null) {
             //previously belonged to a chunk, must remove
             //Debug.Log(this + " starting arg parsing, with an existing chunkID: " + chunkID);
-            Chunk.removeBlock(this, chunkID);
-            chunkID = -1;
+            BlockGroup.removeBlock(this, chunkID);
+            chunkID = null;
         }
         base.parseArgs(args);
     }
@@ -105,22 +105,22 @@ public class Block : MapObject
         {
             // this object is a part of a chunk
 
-            if (chunkID != -1)
+            if (chunkID != null)
             {
                 throw new Exception("cannot assign block to chunk " + int.Parse(arg.Split(':')[1]) + " block already in chunk: " + chunkID);
             }
 
-            chunkID = int.Parse(arg.Split(':')[1]);
-            if (Chunk.chunkMap == null || !Chunk.chunkMap.ContainsKey(chunkID))
+            chunkID = arg.Split(':')[1];
+            if (BlockGroup.groupMap == null || !BlockGroup.groupMap.ContainsKey(chunkID))
             {
-                Chunk.registerChunk(chunkID);
+                BlockGroup.registerGroup(chunkID);
             }
 
             bool isSwitchBlock = this.GetType() == typeof(SwitchBlock) || this.GetType().IsSubclassOf(typeof(SwitchBlock));
 
             if (!isSwitchBlock){
                 //don't add switches to the chunks they control
-                Chunk.addBlock(this, chunkID);
+                BlockGroup.addBlock(this, chunkID);
             }
         }
     }

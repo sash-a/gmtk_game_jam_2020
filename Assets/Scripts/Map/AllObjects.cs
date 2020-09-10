@@ -35,7 +35,7 @@ public class AllObjects : MonoBehaviour
                 //has been deleted
                 continue;
             }
-            bool isChunk = obj.GetType() == typeof(Chunk) || obj.GetType().IsSubclassOf(typeof(Chunk));
+            bool isChunk = obj.GetType() == typeof(BlockGroup) || obj.GetType().IsSubclassOf(typeof(BlockGroup));
             if (isChunk) { // don't save chunks
                 continue;
             }

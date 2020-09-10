@@ -9,6 +9,9 @@ public class LevelSerializer : MonoBehaviour
 
     private void Start()
     {
+        if (levelName == "" || levelName == null) {
+            return;
+        }
         string levelPath = getLevelFilePath(levelName);
         string saveString = File.ReadAllText(levelPath);
         load(saveString);

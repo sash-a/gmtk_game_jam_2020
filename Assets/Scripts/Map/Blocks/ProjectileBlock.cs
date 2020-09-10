@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class ProjectileBlock : DirectedBlock
+public class ProjectileBlock : ElevatorBlock
 {
     static string PROJECTILE = "projectile";  // type
     static string SPEED_ARG = "speed";
     static string RATE_ARG = "rate";
     static string DELAY_ARG = "delay";
-
 
     [HideInInspector] public float shootRate = 0.5f;//every 2 seconds
     [HideInInspector] public float projectileSpeed = 1;
@@ -25,7 +24,7 @@ public class ProjectileBlock : DirectedBlock
     private void Start()
     {
         delay = 0;
-        chunkID = -1;
+        chunkID = null;
         parseArgs(args);
         start();
     }
