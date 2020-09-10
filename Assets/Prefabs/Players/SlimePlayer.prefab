@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 4400904328241726595}
   - component: {fileID: 5009916113007353503}
   - component: {fileID: 9050498371102198338}
+  - component: {fileID: 3599426059668453872}
   m_Layer: 8
   m_Name: SlimePlayer
   m_TagString: Player
@@ -201,7 +202,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.99, y: 0.74}
+    oldSize: {x: 3.96, y: 2.96}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -253,6 +254,10 @@ MonoBehaviour:
   airborn: 1
   rb: {fileID: 0}
   horizontalFlip: 1
+  shrinkSmoothingFac: 0.98
+  growSmoothingFac: 0.94
+  rotateCoeff: 25
+  squishCoeff: 0.6
 --- !u!114 &4400904328241726621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,3 +350,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3599426059668453872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400904328241726592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a0242aa7d75cc429689e136efd6c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

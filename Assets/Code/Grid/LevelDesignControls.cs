@@ -25,6 +25,14 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""4819140c-2931-4cf6-926f-2c32a53afc3d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -49,6 +57,17 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43ec607c-769f-4119-be39-f745740875f1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -58,6 +77,7 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
         // LevelDesign
         m_LevelDesign = asset.FindActionMap("LevelDesign", throwIfNotFound: true);
         m_LevelDesign_Position = m_LevelDesign.FindAction("Position", throwIfNotFound: true);
+        m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -108,11 +128,13 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_LevelDesign;
     private ILevelDesignActions m_LevelDesignActionsCallbackInterface;
     private readonly InputAction m_LevelDesign_Position;
+    private readonly InputAction m_LevelDesign_Select;
     public struct LevelDesignActions
     {
         private @LevelDesignControls m_Wrapper;
         public LevelDesignActions(@LevelDesignControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_LevelDesign_Position;
+        public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
         public InputActionMap Get() { return m_Wrapper.m_LevelDesign; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -125,6 +147,9 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                 @Position.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnPosition;
                 @Position.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnPosition;
                 @Position.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnPosition;
+                @Select.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_LevelDesignActionsCallbackInterface = instance;
             if (instance != null)
@@ -132,6 +157,9 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                 @Position.started += instance.OnPosition;
                 @Position.performed += instance.OnPosition;
                 @Position.canceled += instance.OnPosition;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -139,5 +167,6 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
     public interface ILevelDesignActions
     {
         void OnPosition(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

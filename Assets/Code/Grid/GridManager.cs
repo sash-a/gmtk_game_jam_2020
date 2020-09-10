@@ -7,17 +7,13 @@ using UnityEngine.InputSystem;
 public class GridManager : MonoBehaviour
 {
     public static GridManager instance;
-    
+
     public Grid<GridNode> grid;
 
-    [SerializeField]
-    private int width;
-    [SerializeField]
-    private int height;
-    [SerializeField]
-    private int cellSize;
-    [SerializeField]
-    private Vector3 originPos;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private int cellSize;
+    [SerializeField] private Vector3 originPos;
 
     Dictionary<Vector3, GameObject> gridObjects = new Dictionary<Vector3, GameObject>();
 
@@ -27,7 +23,7 @@ public class GridManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = GameObject.FindObjectOfType<GridManager>();
+                instance = FindObjectOfType<GridManager>();
 
                 if (instance == null)
                 {
@@ -52,9 +48,9 @@ public class GridManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
 
-        grid = new Grid<GridNode>(width, height, cellSize, originPos, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
+        grid = new Grid<GridNode>(width, height, cellSize, originPos,
+            (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
-
 
 
     public Vector3 ValidateWorldGridPosition(Vector3 position)
@@ -104,7 +100,7 @@ public class GridManager : MonoBehaviour
 
     void PrintObj()
     {
-        foreach(KeyValuePair<Vector3, GameObject> kvp in gridObjects)
+        foreach (KeyValuePair<Vector3, GameObject> kvp in gridObjects)
         {
             Debug.Log("Key: " + kvp.Key + "Value: " + kvp.Value);
         }

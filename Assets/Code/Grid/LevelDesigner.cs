@@ -32,10 +32,10 @@ public class LevelDesigner : MonoBehaviour
     {
         Vector3 mouseGridPos = getMouseGridPos();
         updateSelectionSquare(mouseGridPos);
-        //if (Input.GetMouseButton(0))
-        //{
-        //    spawnBlock(mouseGridPos);
-        //}
+        if (levelDesignControls.LevelDesign.Select.triggered)
+        {
+            spawnBlock(mouseGridPos);
+        }
     }
 
     public void saveLevel()
@@ -58,13 +58,12 @@ public class LevelDesigner : MonoBehaviour
     private void updateSelectionSquare(Vector3 mouseGridPos)
     {
         selectionSquare.transform.position = mouseGridPos;
-        selectionSquare.transform.position += new Vector3(1, 1, 0) * GridManager.instance.GetCellSize() * .5f;
     }
 
     private Vector3 getMouseGridPos() {
         Vector2 mousePos = levelDesignControls.LevelDesign.Position.ReadValue<Vector2>();
         Vector3 worldPos = Util.GetMouseWorldPosition(new Vector3(mousePos.x, mousePos.y, 0), Camera.main);
         Vector3 mouseGridPos = GridManager.instance.ValidateWorldGridPosition(worldPos);
-        return mouseGridPos;
+        return mouseGridPos + new Vector3(1, 1, 0) * GridManager.instance.GetCellSize() * .5f;
     }
 }
