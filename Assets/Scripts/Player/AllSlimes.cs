@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Code.Player;
 using UnityEngine;
 
+using Code.Player;
+
 public class AllSlimes : MonoBehaviour
 {
     public static AllSlimes singleton; 
