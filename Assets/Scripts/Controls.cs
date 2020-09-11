@@ -49,6 +49,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""febe337b-de59-4d24-8a78-d6441611b0ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -260,6 +268,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78bb3b1e-6429-4be9-80a9-51b79bd6fb6e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -359,6 +378,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
         m_LevelDesign_Move = m_LevelDesign.FindAction("Move", throwIfNotFound: true);
         m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
+        m_LevelDesign_Delete = m_LevelDesign.FindAction("Delete", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
@@ -417,6 +437,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_LevelDesign_Select;
     private readonly InputAction m_LevelDesign_Move;
     private readonly InputAction m_LevelDesign_Zoom;
+    private readonly InputAction m_LevelDesign_Delete;
     public struct LevelDesignActions
     {
         private @Controls m_Wrapper;
@@ -425,6 +446,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
         public InputAction @Move => m_Wrapper.m_LevelDesign_Move;
         public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
+        public InputAction @Delete => m_Wrapper.m_LevelDesign_Delete;
         public InputActionMap Get() { return m_Wrapper.m_LevelDesign; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,6 +468,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Delete.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnDelete;
+                @Delete.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnDelete;
+                @Delete.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnDelete;
             }
             m_Wrapper.m_LevelDesignActionsCallbackInterface = instance;
             if (instance != null)
@@ -462,6 +487,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Delete.started += instance.OnDelete;
+                @Delete.performed += instance.OnDelete;
+                @Delete.canceled += instance.OnDelete;
             }
         }
     }
@@ -521,6 +549,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnDelete(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {
