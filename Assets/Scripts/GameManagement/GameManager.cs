@@ -98,8 +98,6 @@ namespace Game
             designingLevel = false;
             var player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
             player.transform.parent = playerHolder.transform;
-            // player.transform.position = playerStartPos;
-            // player.SetActive(true);
             controls.LevelDesign.Disable();
             controls.Player.Enable();
             playLevelButton.SetActive(false); 

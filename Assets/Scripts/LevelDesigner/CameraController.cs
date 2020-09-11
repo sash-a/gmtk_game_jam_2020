@@ -11,9 +11,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomFactor;
     [SerializeField] private float zoomLerpSpeed;
     [SerializeField] private float minZoom;
-
     [SerializeField] private float maxZoom;
-
     // Move
     [SerializeField] private float moveSpeed;
     [SerializeField] private float lerpSpeed;

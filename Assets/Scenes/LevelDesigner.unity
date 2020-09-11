@@ -188,45 +188,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEditor
       objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: lerpSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: maxX
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: maxY
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: minX
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: minY
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: zoomFactor
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 8662755058159329801, guid: 3e5d9ced4dc4e9246825d394887c5fba,
-        type: 3}
-      propertyPath: zoomLerpSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e5d9ced4dc4e9246825d394887c5fba, type: 3}

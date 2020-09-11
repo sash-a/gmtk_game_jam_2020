@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Game;
+﻿using Game;
 using UnityEngine;
 
 public class LevelDesigner : MonoBehaviour
@@ -30,7 +26,7 @@ public class LevelDesigner : MonoBehaviour
     {
         if (!GridManager.Instance.IsOccupied(mouseGridPos)) {
             // is empty, can spawn
-            GameObject spawnedObject = Instantiate<GameObject>(spawnableObject, mouseGridPos, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(spawnableObject, mouseGridPos, Quaternion.identity);
             GridManager.Instance.AddGridObject(mouseGridPos, spawnedObject);
         }
     }
@@ -45,5 +41,10 @@ public class LevelDesigner : MonoBehaviour
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0));
         Vector3 mouseGridPos = GridManager.instance.ValidateWorldGridPosition(worldPos);
         return mouseGridPos + new Vector3(1, 1, 0) * GridManager.instance.GetCellSize() * .5f;
+    }
+
+    public void setBlockType(GameObject block)
+    {
+        spawnableObject = block;
     }
 }
