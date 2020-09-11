@@ -9,6 +9,7 @@ public class LevelDesigner : MonoBehaviour
 
     public string levelName;
     private Vector3 mouseGridPos;
+
     private void Awake()
     {
         selectionSquare = Instantiate(selectionSquare, Vector3.zero, Quaternion.identity);
@@ -19,11 +20,14 @@ public class LevelDesigner : MonoBehaviour
 
     void Update()
     {
-        updateSelectionSquare(mouseToWorldPos(mouseGridPos));
+        updateSelectionSquare(mouseGridPos);
     }
 
     private void spawnBlock(Vector3 mouseGridPos)
     {
+        // print("Placing condition "  + (!GridManager.Instance.IsOccupied(mouseGridPos) &&
+        //       GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y)));
+        // print("placing at: " + (int) mouseGridPos.x + " " + (int) mouseGridPos.y);
         if (!GridManager.Instance.IsOccupied(mouseGridPos) &&
             GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
         {
@@ -44,7 +48,15 @@ public class LevelDesigner : MonoBehaviour
 
     private void updateSelectionSquare(Vector3 mouseGridPos)
     {
-        selectionSquare.transform.position = mouseGridPos;
+        if (GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
+        {
+            selectionSquare.SetActive(true);
+            selectionSquare.transform.position = mouseToWorldPos(mouseGridPos);
+        }
+        else
+        {
+            selectionSquare.SetActive(false);
+        }
     }
 
     private void updateMouseGridPos(InputAction.CallbackContext ctx)
