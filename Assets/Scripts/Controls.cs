@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""96899952-ce12-4fea-ab9e-22ebab72c5e8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,6 +115,116 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""2f3d1b49-dcda-4c64-a6a2-fb5215cc0a0e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""14b4aa3e-01af-4bd3-9878-9a81c854f500"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0f3f20e8-8884-4094-a0f1-798f263a3728"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f5c66128-07c5-4e2d-a4c4-eb1a70a14c08"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4372840f-4476-4eb0-afe7-a213ef82779a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""b1ea43b3-78a6-43e6-b0f6-9055fe926cc1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""23940e1b-dd36-41fe-bcf8-e06455ba6e67"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bd713f1f-345d-4e1f-aca4-c25fee2d16b8"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ac15bc50-54ca-4f77-9a8a-0cbafbb512ac"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""36205e2d-f6bc-49cc-98fa-8976f6c0efba"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -207,6 +325,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_LevelDesign_Position = m_LevelDesign.FindAction("Position", throwIfNotFound: true);
         m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
         m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
+        m_LevelDesign_Move = m_LevelDesign.FindAction("Move", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
@@ -264,6 +383,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_LevelDesign_Position;
     private readonly InputAction m_LevelDesign_Select;
     private readonly InputAction m_LevelDesign_Zoom;
+    private readonly InputAction m_LevelDesign_Move;
     public struct LevelDesignActions
     {
         private @Controls m_Wrapper;
@@ -271,6 +391,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Position => m_Wrapper.m_LevelDesign_Position;
         public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
         public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
+        public InputAction @Move => m_Wrapper.m_LevelDesign_Move;
         public InputActionMap Get() { return m_Wrapper.m_LevelDesign; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +410,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Move.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
             }
             m_Wrapper.m_LevelDesignActionsCallbackInterface = instance;
             if (instance != null)
@@ -302,6 +426,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
         }
     }
@@ -360,6 +487,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPosition(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {

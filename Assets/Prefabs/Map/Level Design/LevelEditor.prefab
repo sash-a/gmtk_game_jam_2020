@@ -1003,10 +1003,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4c6359663db8b4cb7a42b93a4eef41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomFactor: 0.2
-  zoomLerpSpeed: 0.4
+  zoomFactor: 0.03
+  zoomLerpSpeed: 10
   minZoom: 2
   maxZoom: 10
+  moveSpeed: 0.1
+  lerpSpeed: 12
+  maxX: 10
+  maxY: 10
+  minX: -10
+  minY: -10
 --- !u!1 &3819607244045413331
 GameObject:
   m_ObjectHideFlags: 0
