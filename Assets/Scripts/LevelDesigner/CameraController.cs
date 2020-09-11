@@ -1,5 +1,6 @@
 ﻿using Game;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomFactor;
     [SerializeField] private float zoomLerpSpeed;
     [SerializeField] private float minZoom;
+
     [SerializeField] private float maxZoom;
+
     // Move
     [SerializeField] private float moveSpeed;
     [SerializeField] private float lerpSpeed;
@@ -26,20 +29,21 @@ public class CameraController : MonoBehaviour
         cam = Camera.main;
         targetZoom = cam.orthographicSize;
         targetPosition = cam.transform.position;
+
+        GameManager.instance.controls.LevelDesign.Zoom.performed += Zoom;
     }
 
     void LateUpdate()
     {
-        Zoom();
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
         Move();
     }
 
-    void Zoom()
+    void Zoom(InputAction.CallbackContext ctx)
     {
-        var scroll = (int) GameManager.instance.controls.LevelDesign.Zoom.ReadValue<float>();
+        var scroll = Mathf.Sign(ctx.ReadValue<Vector2>().y);
         targetZoom -= scroll * zoomFactor;
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
     }
 
     void Move()

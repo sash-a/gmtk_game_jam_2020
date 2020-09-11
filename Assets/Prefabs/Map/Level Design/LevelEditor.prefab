@@ -1002,7 +1002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1234003313}
   m_Layer: 5
-  m_Name: Block Types
+  m_Name: Block Type buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2766,7 +2766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4c6359663db8b4cb7a42b93a4eef41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomFactor: 0.03
+  zoomFactor: 0.5
   zoomLerpSpeed: 10
   minZoom: 2
   maxZoom: 10

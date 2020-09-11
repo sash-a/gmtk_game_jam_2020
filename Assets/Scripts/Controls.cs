@@ -35,17 +35,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Zoom"",
-                    ""type"": ""Button"",
-                    ""id"": ""72663f25-ef29-49bf-bbc9-f112138562a2"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""96899952-ce12-4fea-ab9e-22ebab72c5e8"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Zoom"",
                     ""type"": ""Value"",
-                    ""id"": ""96899952-ce12-4fea-ab9e-22ebab72c5e8"",
+                    ""id"": ""3f2f78dd-6daa-4e04-857f-50fc4514f0cd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -84,39 +84,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""a9512c22-fbe3-400d-b364-f9075ec98110"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""291ab6aa-30f1-47e8-afe2-57837e53a2d7"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""c1732318-a803-4d0c-88a7-c9a5dbdb3bd2"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""WASD"",
@@ -227,6 +194,72 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4421e824-7f2b-4b89-953b-1cfc7116d58f"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Buttons"",
+                    ""id"": ""1b92b0a2-68dc-4eb2-b516-131e4645b980"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e928342f-ef6a-4a9f-8cfd-7e38bef90da2"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cbfd6945-812f-4c35-afda-023a406010da"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e9d72a60-c567-4609-bfe8-1c897baf37eb"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3578e630-1b5d-4ca9-b126-06a53937716b"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -324,8 +357,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_LevelDesign = asset.FindActionMap("LevelDesign", throwIfNotFound: true);
         m_LevelDesign_Position = m_LevelDesign.FindAction("Position", throwIfNotFound: true);
         m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
-        m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
         m_LevelDesign_Move = m_LevelDesign.FindAction("Move", throwIfNotFound: true);
+        m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
@@ -382,16 +415,16 @@ public class @Controls : IInputActionCollection, IDisposable
     private ILevelDesignActions m_LevelDesignActionsCallbackInterface;
     private readonly InputAction m_LevelDesign_Position;
     private readonly InputAction m_LevelDesign_Select;
-    private readonly InputAction m_LevelDesign_Zoom;
     private readonly InputAction m_LevelDesign_Move;
+    private readonly InputAction m_LevelDesign_Zoom;
     public struct LevelDesignActions
     {
         private @Controls m_Wrapper;
         public LevelDesignActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_LevelDesign_Position;
         public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
-        public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
         public InputAction @Move => m_Wrapper.m_LevelDesign_Move;
+        public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_LevelDesign; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,12 +440,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Select.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnSelect;
-                @Zoom.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
-                @Zoom.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
-                @Zoom.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
                 @Move.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnMove;
+                @Zoom.started -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_LevelDesignActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_LevelDesignActionsCallbackInterface = instance;
             if (instance != null)
@@ -423,12 +456,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
-                @Zoom.started += instance.OnZoom;
-                @Zoom.performed += instance.OnZoom;
-                @Zoom.canceled += instance.OnZoom;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -486,8 +519,8 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnPosition(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {
