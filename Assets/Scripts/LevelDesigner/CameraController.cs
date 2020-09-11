@@ -35,8 +35,11 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
-        Move();
+        if (GameManager.instance.designingLevel)
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+            Move();
+        }
     }
 
     void Zoom(InputAction.CallbackContext ctx)
