@@ -100,6 +100,12 @@ MonoBehaviour:
   lastParsedArgs: 
   blockPosition: 
   chunkID: 0
+  dir: u
+  dirVec: {x: 0, y: 0}
+  travelDistance: 0
+  startingHeight: 0
+  speed: 0
+  increasing: 0
   camSpikes: 1
 --- !u!61 &2070867416278353483
 BoxCollider2D:
@@ -587,11 +593,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa145cfd0d14ee193897ca0518ada1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  designingLevel: 0
   nPlayers: 0
   loseText: {fileID: 0}
   winText: {fileID: 0}
-  requiredToFinish: 0
   exitDelay: 0
+  requiredToFinish: 0
+  playerPrefab: {fileID: 0}
+  playerHolder: {fileID: 0}
+  playerStartPos: {x: 0, y: 0, z: 0}
+  playLevelButton: {fileID: 0}
+  designLevelButton: {fileID: 0}
 --- !u!1 &9082481574797392703
 GameObject:
   m_ObjectHideFlags: 0

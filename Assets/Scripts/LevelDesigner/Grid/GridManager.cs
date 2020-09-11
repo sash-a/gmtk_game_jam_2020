@@ -77,6 +77,7 @@ public class GridManager : MonoBehaviour
 
     public void RemoveGridObject(Vector3 pos)
     {
+        Destroy(gridObjects[pos]);
         gridObjects.Remove(pos);
     }
 
@@ -87,15 +88,12 @@ public class GridManager : MonoBehaviour
 
     public bool IsOccupied(Vector3 location)
     {
-        if (GetGridObjectLocations().Contains(location))
-        {
-            //PrintStruc();
-            //Debug.Log("Grid Conflict location: " + location);
-            //Debug.Log("Grid conflict structure:" + structures[location]);
-            return true;
-        }
+        return gridObjects.ContainsKey(location);
+    }
 
-        return false;
+    public bool inGrid(int x, int y)
+    {
+        return x >= originPos.x && y >= originPos.y && x < originPos.x + width && y < originPos.y + height;
     }
 
     void PrintObj()
