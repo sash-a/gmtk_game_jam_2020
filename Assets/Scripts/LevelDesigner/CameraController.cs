@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
+using Game;
 using UnityEngine;
-using UnityEngine.InputSystem.Composites;
-using UnityEngine.InputSystem.Controls;
 
-public class CameraZoom : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     private Camera cam;
     private float targetZoom;
-    private LevelDesignControls controls;
 
     [SerializeField] private float zoomFactor;
     [SerializeField] private float zoomLerpSpeed;
@@ -20,12 +16,11 @@ public class CameraZoom : MonoBehaviour
     {
         cam = Camera.main;
         targetZoom = cam.orthographicSize;
-        controls = GetComponent<LevelDesigner>().levelDesignControls;
     }
 
     void LateUpdate()
     {
-        var scroll = (int) controls.LevelDesign.Zoom.ReadValue<float>();
+        var scroll = (int) GameManager.instance.controls.LevelDesign.Zoom.ReadValue<float>();
         targetZoom -= scroll * zoomFactor;
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);

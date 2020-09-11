@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Code.Player;
+using Game.Player;
 using TMPro;
 using UnityEngine;
 
@@ -20,9 +20,7 @@ namespace Game.Player
         public AudioClip splitSound;
 
         [HideInInspector] public int nSplits = 0;
-
-        private PlayerControls controls;
-
+        
         private static float minSize = 0;
 
         private Player player;
@@ -64,7 +62,7 @@ namespace Game.Player
 
         private void Update()
         {
-            if (AllSlimes.singleton.controls.Player.Split.triggered)
+            if (GameManager.instance.controls.Player.Split.triggered)
             {
                 Split();
             }
@@ -112,8 +110,8 @@ namespace Game.Player
 
         void ApplyInitialForces(int startDir)
         {
-            var x = AllSlimes.singleton.controls.Player.Move.ReadValue<float>();
-            var y = AllSlimes.singleton.controls.Player.Jump.ReadValue<float>();
+            var x = GameManager.instance.controls.Player.Move.ReadValue<float>();
+            var y = GameManager.instance.controls.Player.Jump.ReadValue<float>();
 
             var dir = new Vector2(x, y);  // directions held by player
             

@@ -27,8 +27,8 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
-            MoveLR((int) AllSlimes.singleton.controls.Player.Move.ReadValue<float>());
-            if (AllSlimes.singleton.controls.Player.Jump.ReadValue<float>() > 0) Jump();
+            MoveLR((int) GameManager.instance.controls.Player.Move.ReadValue<float>());
+            if (GameManager.instance.controls.Player.Jump.ReadValue<float>() > 0) Jump();
         }
 
         void Update()

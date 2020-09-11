@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/LevelDesigner/LevelDesignControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Controls.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @LevelDesignControls : IInputActionCollection, IDisposable
+public class @Controls : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @LevelDesignControls()
+    public @Controls()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""LevelDesignControls"",
+    ""name"": ""Controls"",
     ""maps"": [
         {
             ""name"": ""LevelDesign"",
@@ -111,6 +111,93 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Player"",
+            ""id"": ""04df905c-d9c6-41ec-a43e-941b644e7208"",
+            ""actions"": [
+                {
+                    ""name"": ""Split"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a627f9d-aad1-493f-9f9c-4b9bef97c77d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""9add0b23-510d-4371-887e-5cd294eeb38b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Button"",
+                    ""id"": ""15adae4f-f476-4ece-b07b-1029d0140b4b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""928b0b92-d10f-4907-a1e1-34fb89398ada"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Split"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86bfb745-239f-4077-a78a-98a6157edde9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Horizontal"",
+                    ""id"": ""64987e76-b31c-4538-a520-4876a86f51dd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""58788e43-8bf7-4dbc-872d-11ac67c80f45"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6074331b-2b5c-4717-8869-782a9fdfa39b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -120,6 +207,11 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
         m_LevelDesign_Position = m_LevelDesign.FindAction("Position", throwIfNotFound: true);
         m_LevelDesign_Select = m_LevelDesign.FindAction("Select", throwIfNotFound: true);
         m_LevelDesign_Zoom = m_LevelDesign.FindAction("Zoom", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -174,8 +266,8 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
     private readonly InputAction m_LevelDesign_Zoom;
     public struct LevelDesignActions
     {
-        private @LevelDesignControls m_Wrapper;
-        public LevelDesignActions(@LevelDesignControls wrapper) { m_Wrapper = wrapper; }
+        private @Controls m_Wrapper;
+        public LevelDesignActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_LevelDesign_Position;
         public InputAction @Select => m_Wrapper.m_LevelDesign_Select;
         public InputAction @Zoom => m_Wrapper.m_LevelDesign_Zoom;
@@ -214,10 +306,65 @@ public class @LevelDesignControls : IInputActionCollection, IDisposable
         }
     }
     public LevelDesignActions @LevelDesign => new LevelDesignActions(this);
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Split;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Move;
+    public struct PlayerActions
+    {
+        private @Controls m_Wrapper;
+        public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Split => m_Wrapper.m_Player_Split;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            {
+                @Split.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Split.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Split.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Split.started += instance.OnSplit;
+                @Split.performed += instance.OnSplit;
+                @Split.canceled += instance.OnSplit;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
     public interface ILevelDesignActions
     {
         void OnPosition(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+    }
+    public interface IPlayerActions
+    {
+        void OnSplit(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }

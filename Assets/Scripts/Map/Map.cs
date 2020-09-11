@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class Map : MonoBehaviour
@@ -40,12 +41,14 @@ public class Map : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.designingLevel) return;  // None of this should apply if we are designing the level
+        
         camTop = Mathf.Max(maxPlayerHeight, baseMapHeight);
         baseMapHeight += Time.deltaTime * mapSpeed;
 
         Vector2 blobBounds = AllSlimes.singleton.getHorizontalBounds();
         float boundsSize = (blobBounds.y - blobBounds.x) * 1.1f / mapCam.aspect;
-        // mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
+        mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize);
         mapCam.transform.position = new Vector3((blobBounds.y + blobBounds.x) / 2f, mapCam.transform.position.y, mapCam.transform.position.z);
 
         spikes.positionSpikes();

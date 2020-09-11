@@ -1,15 +1,13 @@
-﻿using Game.Player;
+﻿using System;
+using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
-using Code.Player;
+using Game;
 using UnityEngine;
-
-using Code.Player;
 
 public class AllSlimes : MonoBehaviour
 {
     public static AllSlimes singleton; 
-    public PlayerControls controls;
 
     public HashSet<Player> livingPlayers;
 
@@ -17,9 +15,6 @@ public class AllSlimes : MonoBehaviour
     {
         livingPlayers = new HashSet<Player>();
         singleton = this;
-
-        controls = new PlayerControls();
-        controls.Enable();
     }
 
     public Vector2 getHorizontalBounds() {

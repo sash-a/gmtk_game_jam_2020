@@ -10,26 +10,39 @@ namespace Game
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance;
+
+        public Controls controls;
+
+        public bool designingLevel;
         
         [HideInInspector] public int nPlayers;
-        
-        public TextMeshProUGUI loseText;
-        public TextMeshProUGUI winText;
+        [SerializeField] private TextMeshProUGUI loseText;
+        [SerializeField] private TextMeshProUGUI winText;
+        [SerializeField] public float exitDelay;
         public int requiredToFinish;
-
-        public float exitDelay;
 
         private void Awake()
         {
             instance = this;
+            controls = new Controls();
+            controls.Enable();
+            // if (designingLevel)
+            //     controls.LevelDesign.Enable();
+            // else
+            //     controls.Player.Enable();
+            
             nPlayers = 0;
-            loseText.enabled = false;
-            winText.enabled = false;
+
+            if (!designingLevel)
+            {
+                loseText.enabled = false;
+                winText.enabled = false;
+            }
         }
 
         void Update()
         {
-            if (nPlayers == 0)
+            if (nPlayers == 0 && !designingLevel)
             {
                 if (Finished.instance.nFinished < requiredToFinish)
                     Lose();
@@ -55,7 +68,7 @@ namespace Game
             yield return new WaitForSeconds(exitDelay);
             SceneManager.LoadScene(0);
         }
-        
+
         private IEnumerator DelaySceneSwitch()
         {
             yield return new WaitForSeconds(exitDelay);

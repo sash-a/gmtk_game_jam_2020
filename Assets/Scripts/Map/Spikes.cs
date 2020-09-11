@@ -13,6 +13,7 @@ public class Spikes : EffectBlock
     void Start()
     {
         // Why!? just know where the render is!
+        // wtf is this code actually
         renderer = GetComponent<SpriteRenderer>();
         if (renderer == null) {
             renderer = GetComponentInChildren<SpriteRenderer>();
