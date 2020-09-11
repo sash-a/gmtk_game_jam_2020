@@ -36,4 +36,12 @@ public class AllSlimes : MonoBehaviour
         }
         return tot;
     }
+
+    public void destroyAllPlayers()
+    {
+        foreach (Player player in livingPlayers)
+        {
+            Destroy(player.gameObject);
+        }
+    }
 }

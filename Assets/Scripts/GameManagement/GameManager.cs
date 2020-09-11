@@ -1,9 +1,12 @@
-﻿using System;
+﻿/*
+ * Handles game state transitions ie from designing to playing
+ */
+
 using System.Collections;
-using Game.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -14,23 +17,29 @@ namespace Game
         public Controls controls;
 
         public bool designingLevel;
-        
+
         [HideInInspector] public int nPlayers;
         [SerializeField] private TextMeshProUGUI loseText;
         [SerializeField] private TextMeshProUGUI winText;
         [SerializeField] public float exitDelay;
         public int requiredToFinish;
 
+        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private GameObject playerHolder;
+        [SerializeField] private Vector3 playerStartPos;
+
+        [SerializeField] private GameObject playLevelButton;
+        [SerializeField] private GameObject designLevelButton;
+        
         private void Awake()
         {
             instance = this;
             controls = new Controls();
-            controls.Enable();
-            // if (designingLevel)
-            //     controls.LevelDesign.Enable();
-            // else
-            //     controls.Player.Enable();
-            
+            if (designingLevel)
+                controls.LevelDesign.Enable();
+            else
+                controls.Player.Enable();
+
             nPlayers = 0;
 
             if (!designingLevel)
@@ -82,6 +91,29 @@ namespace Game
         public void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void PlayLevel()
+        {
+            designingLevel = false;
+            var player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
+            player.transform.parent = playerHolder.transform;
+            // player.transform.position = playerStartPos;
+            // player.SetActive(true);
+            controls.LevelDesign.Disable();
+            controls.Player.Enable();
+            playLevelButton.SetActive(false); 
+            designLevelButton.SetActive(true);
+        }
+
+        public void DesignLevel()
+        {
+            designingLevel = true;
+            AllSlimes.singleton.destroyAllPlayers();
+            controls.LevelDesign.Enable();
+            controls.Player.Disable();
+            playLevelButton.SetActive(true);
+            designLevelButton.SetActive(false);
         }
     }
 }
