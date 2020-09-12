@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dc65de63589de46892b7ae415b05ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  args: 
+  lastParsedArgs: 
   blockPosition: 
+  chunkID: 
+  dir: u
+  dirVec: {x: 0, y: 0}
+  travelDistance: 0
+  startingHeight: 0
+  speed: 0
+  increasing: 0
 --- !u!1001 &1245353968917386964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,16 +32,42 @@ PrefabInstance:
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.06587076
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44d3ec87dfde16c4990748246af38a30,
+        type: 3}
+    - target: {fileID: 631942787034399125, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 631942787034399125, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 631942787034399125, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 631942787034399125, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982642805907559493, guid: 4320096a94d328a4ca90ee65358a542c,
@@ -94,6 +129,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GravityBlock Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174804940406447171, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174804940406447171, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174804940406447171, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174804940406447171, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174804940406447171, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8385275526969564837, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}

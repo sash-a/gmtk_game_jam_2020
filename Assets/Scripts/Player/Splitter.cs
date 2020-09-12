@@ -27,7 +27,7 @@ namespace Game.Player
 
         void Awake()
         {
-            player = GetComponent<Player>();
+            player = GetComponentInParent<Player>();
 
             Color c = getSplitColour();
             c.a = 0.6f;
