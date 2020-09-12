@@ -14,6 +14,10 @@ public class LevelDesigner : MonoBehaviour
     private void Awake()
     {
         selectionSquare = Instantiate(selectionSquare, Vector3.zero, Quaternion.identity);
+    }
+
+    private void Start()
+    {
         GameManager.instance.controls.LevelDesign.Select.performed += _ => spawnBlock(mouseGridPos);
         GameManager.instance.controls.LevelDesign.Delete.performed += _ => removeBlock(mouseGridPos);
         GameManager.instance.controls.LevelDesign.Position.performed += updateMouseGridPos;
