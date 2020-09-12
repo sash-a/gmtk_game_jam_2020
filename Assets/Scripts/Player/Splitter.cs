@@ -31,7 +31,7 @@ namespace Game.Player
 
             Color c = getSplitColour();
             c.a = 0.6f;
-            GetComponent<SpriteRenderer>().color = c;
+            player.sprite.color = c;
 
             nSplits = 0;
         }

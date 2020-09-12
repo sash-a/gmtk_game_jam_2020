@@ -22,7 +22,7 @@ namespace Game.Player
             splitter = GetComponent<Splitter>();
             shaker = GetComponent<ObjectShake>();
             death = GetComponent<Death>();
-            sprite = GetComponent<SpriteRenderer>();
+            sprite = GetComponentInChildren<SpriteRenderer>();
 
             AllSlimes.singleton.livingPlayers.Add(this);//registers player
         }

@@ -18,8 +18,8 @@ public class Squasher : MonoBehaviour
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = GetComponent<Player>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        player = GetComponentInParent<Player>();
     }
 
     void Update()

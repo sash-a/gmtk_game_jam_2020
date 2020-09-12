@@ -1,4 +1,5 @@
-﻿using Game;
+﻿using System;
+using Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,9 +26,6 @@ public class LevelDesigner : MonoBehaviour
 
     private void spawnBlock(Vector3 mouseGridPos)
     {
-        // print("Placing condition "  + (!GridManager.Instance.IsOccupied(mouseGridPos) &&
-        //       GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y)));
-        // print("placing at: " + (int) mouseGridPos.x + " " + (int) mouseGridPos.y);
         if (!GridManager.Instance.IsOccupied(mouseGridPos) &&
             GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
         {

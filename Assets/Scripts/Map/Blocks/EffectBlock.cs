@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Game.Player;
 using UnityEngine;
 
-public  abstract class EffectBlock : TriggerBlock
+public abstract class EffectBlock : TriggerBlock
 {
-
     /*
      * One effect per 
      */
@@ -14,7 +13,7 @@ public  abstract class EffectBlock : TriggerBlock
     public static string EFFECT_BLOCK = "effect";
     public HashSet<PlayerController> affectedPlayers = new HashSet<PlayerController>();
 
-    protected bool allowReeffects;
+    protected bool allowReEffects;
 
     public override string getTypeString()
     {
@@ -23,7 +22,8 @@ public  abstract class EffectBlock : TriggerBlock
 
     internal override void trigger(PlayerController pc)
     {
-        if (!active) {
+        if (!active)
+        {
             return;
         }
 
@@ -42,14 +42,14 @@ public  abstract class EffectBlock : TriggerBlock
             return;
         }
 
-        if (allowReeffects) {
+        if (allowReEffects)
+        {
             affectedPlayers.Remove(pc);
         }
+
         unaffect(pc);
     }
 
     public abstract void affect(PlayerController pc);
     public abstract void unaffect(PlayerController pc);
-
-    
 }

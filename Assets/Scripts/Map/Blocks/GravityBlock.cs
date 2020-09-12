@@ -12,7 +12,7 @@ public class GravityBlock : EffectBlock
     public override void start()
     {
         base.start();
-        allowReeffects = true;
+        allowReEffects = true;
     }
 
     public override void affect(PlayerController pc)

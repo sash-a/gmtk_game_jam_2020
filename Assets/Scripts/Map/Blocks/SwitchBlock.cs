@@ -28,7 +28,7 @@ public class SwitchBlock : EffectBlock
     public override void start()
     {
         base.start();
-        allowReeffects = true;
+        allowReEffects = true;
         updateSwitch();
         active = true;
     }
@@ -105,13 +105,13 @@ public class SwitchBlock : EffectBlock
             }
             if (switchMap.ContainsKey(switchID)){
                 if (switchMap[switchID] == this)
-                {//remove old switch mapping
-                    switchMap.Remove(switchID);
+                {    
+                    switchMap.Remove(switchID); //remove old switch mapping
                 }
             }
 
             switchID = newSwitchID;
-            switchMap.Add(switchID, this);//registers this switch
+            switchMap.Add(switchID, this); //registers this switch
             return;
         }
 
@@ -120,7 +120,7 @@ public class SwitchBlock : EffectBlock
             string chunkID = arg.Split(':')[1];
             BlockGroup chunk = BlockGroup.groupMap[chunkID];
             registerSwitchTarget(switchID, chunk);
-            StartCoroutine(deactivateChunk()); // must wait for all blocks to be added to chunk first
+            StartCoroutine(deactivateChunk()); //must wait for all blocks to be added to chunk first
         }
     }
 

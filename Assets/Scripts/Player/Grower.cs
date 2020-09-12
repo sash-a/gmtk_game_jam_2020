@@ -22,14 +22,17 @@ namespace Game.Player
         public float shakePercent; // Percent of max size, at which player starts shaking
 
         private Player player;
-
         //public float size { get { return gameObject.transform.localScale.x; } }
         public float size = 0.15f;
+
+        private Animator animator;
+        private static readonly int animatorShakeProperty = Animator.StringToHash("Shake");
 
 
         private void Awake()
         {
             player = GetComponent<Player>();
+            animator = GetComponentInChildren<Animator>();
         }
 
         public void Start()
@@ -47,8 +50,9 @@ namespace Game.Player
                 player.splitter.Split();
             }
 
-            if (AlmostTooBig())
-                player.shaker.Shake();
+            animator.SetBool(animatorShakeProperty, AlmostTooBig());
+            // if (AlmostTooBig())
+            //     player.shaker.Shake();
 
             if (grow && !TooBig())
             {
