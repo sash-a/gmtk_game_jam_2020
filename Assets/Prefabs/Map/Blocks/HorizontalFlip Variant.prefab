@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fd5c33d0d5e834682ca532726d1d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  args: 
+  lastParsedArgs: 
   blockPosition: 
+  chunkID: 
+  dir: u
+  dirVec: {x: 0, y: 0}
+  travelDistance: 0
+  startingHeight: 0
+  speed: 0
+  increasing: 0
 --- !u!1001 &7275270400361438963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,18 +32,24 @@ PrefabInstance:
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.03127098
+      value: 0.7607844
       objectReference: {fileID: 0}
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.7607844
       objectReference: {fileID: 0}
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.7607844
       objectReference: {fileID: 0}
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 38a5e221b1953ee4590d7e2d865ef9f2,
+        type: 3}
     - target: {fileID: 7982642805907559493, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_LocalPosition.x
