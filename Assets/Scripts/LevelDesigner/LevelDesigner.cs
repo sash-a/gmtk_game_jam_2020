@@ -8,7 +8,6 @@ public class LevelDesigner : MonoBehaviour
     public GameObject selectionSquare;
     public GameObject spawnableObject;
 
-    public string levelName;
     private Vector3 mouseGridPos;
 
     private void Awake()

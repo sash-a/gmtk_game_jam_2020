@@ -6,9 +6,6 @@ using System;
 
 public class ElevatorBlock : DirectedBlock
 {
-    static string ELEVATOR = "elevator";
-    static string MASTER = "master";
-
     static string DISTANCE = "dist";
     static string SPEED = "speed";
 
@@ -106,10 +103,5 @@ public class ElevatorBlock : DirectedBlock
         if (arg.Contains(SPEED)) {
             speed = float.Parse(argVal, CultureInfo.InvariantCulture);
         }
-    }
-
-    public override string getTypeString()
-    {
-        return ELEVATOR;
     }
 }
