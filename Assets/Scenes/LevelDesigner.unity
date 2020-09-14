@@ -2519,7 +2519,7 @@ PrefabInstance:
     - target: {fileID: 5817932063597121109, guid: 1fbc68aee9b7364458aec853b976611d,
         type: 3}
       propertyPath: args
-      value: 'shootDir:r, dir:u, dist:4, speed: 3'
+      value: 'shootDir:r, dir:u, dist:4, speed: 3, shootSpeed:3'
       objectReference: {fileID: 0}
     - target: {fileID: 6541411482961782375, guid: 1fbc68aee9b7364458aec853b976611d,
         type: 3}
