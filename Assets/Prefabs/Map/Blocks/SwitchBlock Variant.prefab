@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b54a30b1cab24abfc2f71c1b3e569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  args: 
+  lastParsedArgs: 
   blockPosition: 
+  chunkID: 
+  dir: u
+  dirVec: {x: 0, y: 0}
+  travelDistance: 0
+  startingHeight: 0
+  speed: 0
+  increasing: 0
 --- !u!1001 &841131524009860857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,6 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8385275526969564837, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}
+    - {fileID: 6668915851545757125, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4320096a94d328a4ca90ee65358a542c, type: 3}
 --- !u!1 &9107074584640406104 stripped
 GameObject:

@@ -25,12 +25,17 @@ public class SwitchBlock : EffectBlock
         start();
     }
 
+    //public override void start()
+    //{
+    //    base.start();
+    //    allowReEffects = true;
+    //    updateSwitch();
+    //    active = true;
+    //}
+
     public override void start()
     {
         base.start();
-        allowReEffects = true;
-        updateSwitch();
-        active = true;
     }
 
     public bool on

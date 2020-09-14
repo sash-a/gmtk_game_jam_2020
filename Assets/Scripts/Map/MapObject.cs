@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public abstract class MapObject : MonoBehaviour
@@ -12,10 +13,33 @@ public abstract class MapObject : MonoBehaviour
     static string POSITION_Y = "position_y";
     public static string[] positions = new string[] { POSITION_X, POSITION_Y };
 
+    public Dictionary<string, string> getArgMap()
+    {
+        Dictionary<string, string> am = new Dictionary<string, string>();
+        string[] argList = args.Split(',');
+        foreach (string arg in argList)
+        {
+            string cleanArg = arg.Replace(" ", "");
+            string key = cleanArg.Split(':')[0];
+            string value = cleanArg.Split(':')[1];
+            if (am.ContainsKey(key))
+            {
+                throw new Exception("duplicate arg in args: " + args);
+            }
+            am.Add(key, value);
+        }
+        return am;
+    }
+
     private void Start()
     {
         parseArgs(args);
         start();
+    }
+
+    private void Update()
+    {
+        update();
     }
 
     public virtual void start() {
@@ -25,6 +49,8 @@ public abstract class MapObject : MonoBehaviour
             active = false;
         }
     }
+
+    public virtual void update() { }
 
     private bool activeValue = true;
     public bool active {

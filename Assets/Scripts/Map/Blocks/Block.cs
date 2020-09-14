@@ -88,9 +88,9 @@ public class Block : MapObject
             return;
         }
 
-        if (chunkID != null) {
+        if (chunkID != null && chunkID != "") {
             //previously belonged to a chunk, must remove
-            //Debug.Log(this + " starting arg parsing, with an existing chunkID: " + chunkID);
+            //Debug.Log(this + " starting arg parsing, with an existing chunkID: '" + chunkID + "'");
             BlockGroup.removeBlock(this, chunkID);
             chunkID = null;
         }

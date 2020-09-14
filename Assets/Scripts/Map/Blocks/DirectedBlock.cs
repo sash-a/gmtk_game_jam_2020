@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DirectedBlock : Block
 {
-    static string DIR_ARG = "dir";
+    public static string DIR_ARG = "dir";
 
     [HideInInspector] public string dir = "u";//u,d,l,r
     [HideInInspector] public Vector2 dirVec;
@@ -32,7 +32,7 @@ public class DirectedBlock : Block
         base.parseArg(arg);
         if (arg.Contains(DIR_ARG + ":"))
         {
-            Debug.Log("changing direction to: " + arg);
+            //Debug.Log("changing direction to: " + arg);
             dir = argVal;
             setDirVec();
         }

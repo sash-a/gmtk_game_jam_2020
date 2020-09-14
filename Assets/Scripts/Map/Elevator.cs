@@ -20,21 +20,26 @@ public class Elevator: BlockGroup
         masterBlock = master;
     }
 
-    private void Update()
+    public override void finishGroup()
     {
-        if (!masterBlock.active)
-        {//elevator is using a disabled switch
-            return;
+        base.finishGroup();
+        //find the master elevator, inject its elevator args into the other members of the group
+        foreach (ElevatorBlock block in blocks)
+        {//find master elevator
+            if (!block.isConfiguredAsElevator) {
+                continue;
+            }
+            if (masterBlock != null) {
+                throw new System.Exception("multiple elevator blocks in group " + groupID);
+            }
+            masterBlock = block;
         }
-        int dim = masterBlock.dim;
-        if (transform.position[dim] > masterBlock.startingHeight + masterBlock.travelDistance) {
-            masterBlock.increasing = false;
+        foreach (ElevatorBlock block in blocks)
+        {//inject its elevator args
+            if (block == masterBlock) {
+                continue;
+            }
+            block.parseArgs(block.args + masterBlock.getElevatorArgs());
         }
-        if (transform.position[dim] < masterBlock.startingHeight) {
-            masterBlock.increasing = true;
-        }
-        Vector3 movement = Vector3.zero;
-        movement[dim] = masterBlock.speed * Time.deltaTime * (masterBlock.increasing ? 1:-1);
-        transform.position = transform.position + movement;
     }
 }
