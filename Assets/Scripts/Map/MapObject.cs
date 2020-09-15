@@ -117,6 +117,7 @@ public abstract class MapObject : MonoBehaviour
 
     public virtual void parseArgs(string args)
     {
+        args = args.Replace(" ", "");
         if (args == lastParsedArgs) {
             return;
         }

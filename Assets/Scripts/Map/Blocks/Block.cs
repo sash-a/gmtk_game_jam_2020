@@ -104,8 +104,8 @@ public class Block : MapObject
         if (arg.Contains(CHUNK_ID))
         {
             // this object is a part of a chunk
-
-            if (chunkID != null)
+            Debug.Log("found chunked block, id: " + chunkID);
+            if (chunkID != null && chunkID != "")
             {
                 throw new Exception("cannot assign block to chunk " + int.Parse(arg.Split(':')[1]) + " block already in chunk: " + chunkID);
             }

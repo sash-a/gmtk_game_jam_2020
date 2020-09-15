@@ -21,13 +21,13 @@ public class ElevatorBlock : DirectedBlock
 
     private void Start()
     {
-        travelDistance = -1;
-        speed = -1;
+
         increasing = positiveDir; // to start in right dir
         chunkID = null;
+        startVal = transform.position[dim];
+
         parseArgs(args);
 
-        startVal = transform.position[dim];
         base.start();
     }
 
@@ -91,6 +91,22 @@ public class ElevatorBlock : DirectedBlock
     }
 
     public bool isConfiguredAsElevator { get { return travelDistance != -1 && speed != -1; } } // has both elevator parameters
+
+    public override void parseArgs(string args)
+    {
+        if (isConfiguredAsElevator) {
+            resetElevator();
+        }
+        travelDistance = -1;
+        speed = -1;
+        base.parseArgs(args);
+
+        if (args.Contains(MapObject.positions[dim])) {
+            //moved block with arg
+            startVal = transform.position[dim];
+        }
+
+    }
 
     internal override void parseArg(string arg)
     {

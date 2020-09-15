@@ -16,7 +16,6 @@ public class BlockGroup: MapObject
     public override void start()
     {
         base.start();
-        waitAndFinishGroup();
     }
 
     public void waitAndFinishGroup() {
@@ -29,17 +28,25 @@ public class BlockGroup: MapObject
         finishGroup();
     }
 
+    public override void parseArgs(string args)
+    {
+        base.parseArgs(args);
+        waitAndFinishGroup();
+    }
+
     public virtual void finishGroup(){
         //find the master elevator, inject its elevator args into the other members of the group
         ElevatorBlock masterBlock = null;
         foreach (ElevatorBlock block in blocks)
         {//find master elevator
+            Debug.Log("block: " + block);
             block.transform.parent = transform;
+
             if (!block.isConfiguredAsElevator)
             {
                 continue;
             }
-            block.resetElevator();
+            block.resetElevator(); //so they can depart at same time
             if (masterBlock != null)
             {
                 throw new System.Exception("multiple elevator blocks in group " + groupID);

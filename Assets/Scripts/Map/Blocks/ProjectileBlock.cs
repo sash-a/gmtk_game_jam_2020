@@ -40,7 +40,6 @@ public class ProjectileBlock : ElevatorBlock
         projectileSpeed = 2;
         shootRate = 0.5f;
         parseArgs(args);
-        setShootDirVec();
         start();
     }
 
@@ -48,7 +47,6 @@ public class ProjectileBlock : ElevatorBlock
     {
         base.start();
         timeSinceShot = shootPeriod - delay; // if delay=0 will fire immediately
-        transform.rotation = Quaternion.Euler(0, 0, getAimAngle());
     }
 
     public override void update()
@@ -97,6 +95,13 @@ public class ProjectileBlock : ElevatorBlock
             // just started firing again
             timeSinceShot = shootPeriod - delay;
         }
+    }
+
+    public override void parseArgs(string args)
+    {
+        base.parseArgs(args);
+        setShootDirVec();
+        transform.rotation = Quaternion.Euler(0, 0, getAimAngle());
     }
 
     internal override void parseArg(string arg)
