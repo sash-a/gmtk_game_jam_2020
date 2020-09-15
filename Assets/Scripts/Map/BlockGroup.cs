@@ -39,7 +39,6 @@ public class BlockGroup: MapObject
         ElevatorBlock masterBlock = null;
         foreach (ElevatorBlock block in blocks)
         {//find master elevator
-            Debug.Log("group block: " + block);
             block.transform.parent = transform;
 
             if (!block.isConfiguredAsElevator)

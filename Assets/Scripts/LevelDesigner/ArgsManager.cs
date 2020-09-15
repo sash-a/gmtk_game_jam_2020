@@ -36,7 +36,7 @@ public class ArgsManager : MonoBehaviour
             return;
         }
         selectedBlock = block;
-        Debug.Log("selected block: " + block);
+        //Debug.Log("selected block: " + block);
         setValue(block.args);
     }
 

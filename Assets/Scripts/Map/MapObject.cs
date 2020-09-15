@@ -128,7 +128,14 @@ public abstract class MapObject : MonoBehaviour
         string[] argList = args.Split(',');
         foreach (string arg in argList)
         {
-            parseArg(arg);
+            try
+            {
+                parseArg(arg);
+            }
+            catch (Exception e) {
+                Debug.Log("cannot parse argument '" + arg + "' from " + this + " args: " + args);
+            }
+            
         }
     }
 

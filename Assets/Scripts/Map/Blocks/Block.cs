@@ -110,7 +110,6 @@ public class Block : MapObject
             }
 
             chunkID = arg.Split(':')[1];
-            Debug.Log("found chunked block, id: '" + chunkID + "'");
 
             if (BlockGroup.groupMap == null || !BlockGroup.groupMap.ContainsKey(chunkID))
             {

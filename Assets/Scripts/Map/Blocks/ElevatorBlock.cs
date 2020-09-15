@@ -12,9 +12,9 @@ public class ElevatorBlock : DirectedBlock
     static string[] ELEVATOR_ARGS = new string[] { DISTANCE, SPEED , DirectedBlock.DIR_ARG};
 
 
-    [HideInInspector] public int travelDistance;
-    [HideInInspector] public float startVal;  //which dimVal the elevator started at
-    [HideInInspector] public float speed;
+    public int travelDistance;
+    public float startVal;  //which dimVal the elevator started at
+     public float speed;
 
     [HideInInspector] public bool increasing; // pos or neg in dim
 
@@ -94,12 +94,20 @@ public class ElevatorBlock : DirectedBlock
 
     public override void parseArgs(string args)
     {
+        args = args.Replace(" ", "");
+
         if (isConfiguredAsElevator) {
+            //was an elevator, has now changed params. must reset
             resetElevator();
+            if (lastParsedArgs != args)
+            {
+                travelDistance = -1;
+                speed = -1;
+            }
         }
-        travelDistance = -1;
-        speed = -1;
+
         base.parseArgs(args);
+        
 
         if (args.Contains(MapObject.positions[dim])) {
             //moved block with arg
