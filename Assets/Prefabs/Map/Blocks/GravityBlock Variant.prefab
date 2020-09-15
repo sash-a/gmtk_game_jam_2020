@@ -48,7 +48,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: cbe849ad71a9bcf4c8c831a80e913163,
+      objectReference: {fileID: 21300000, guid: d1670026cc2a52648a742974a6317214,
         type: 3}
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
@@ -63,6 +63,11 @@ PrefabInstance:
     - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
         type: 3}
       propertyPath: m_FlipY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422189844510667456, guid: 4320096a94d328a4ca90ee65358a542c,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 631942787034399125, guid: 4320096a94d328a4ca90ee65358a542c,

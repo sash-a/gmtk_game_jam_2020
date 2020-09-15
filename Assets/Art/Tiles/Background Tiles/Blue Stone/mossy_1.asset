@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mossy_1
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 03ee8a35c25ab234e9e1104da20fda90, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   m_Transform:
     e00: 1
     e01: 0
