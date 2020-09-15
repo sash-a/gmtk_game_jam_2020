@@ -11,6 +11,67 @@ public class BlockGroup: MapObject
 
     public string groupID;
 
+    public HashSet<Block> blocks { get { return groupBlocks[groupID]; } }
+
+    public override void start()
+    {
+        base.start();
+    }
+
+    public void waitAndFinishGroup() {
+        StartCoroutine(WaitAndFinishGroup());
+    }
+
+    IEnumerator WaitAndFinishGroup()
+    {//waits for all blocks to be added to the group
+        yield return new WaitForSecondsRealtime(0.1f);
+        finishGroup();
+    }
+
+    public override void parseArgs(string args)
+    {
+        base.parseArgs(args);
+        waitAndFinishGroup();
+    }
+
+    public virtual void finishGroup(){
+        //find the master elevator, inject its elevator args into the other members of the group
+        ElevatorBlock masterBlock = null;
+        foreach (ElevatorBlock block in blocks)
+        {//find master elevator
+            block.transform.parent = transform;
+
+            if (!block.isConfiguredAsElevator)
+            {
+                continue;
+            }
+            block.resetElevator(); //so they can depart at same time
+            if (masterBlock != null)
+            {
+                throw new System.Exception("multiple elevator blocks in group " + groupID);
+            }
+            masterBlock = block;
+        }
+        if (masterBlock == null) { // no elevators in group
+            return;
+        }
+        List<ElevatorBlock> blockList = new List<ElevatorBlock>();
+        foreach (ElevatorBlock block in blocks)
+        {
+            blockList.Add(block);
+        }
+        foreach (ElevatorBlock block in blockList)
+        {//inject its elevator args
+            if (block == masterBlock)
+            {
+                continue;
+            }
+            string blockArgs = block.args + (block.args == "" ? "" : ",") + masterBlock.getElevatorArgs();
+            //Debug.Log("injecting " + blockArgs + " into block " + block + " master args: " + masterBlock.args);
+            block.parseArgs(blockArgs);
+        }        
+    }
+
     internal static void registerGroup(string groupID)
     {
         if (groupMap == null) {
@@ -36,8 +97,9 @@ public class BlockGroup: MapObject
         BlockGroup group = groupMap[groupID];
         block.transform.parent = group.transform.parent;
         groupBlocks[groupID].Remove(block);
-        bool hasSwitch = SwitchBlock.targetSwitches.ContainsKey(block);
+        bool hasSwitch = SwitchBlock.targetSwitches != null && SwitchBlock.targetSwitches.ContainsKey(block);
         block.active = !hasSwitch;
+        //Debug.Log("removed block " + block + " from group: " + groupID);
     }
 
     internal static void addBlock(Block block, string groupID)

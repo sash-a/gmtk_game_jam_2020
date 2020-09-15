@@ -88,9 +88,9 @@ public class Block : MapObject
             return;
         }
 
-        if (chunkID != null) {
+        if (chunkID != null && chunkID != "") {
             //previously belonged to a chunk, must remove
-            //Debug.Log(this + " starting arg parsing, with an existing chunkID: " + chunkID);
+            //Debug.Log(this + " starting arg parsing, with an existing chunkID: '" + chunkID + "'");
             BlockGroup.removeBlock(this, chunkID);
             chunkID = null;
         }
@@ -104,13 +104,13 @@ public class Block : MapObject
         if (arg.Contains(CHUNK_ID))
         {
             // this object is a part of a chunk
-
-            if (chunkID != null)
+            if (chunkID != null && chunkID != "")
             {
                 throw new Exception("cannot assign block to chunk " + int.Parse(arg.Split(':')[1]) + " block already in chunk: " + chunkID);
             }
 
             chunkID = arg.Split(':')[1];
+
             if (BlockGroup.groupMap == null || !BlockGroup.groupMap.ContainsKey(chunkID))
             {
                 BlockGroup.registerGroup(chunkID);

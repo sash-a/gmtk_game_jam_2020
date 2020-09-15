@@ -7,8 +7,8 @@ public class LevelDesigner : MonoBehaviour
 {
     public GameObject selectionSquare;
     public GameObject spawnableObject;
+    public ArgsManager argsManager;
 
-    public string levelName;
     private Vector3 mouseGridPos;
 
     private void Awake()
@@ -50,10 +50,11 @@ public class LevelDesigner : MonoBehaviour
 
     private void updateSelectionSquare(Vector3 mouseGridPos)
     {
-        if (GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
+        if (GridManager.Instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
         {
             selectionSquare.SetActive(true);
             selectionSquare.transform.position = mouseToWorldPos(mouseGridPos);
+            argsManager.selectBlockAt(mouseGridPos);
         }
         else
         {

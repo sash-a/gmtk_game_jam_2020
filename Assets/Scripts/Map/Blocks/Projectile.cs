@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
         PlayerController pc = collision.GetComponent<PlayerController>();
         if(pc!= null)
         {
+            Debug.Log("hit player");
             Destroy(pc.gameObject);
         }
         Destroy(gameObject);
