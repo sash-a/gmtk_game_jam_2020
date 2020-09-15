@@ -21,6 +21,8 @@ public class SwitchBlock : EffectBlock
     {
         switchID = -1;
         chunkID = null;
+        travelDistance = -1;
+        speed = -1;
         parseArgs(args);
         start();
     }

@@ -12,9 +12,9 @@ public class ElevatorBlock : DirectedBlock
     static string[] ELEVATOR_ARGS = new string[] { DISTANCE, SPEED , DirectedBlock.DIR_ARG};
 
 
-    public int travelDistance;
-    public float startVal;  //which dimVal the elevator started at
-     public float speed;
+    [HideInInspector] public int travelDistance;
+    [HideInInspector] public float startVal;  //which dimVal the elevator started at
+    [HideInInspector] public float speed;
 
     [HideInInspector] public bool increasing; // pos or neg in dim
 
@@ -22,6 +22,8 @@ public class ElevatorBlock : DirectedBlock
     private void Start()
     {
 
+        travelDistance = -1;
+        speed = -1;
         increasing = positiveDir; // to start in right dir
         chunkID = null;
         startVal = transform.position[dim];
@@ -30,6 +32,7 @@ public class ElevatorBlock : DirectedBlock
 
         base.start();
     }
+
 
     public override void update()
     {
@@ -64,6 +67,7 @@ public class ElevatorBlock : DirectedBlock
 
     public void resetElevator()
     {
+        Debug.Log("resetting elevator " + this);
         Vector3 pos = transform.position;
         pos[dim] = startVal;
         transform.position = pos;
@@ -98,6 +102,7 @@ public class ElevatorBlock : DirectedBlock
 
         if (isConfiguredAsElevator) {
             //was an elevator, has now changed params. must reset
+            //Debug.Log("found configured elevator: " + this + " trav: " + travelDistance + " speed: " + speed);
             resetElevator();
             if (lastParsedArgs != args)
             {

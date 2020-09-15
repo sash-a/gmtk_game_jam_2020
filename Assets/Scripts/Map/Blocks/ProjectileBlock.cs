@@ -39,6 +39,8 @@ public class ProjectileBlock : ElevatorBlock
         chunkID = null;
         projectileSpeed = 2;
         shootRate = 0.5f;
+        travelDistance = -1;
+        speed = -1;
         parseArgs(args);
         start();
     }
