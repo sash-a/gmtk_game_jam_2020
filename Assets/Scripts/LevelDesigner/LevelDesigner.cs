@@ -36,6 +36,28 @@ public class LevelDesigner : MonoBehaviour
             // is empty and in grid, can spawn
             GameObject spawnedObject = Instantiate(spawnableObject, mouseToWorldPos(mouseGridPos), Quaternion.identity);
             GridManager.Instance.AddGridObject(mouseGridPos, spawnedObject);
+
+            MapObject spawnedMapObject = spawnedObject.GetComponent<MapObject>();
+            spawnedMapObject.setAdjacecyString(GridManager.Instance.getAdjacencyString(mouseGridPos));
+
+            Vector3 neighbourPos;
+
+            for (int dim = 0; dim < 2; dim++) // update the surrounding blocks adjacency strings
+            {
+                for (int off = -1; off < 2; off++)
+                {
+                    neighbourPos = mouseGridPos;
+
+                    if (off == 0) { continue; }
+                    neighbourPos[dim] += off;
+                    if (!GridManager.Instance.IsOccupied(neighbourPos))
+                    {
+                        continue;
+                    }
+                    MapObject neighbour = GridManager.Instance.GetGridObject(neighbourPos).GetComponent<MapObject>();
+                    neighbour.setAdjacecyString(GridManager.Instance.getAdjacencyString(neighbourPos));
+                }
+            }
         }
     }
 

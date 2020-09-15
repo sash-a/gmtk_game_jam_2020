@@ -13,6 +13,7 @@ public abstract class MapObject : MonoBehaviour
     static string POSITION_Y = "position_y";
     public static string[] positions = new string[] { POSITION_X, POSITION_Y };
 
+    private string adjacencyString;
     public Dictionary<string, string> getArgMap()
     {
         Dictionary<string, string> am = new Dictionary<string, string>();
@@ -65,6 +66,15 @@ public abstract class MapObject : MonoBehaviour
                 activateChanged();
             }
         }
+    }
+
+    public void setAdjacecyString(string adjacency) {
+        /*
+         * a string containing a letter for each face of the object which has no neighbour
+         * eg: u or ul, or ur, or udlr
+         */
+        adjacencyString = adjacency;
+        //todo update sprite
     }
 
     public string getSaveString() {

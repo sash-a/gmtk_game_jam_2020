@@ -52,6 +52,36 @@ public class GridManager : MonoBehaviour
             (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
 
+    public string getAdjacencyString(Vector3 position) {
+        /*
+         * returns a string containing a letter for each face of the object which has no neighbour
+         * eg: u or ul, or ur, or udlr
+         */
+        Vector3 checkPos;
+        string[][] positionalChars = new string[][] { new string[] { "l", "r" }, new string[] { "d", "u" } };
+
+        string adjacencyString = "";
+        for (int dim = 0; dim < 2; dim++)
+        {
+            int i = 0;
+            for (int off = -1; off < 2; off++)
+            {
+                checkPos = position;
+
+                if (off == 0) { continue; }
+                checkPos[dim] += off;
+                //Debug.Log("checking adjacent object at dim= " + dim + " off = " + off + " pos: " + positionalChars[dim][i] + " occupied: " + IsOccupied(checkPos) + " checkpos: " + checkPos);
+
+                if (!IsOccupied(checkPos)) {
+                    //this face of the object has no adjaceny object
+                    adjacencyString += positionalChars[dim][i];
+                }
+                i++;
+            }
+        }
+        return adjacencyString;
+    }
+
 
     public Vector3 ValidateWorldGridPosition(Vector3 position)
     {
