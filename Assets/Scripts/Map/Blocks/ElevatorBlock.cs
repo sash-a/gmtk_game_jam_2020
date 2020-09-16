@@ -18,10 +18,8 @@ public class ElevatorBlock : DirectedBlock
 
     [HideInInspector] public bool increasing; // pos or neg in dim
 
-
     private void Start()
     {
-
         travelDistance = -1;
         speed = -1;
         increasing = positiveDir; // to start in right dir

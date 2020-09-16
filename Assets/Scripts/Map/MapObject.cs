@@ -68,13 +68,12 @@ public abstract class MapObject : MonoBehaviour
         }
     }
 
-    public void setAdjacecyString(string adjacency) {
+    public virtual void setAdjacecyString(string adjacency) {
         /*
          * a string containing a letter for each face of the object which has no neighbour
          * eg: u or ul, or ur, or udlr
          */
         adjacencyString = adjacency;
-        //todo update sprite
     }
 
     public string getSaveString() {

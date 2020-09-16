@@ -16,11 +16,23 @@ public class Block : MapObject
 
     [HideInInspector] public string chunkID; // which chunk this object belongs to
 
+
+    Accents accents;
+
     private void Start()
     {
         chunkID = null; // no chunk
         parseArgs(args);
         base.start();
+    }
+
+    public override void setAdjacecyString(string adjacency)
+    {
+        if (accents == null) {
+            accents = GetComponentInChildren<Accents>();
+        }
+        base.setAdjacecyString(adjacency);
+        accents.updateAccents(adjacency);
     }
 
     SpriteRenderer renderer {
