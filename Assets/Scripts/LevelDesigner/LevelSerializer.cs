@@ -1,12 +1,14 @@
 ﻿using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSerializer : MonoBehaviour
 {
     public string levelName;
     public static string levelFolderPath = "/Levels/";
 
+    public InputField levelNameInput;
     private void Start()
     {
         if (levelName == "" || levelName == null) {
@@ -61,6 +63,7 @@ public class LevelSerializer : MonoBehaviour
 
     public void saveCurrentLevel()
     {
+        levelName = levelNameInput.text;
         if (levelName == "") {
             throw new Exception("must provide a level name to serialiser");
         }

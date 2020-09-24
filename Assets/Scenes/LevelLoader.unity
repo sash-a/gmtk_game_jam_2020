@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 6817998410478271412, guid: cc5faddef6345934bb66424387746d5e,
         type: 3}
       propertyPath: levelName
-      value: testElevator
+      value: test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc5faddef6345934bb66424387746d5e, type: 3}
