@@ -143,11 +143,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2026287072071929227}
   maxSplits: 5
-  lrSplitMag: 3
-  lrSplitDuration: 0.3
+  lrSplitMag: 5
+  lrSplitDuration: 0.6
   udSplitMag: 1
-  perpSplitMag: 0.5
-  stationarySplitFrac: 0.1
+  perpSplitMag: 0.75
+  stationarySplitFrac: 0.25
   splitSound: {fileID: 8300000, guid: 9bcd235ff47afdf2491cad7cd3fe6a5f, type: 3}
   nSplits: 0
   canSplit: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026287072071929227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcfef3f3a5691b70183aee6079514ce5, type: 3}
   m_Name: 
