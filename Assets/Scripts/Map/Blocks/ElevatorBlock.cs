@@ -28,7 +28,7 @@ public class ElevatorBlock : DirectedBlock
 
         parseArgs(args);
 
-        base.start();
+        start();
     }
 
 

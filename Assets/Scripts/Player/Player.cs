@@ -12,7 +12,9 @@ namespace Game.Player
         [HideInInspector] public Splitter splitter;
         [HideInInspector] public ObjectShake shaker;
         [HideInInspector] public Death death;
-        [HideInInspector] public SpriteRenderer sprite;
+
+        private SpriteRenderer _sprite;
+        public SpriteRenderer sprite { get { if (_sprite == null) { _sprite = GetComponentInChildren<SpriteRenderer>(); } return _sprite; } }
 
 
         private void Awake()
@@ -22,7 +24,6 @@ namespace Game.Player
             splitter = GetComponent<Splitter>();
             shaker = GetComponent<ObjectShake>();
             death = GetComponent<Death>();
-            sprite = GetComponentInChildren<SpriteRenderer>();
 
             AllSlimes.singleton.livingPlayers.Add(this);//registers player
         }

@@ -17,19 +17,20 @@ namespace Game
         public Controls controls;
 
         public bool designingLevel;
+        public bool showDesignLevelButton;
 
         [HideInInspector] public int nPlayers;
         [SerializeField] private TextMeshProUGUI loseText;
         [SerializeField] private TextMeshProUGUI winText;
         [SerializeField] public float exitDelay;
-        public int requiredToFinish;
 
         [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private GameObject playerHolder;
-        [SerializeField] private Vector3 playerStartPos;
+        public GameObject playerHolderPrefab;
 
         [SerializeField] private GameObject playLevelButton;
         [SerializeField] private GameObject designLevelButton;
+
+        [HideInInspector] public FinishLine finishLine;
         
         private void Awake()
         {
@@ -47,13 +48,16 @@ namespace Game
                 loseText.enabled = false;
                 winText.enabled = false;
             }
+            designLevelButton.SetActive(showDesignLevelButton);
+
+            finishLine = GetComponent<FinishLine>();
         }
 
         void Update()
         {
             if (nPlayers == 0 && !designingLevel)
             {
-                if (Finished.instance.nFinished < requiredToFinish)
+                if (finishLine.nFinished < finishLine.requiredToFinish)
                     Lose();
                 else
                     Win();
@@ -95,23 +99,23 @@ namespace Game
 
         public void PlayLevel()
         {
-            designingLevel = false;
-            var player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
-            player.transform.parent = playerHolder.transform;
-            controls.LevelDesign.Disable();
-            controls.Player.Enable();
-            playLevelButton.SetActive(false); 
-            designLevelButton.SetActive(true);
+            //designingLevel = false;
+            //var player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
+            //player.transform.parent = playerHolder.transform;
+            //controls.LevelDesign.Disable();
+            //controls.Player.Enable();
+            //playLevelButton.SetActive(false); 
+            //designLevelButton.SetActive(true);
         }
 
         public void DesignLevel()
         {
-            designingLevel = true;
-            AllSlimes.singleton.destroyAllPlayers();
-            controls.LevelDesign.Enable();
-            controls.Player.Disable();
-            playLevelButton.SetActive(true);
-            designLevelButton.SetActive(false);
+            //designingLevel = true;
+            //AllSlimes.singleton.destroyAllPlayers();
+            //controls.LevelDesign.Enable();
+            //controls.Player.Disable();
+            //playLevelButton.SetActive(true);
+            //designLevelButton.SetActive(false);
         }
     }
 }

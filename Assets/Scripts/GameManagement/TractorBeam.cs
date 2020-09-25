@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TractorBeam : MonoBehaviour
 {
-    public Finished ufo;
+    public FinishLine ufo;
     HashSet<PlayerController> caughtPlayers;
     SpriteRenderer renderer;
 
