@@ -97,7 +97,7 @@ public class BlockGroup: MapObject
         BlockGroup group = groupMap[groupID];
         block.transform.parent = group.transform.parent;
         groupBlocks[groupID].Remove(block);
-        bool hasSwitch = SwitchBlock.targetSwitches != null && SwitchBlock.targetSwitches.ContainsKey(block);
+        bool hasSwitch = SwitchManager.instance.targetSwitches != null && SwitchManager.instance.targetSwitches.ContainsKey(block);
         block.active = !hasSwitch;
         //Debug.Log("removed block " + block + " from group: " + groupID);
     }

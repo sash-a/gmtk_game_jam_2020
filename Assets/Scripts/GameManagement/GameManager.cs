@@ -19,6 +19,9 @@ namespace Game
         public bool designingLevel;
         public bool showDesignLevelButton;
 
+        [HideInInspector] public bool spawnBlockPlaced;
+        [HideInInspector] public bool spawnedPlayer;
+
         [HideInInspector] public int nPlayers;
         [SerializeField] private TextMeshProUGUI loseText;
         [SerializeField] private TextMeshProUGUI winText;
@@ -32,7 +35,7 @@ namespace Game
 
         [HideInInspector] public FinishLine finishLine;
 
-        public bool playerSpanwed { get { return !designingLevel && SpawnBlock.spawnBlockPlaced && SpawnBlock.spawnedPlayer; } }
+        public bool playerSpanwed { get { return !designingLevel && spawnBlockPlaced && spawnedPlayer; } }
         
         private void Awake()
         {
@@ -93,36 +96,11 @@ namespace Game
         {
             yield return new WaitForSeconds(exitDelay);
             var desiredScene = SceneManager.GetActiveScene().buildIndex + 1;
-            print(desiredScene);
+            print("switching to scene " + desiredScene);
             if (desiredScene > SceneManager.sceneCountInBuildSettings - 1)
                 desiredScene = 0;
             SceneManager.LoadScene(desiredScene);
         }
 
-        public void Restart()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        public void PlayLevel()
-        {
-            //designingLevel = false;
-            //var player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
-            //player.transform.parent = playerHolder.transform;
-            //controls.LevelDesign.Disable();
-            //controls.Player.Enable();
-            //playLevelButton.SetActive(false); 
-            //designLevelButton.SetActive(true);
-        }
-
-        public void DesignLevel()
-        {
-            //designingLevel = true;
-            //AllSlimes.singleton.destroyAllPlayers();
-            //controls.LevelDesign.Enable();
-            //controls.Player.Disable();
-            //playLevelButton.SetActive(true);
-            //designLevelButton.SetActive(false);
-        }
     }
 }

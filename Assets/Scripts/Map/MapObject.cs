@@ -45,7 +45,7 @@ public abstract class MapObject : MonoBehaviour
 
     public virtual void start() {
         Map.singleton.objects.registerObject(this);
-        if (SwitchBlock.targetSwitches != null && SwitchBlock.targetSwitches.ContainsKey(this)) {
+        if (SwitchManager.instance.targetSwitches != null && SwitchManager.instance.targetSwitches.ContainsKey(this)) {
             //this object is attached to a switch, deactivate it
             active = false;
         }
@@ -146,6 +146,11 @@ public abstract class MapObject : MonoBehaviour
             }
             
         }
+
+        if (args.Contains(positions[0])) {
+            //has positional args
+            transform.position += GridManager.cellOffset;
+        }
     }
 
     internal virtual void parseArg(string arg) {
@@ -154,15 +159,15 @@ public abstract class MapObject : MonoBehaviour
         {
             int switchID = int.Parse(argVal);
             //Debug.Log(gameObject + " is triggered by " + arg);
-            if (SwitchBlock.targetSwitches.ContainsKey(this)) {
+            if (SwitchManager.instance.targetSwitches.ContainsKey(this)) {
                 //had previous switches, must remove
-                foreach (int oldSwith in SwitchBlock.targetSwitches[this])
+                foreach (int oldSwith in SwitchManager.instance.targetSwitches[this])
                 {
-                    SwitchBlock.switchTargets[oldSwith].Remove(this);
+                    SwitchManager.instance.switchTargets[oldSwith].Remove(this);
                 }
-                SwitchBlock.targetSwitches.Remove(this);
+                SwitchManager.instance.targetSwitches.Remove(this);
             }
-            SwitchBlock.registerSwitchTarget(switchID, this);
+            SwitchManager.instance.registerSwitchTarget(switchID, this);
             Debug.Log(this + " is registering switch " + switchID);
 
             active = false;

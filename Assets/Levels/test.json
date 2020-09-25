@@ -1,1 +1,1 @@
-{block:{position_x:-1,position_y:-2},block:{position_x:0,position_y:-2},block:{position_x:0,position_y:-2},block:{position_x:2,position_y:-2},block:{dist:3, speed:1,position_x:1,position_y:-2},spawnBlock:{position_x:0,position_y:0},finishBlock:{needs:5,position_x:2,position_y:2}}
+{block:{position_x:-2,position_y:-1},block:{position_x:-1,position_y:-1},block:{position_x:0,position_y:-1},block:{position_x:0,position_y:-1},spawnBlock:{position_x:-1,position_y:1},finishBlock:{needs:5,position_x:3,position_y:-1}}

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -188,30 +188,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 757893502461738848, guid: 2a358c9ec3087d84ca9262278ba3d51e,
+    - target: {fileID: 757893500429208879, guid: 2a358c9ec3087d84ca9262278ba3d51e,
         type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
+      propertyPath: editorLevelName
+      value: test
       objectReference: {fileID: 0}
-    - target: {fileID: 757893502461738848, guid: 2a358c9ec3087d84ca9262278ba3d51e,
+    - target: {fileID: 757893500975813384, guid: 2a358c9ec3087d84ca9262278ba3d51e,
         type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 757893502461738848, guid: 2a358c9ec3087d84ca9262278ba3d51e,
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2093473901}
+    - target: {fileID: 757893500975813384, guid: 2a358c9ec3087d84ca9262278ba3d51e,
         type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 757893502461738848, guid: 2a358c9ec3087d84ca9262278ba3d51e,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 757893502461738848, guid: 2a358c9ec3087d84ca9262278ba3d51e,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a358c9ec3087d84ca9262278ba3d51e, type: 3}
+--- !u!114 &2093473901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 757893500429208879, guid: 2a358c9ec3087d84ca9262278ba3d51e,
+    type: 3}
+  m_PrefabInstance: {fileID: 375479620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5482fd7cb3576f4da4f8baaacfa4589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

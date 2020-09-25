@@ -1,20 +1,29 @@
 ﻿using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSerializer : MonoBehaviour
 {
-    public string levelName;
+    public string editorLevelName;
     public static string levelFolderPath = "/Levels/";
 
+    public static string staticLevelName;
+
     public InputField levelNameInput;
+
     private void Start()
     {
-        if (levelName == "" || levelName == null) {
+        if (editorLevelName != "")
+        {
+            //has provided name from editor
+            staticLevelName = editorLevelName;
+        }
+        if (staticLevelName == "" || staticLevelName == null) {
             return;
         }
-        loadLevel(levelName);
+        loadLevel(staticLevelName);
     }
 
     public static string getLevelFilePath(string levelName)
@@ -75,10 +84,24 @@ public class LevelSerializer : MonoBehaviour
 
     public void saveCurrentLevel()
     {
-        levelName = levelNameInput.text;
-        if (levelName == "") {
+        staticLevelName = levelNameInput.text;
+        if (staticLevelName == "") {
             throw new Exception("must provide a level name to serialiser");
         }
-        save(levelName);
+        save(staticLevelName);
+    }
+
+    public void EditLevel()
+    {
+        Debug.Log("editing level " + staticLevelName);
+        Destroy(gameObject, 0.1f);
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Single); // level level editor
+    }
+
+    public void Restart()
+    {
+        Debug.Log("restarting level " + staticLevelName);
+        Destroy(gameObject, 0.1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

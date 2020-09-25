@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5482fd7cb3576f4da4f8baaacfa4589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: test
+  editorLevelName: 
   levelNameInput: {fileID: 0}
 --- !u!1 &757893500860490705
 GameObject:
@@ -380,7 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   designingLevel: 0
-  showDesignLevelButton: 0
+  showDesignLevelButton: 1
+  spawnBlockPlaced: 0
+  spawnedPlayer: 0
   nPlayers: 0
   loseText: {fileID: 944626261562036143}
   winText: {fileID: 5826198951726698785}
@@ -1011,8 +1013,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DesignLevel
+      - m_Target: {fileID: 757893500429208879}
+        m_MethodName: EditLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1492,6 +1494,18 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5364141032947145039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8210320002413969229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafb6e50f8edcb546b637ee05b5d4d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &757893500540628729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1561,6 +1575,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ffea2c37c661870db2efab0282bcc99, type: 3}
+--- !u!1 &8210320002413969229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8895874343610225076, guid: 1ffea2c37c661870db2efab0282bcc99,
+    type: 3}
+  m_PrefabInstance: {fileID: 757893500540628729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8210320002413969230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8895874343610225079, guid: 1ffea2c37c661870db2efab0282bcc99,

@@ -17,6 +17,10 @@ public class GridManager : MonoBehaviour
 
     Dictionary<Vector3, GameObject> gridObjects = new Dictionary<Vector3, GameObject>();
 
+    public static Vector3 cellOffset {
+        get { return new Vector3(1, 1, 0) * GridManager.Instance.GetCellSize() * .5f; }
+    }
+
     public static GridManager Instance
     {
         get

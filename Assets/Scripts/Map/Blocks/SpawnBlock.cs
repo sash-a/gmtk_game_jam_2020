@@ -8,9 +8,6 @@ public class SpawnBlock : Block
 {
     public static string SPAWN_BLOCK = "spawnBlock";
 
-    public static bool spawnBlockPlaced;
-    public static bool spawnedPlayer;
-
     public override void start()
     {
         base.start();
@@ -26,11 +23,11 @@ public class SpawnBlock : Block
 
     private void setSpawn()
     {
-        if (spawnBlockPlaced)
+        if (GameManager.instance.spawnBlockPlaced)
         {
             throw new System.Exception("cannot have more than one spawn block");
         }
-        spawnBlockPlaced = true;
+        GameManager.instance.spawnBlockPlaced = true;
     }
 
     private void spawnPlayer()
@@ -43,7 +40,7 @@ public class SpawnBlock : Block
         player.transform.position = playerStartPos;
 
         GameManager.instance.nPlayers = 1;
-        spawnedPlayer = true;
+        GameManager.instance.spawnedPlayer = true;
 
         Destroy(gameObject, 0.5f);
     }

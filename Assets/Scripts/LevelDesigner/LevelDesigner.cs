@@ -2,18 +2,23 @@
 using Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class LevelDesigner : MonoBehaviour
 {
+    static string TEMP_LEVEL_NAME = "%%tempLevel%%";
+
     public GameObject selectionSquare;
     public GameObject spawnableObject;
     public ArgsManager argsManager;
+    LevelSerializer serialiser;
 
     private Vector3 mouseGridPos;
 
     private void Awake()
     {
         selectionSquare = Instantiate(selectionSquare, Vector3.zero, Quaternion.identity);
+        serialiser = GetComponent<LevelSerializer>();
     }
 
     private void Start()
@@ -28,8 +33,22 @@ public class LevelDesigner : MonoBehaviour
         updateSelectionSquare(mouseGridPos);
     }
 
+    public void testLevel() {
+        if (serialiser.levelNameInput.text == "") {
+            LevelSerializer.staticLevelName = TEMP_LEVEL_NAME;
+        }
+        else{
+            LevelSerializer.staticLevelName = serialiser.levelNameInput.text;
+        }
+        LevelSerializer.save(LevelSerializer.staticLevelName);//must save before switching scenes
+        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        Destroy(gameObject, 0.1f);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single); // level loader
+    }
+
     private void spawnBlock(Vector3 mouseGridPos)
     {
+        //Debug.Log("spawning block at " + mouseGridPos);
         if (!GridManager.Instance.IsOccupied(mouseGridPos) &&
             GridManager.instance.inGrid((int) mouseGridPos.x, (int) mouseGridPos.y))
         {
@@ -99,6 +118,6 @@ public class LevelDesigner : MonoBehaviour
 
     public Vector3 mouseToWorldPos(Vector3 mousePos)
     {
-        return mousePos + new Vector3(1, 1, 0) * GridManager.instance.GetCellSize() * .5f;
+        return mousePos + GridManager.cellOffset;
     }
 }
