@@ -93,6 +93,7 @@ public class LevelDesigner : MonoBehaviour
 
     public void setBlockType(GameObject block)
     {
+        //Debug.Log("setting block type to: " + block);
         spawnableObject = block;
     }
 

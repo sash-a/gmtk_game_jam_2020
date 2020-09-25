@@ -41,7 +41,6 @@ public class FinishBlock : TriggerBlock
 
     internal override void trigger(PlayerController pc)
     {
-        Debug.Log("touching " + pc.gameObject);
         if (pc.gameObject.CompareTag("Player"))
         {
             var player = pc.gameObject.GetComponent<Player>();

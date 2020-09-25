@@ -51,8 +51,6 @@ public class Map : MonoBehaviour
             return;
         }
 
-        Debug.Log("player has been spawned, adjusting map");
-
         Vector2 blobBounds = AllSlimes.singleton.getHorizontalBounds();
         float boundsSize = (blobBounds.y - blobBounds.x) * 1.1f / mapCam.aspect;
         mapCam.orthographicSize = Mathf.Max(boundsSize, baseCamSize); // TODO is this needed
