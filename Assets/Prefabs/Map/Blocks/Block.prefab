@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac42ddc167644b44a489d44bd17ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShadowOffset: {x: 0.7, y: 0.3}
+  ShadowOffset: {x: -0.3, y: -0.3}
   ShadowMaterial: {fileID: 2100000, guid: 03da12de7b7907742be75dd095f66a92, type: 2}
 --- !u!1 &5807192368158311723
 GameObject:

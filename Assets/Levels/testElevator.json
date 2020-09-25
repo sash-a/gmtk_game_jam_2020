@@ -1,1 +1,0 @@
-{projectile:{shootDir:r, dir:u, dist:4, speed: 3, shootSpeed:3,position_x:-3,position_y:3},block:{position_x:1,position_y:0},block:{dist:3, dir:d, speed: 2, chunkID:0,position_x:3,position_y:0},block:{chunkID:0,position_x:4,position_y:0},block:{dist:2, speed:2,position_x:0,position_y:1},block:{position_x:6,position_y:0}}

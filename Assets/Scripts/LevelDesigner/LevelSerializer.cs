@@ -57,8 +57,20 @@ public class LevelSerializer : MonoBehaviour
     public static void save(string levelName)
     {
         string saveString = Map.singleton.objects.getSaveString();
+        checkSaveString(saveString);
         Debug.Log("saving level '" + levelName + "'");
         File.WriteAllText(getLevelFilePath(levelName), saveString);
+    }
+
+    private static void checkSaveString(string saveString)
+    {
+        if (!saveString.Contains(SpawnBlock.SPAWN_BLOCK)) {
+            throw new Exception("no spawn block, cannot save");
+        }
+        if (!saveString.Contains(FinishBlock.FINISH_BLOCK))
+        {
+            throw new Exception("no finish block, cannot save");
+        }
     }
 
     public void saveCurrentLevel()

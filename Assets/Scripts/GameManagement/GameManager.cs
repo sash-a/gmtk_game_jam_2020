@@ -31,6 +31,8 @@ namespace Game
         [SerializeField] private GameObject designLevelButton;
 
         [HideInInspector] public FinishLine finishLine;
+
+        public bool playerSpanwed { get { return !designingLevel && SpawnBlock.spawnBlockPlaced && SpawnBlock.spawnedPlayer; } }
         
         private void Awake()
         {
@@ -55,12 +57,17 @@ namespace Game
 
         void Update()
         {
-            if (nPlayers == 0 && !designingLevel)
+            if (nPlayers == 0 && playerSpanwed)
             {
+                //Debug.Log("num players: " + nPlayers + " spawned: " + playerSpanwed);
                 if (finishLine.nFinished < finishLine.requiredToFinish)
+                {
                     Lose();
+                }
                 else
+                {
                     Win();
+                }
             }
         }
 

@@ -21,6 +21,10 @@ public class FinishLine : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.instance.playerSpanwed)
+        {
+            return;
+        }
         int remainingMass = AllSlimes.singleton.getTotalMassRemaining();
         remainingCounter.text = "Remaining: " + remainingMass;
         finishedCounter.text = "Rescued: " + nFinished + " / " + requiredToFinish;

@@ -7,12 +7,13 @@ using UnityEngine;
 public class FinishBlock : TriggerBlock
 {
     static string NEEDS = "needs";
-    static string FINISH_BLOCK = "finishBlock";
+    public static string FINISH_BLOCK = "finishBlock";
 
     [HideInInspector] public int requiredMass;
 
     public override void start()
     {
+        args = NEEDS + ":" + 5;
         base.start();
 
         if (!GameManager.instance.designingLevel)

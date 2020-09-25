@@ -26,6 +26,8 @@ namespace Game.Player
             death = GetComponent<Death>();
 
             AllSlimes.singleton.livingPlayers.Add(this);//registers player
+
+            GameManager.instance.nPlayers += 1;
         }
 
 

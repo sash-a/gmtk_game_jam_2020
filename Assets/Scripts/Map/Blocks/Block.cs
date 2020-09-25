@@ -23,7 +23,7 @@ public class Block : MapObject
     {
         chunkID = null; // no chunk
         parseArgs(args);
-        base.start();
+        start();
     }
 
     public override void setAdjacecyString(string adjacency)

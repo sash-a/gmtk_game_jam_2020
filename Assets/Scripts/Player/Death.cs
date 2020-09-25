@@ -8,14 +8,6 @@ namespace Game.Player
     {
         public ParticleSystem dieEffect;
 
-        public void Start()
-        {
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.nPlayers += 1;
-            }
-        }
-
         public void OnDestroy()
         {
             Instantiate(dieEffect, transform.position, transform.rotation).Play();

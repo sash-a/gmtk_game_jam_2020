@@ -15,6 +15,7 @@ public class AllSlimes : MonoBehaviour
     {
         livingPlayers = new HashSet<Player>();
         singleton = this;
+        GameManager.instance.nPlayers -= 1;// to counteract the first slime incrementing this count
     }
 
     public Vector2 getHorizontalBounds() {

@@ -15,6 +15,9 @@ public class DropShadow : MonoBehaviour
 
         //create a new gameobject to be used as drop shadow
         shadowGameobject = new GameObject("Shadow");
+        shadowGameobject.transform.parent = transform;
+        shadowGameobject.transform.localPosition = (Vector3)ShadowOffset;
+
 
         //create a new SpriteRenderer for Shadow gameobject
         SpriteRenderer shadowSpriteRenderer = shadowGameobject.AddComponent<SpriteRenderer>();
@@ -29,10 +32,9 @@ public class DropShadow : MonoBehaviour
         shadowSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder;
     }
 
-    void LateUpdate()
-    {
-        //update the position and rotation of the sprite's shadow with moving sprite
-        shadowGameobject.transform.localPosition = transform.parent.localPosition + (Vector3)ShadowOffset;
-        shadowGameobject.transform.localRotation = transform.parent.localRotation;
-    }
+    //void LateUpdate()
+    //{
+    //    //update the position and rotation of the sprite's shadow with moving sprite
+    //    shadowGameobject.transform.localRotation = transform.parent.localRotation;
+    //}
 }

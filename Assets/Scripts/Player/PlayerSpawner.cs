@@ -9,8 +9,6 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = Instantiate(GameManager.instance.playerHolderPrefab);
-        playerStartPos.z = -1;
-        player.transform.position = playerStartPos;
+        
     }
 }
